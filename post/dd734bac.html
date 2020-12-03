@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="超类与子类：  super: super与this不同，super只是一个指示关键字，并不是一个对象的引用，所以不可以将super赋值给另一个对象变量。  子类可以增加域、增加方法、覆盖超类的方法，但是不能删除继承的任何域和方法。  如果字累的构造器没有显式地调用超类的构造器，则将自动调用超类默认构造器(没有参数)。如果超类没有不带参数的构造器，并且在子类的构造器中又没有显式的调用超类的其他构造">
+<meta name="keywords" content="Java,core java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="core java笔记(第五章-继承)">
+<meta property="og:url" content="http://ryziii.github.io/post/dd734bac.html">
+<meta property="og:site_name" content="Rysi&#39;s Blog">
+<meta property="og:description" content="超类与子类：  super: super与this不同，super只是一个指示关键字，并不是一个对象的引用，所以不可以将super赋值给另一个对象变量。  子类可以增加域、增加方法、覆盖超类的方法，但是不能删除继承的任何域和方法。  如果字累的构造器没有显式地调用超类的构造器，则将自动调用超类默认构造器(没有参数)。如果超类没有不带参数的构造器，并且在子类的构造器中又没有显式的调用超类的其他构造">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fynfvysa0tj311r0u0tk7.jpg">
+<meta property="og:updated_time" content="2020-10-21T09:27:52.794Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="core java笔记(第五章-继承)">
+<meta name="twitter:description" content="超类与子类：  super: super与this不同，super只是一个指示关键字，并不是一个对象的引用，所以不可以将super赋值给另一个对象变量。  子类可以增加域、增加方法、覆盖超类的方法，但是不能删除继承的任何域和方法。  如果字累的构造器没有显式地调用超类的构造器，则将自动调用超类默认构造器(没有参数)。如果超类没有不带参数的构造器，并且在子类的构造器中又没有显式的调用超类的其他构造">
+<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fynfvysa0tj311r0u0tk7.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>core java笔记(第五章-继承)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="Rysi&#39;s Blog" type="application/atom+xml" />
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/post/e52bdd84.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/post/807b4761.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/dd734bac.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/dd734bac.html&text=core java笔记(第五章-继承)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/dd734bac.html&title=core java笔记(第五章-继承)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/dd734bac.html&is_video=false&description=core java笔记(第五章-继承)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=core java笔记(第五章-继承)&body=Check out this article: http://ryziii.github.io/post/dd734bac.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/dd734bac.html&title=core java笔记(第五章-继承)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/dd734bac.html&title=core java笔记(第五章-继承)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/dd734bac.html&title=core java笔记(第五章-继承)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/dd734bac.html&title=core java笔记(第五章-继承)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/dd734bac.html&name=core java笔记(第五章-继承)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        core java笔记(第五章-继承)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Rysi's Blog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-10-10T03:57:50.000Z" itemprop="datePublished">2018-10-10</time>
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Java/">Java</a>, <a class="tag-link" href="/tags/core-java/">core java</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <ol>
+<li><p><strong>超类与子类：</strong></p>
+<ul>
+<li><p><strong>super:</strong></p>
+<p>super与this不同，super只是一个指示关键字，并不是一个对象的引用，所以不可以将super赋值给另一个对象变量。</p>
+</li>
+<li><p>子类可以增加域、增加方法、覆盖超类的方法，但是<strong>不能删除继承的任何域和方法。</strong></p>
+</li>
+<li><p>如果字累的构造器没有显式地调用超类的构造器，则将自动调用超类默认构造器(没有参数)。如果超类没有不带参数的构造器，并且在子类的构造器中又没有显式的调用超类的其他构造器，则Java编译器将报错。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Manager</span><span class="params">(String name,<span class="keyword">double</span> salary,<span class="keyword">int</span> year,<span class="keyword">int</span> month,<span class="keyword">int</span> day)</span></span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(name,salary,year,month,day);</span><br><span class="line">    bonus = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>多态：</strong></p>
+<ul>
+<li><p>定义：指允许不同类的对象对同一消息做出响应。即同一消息可以根据发送对象的不同而采用多种不同的行为方式。（发送消息就是函数调用）</p>
+</li>
+<li><p>多态存在的三个必要条件：</p>
+<ol>
+<li>要有继承</li>
+<li>要有重写</li>
+<li>父类引用指向子类对象</li>
+</ol>
+</li>
+<li><p>在java中，多态大致可以分为以下几种情况：</p>
+<ol>
+<li>person为父类，student为子类。那么：person p=new student()；</li>
+<li>fliable为接口，bird为实现接口的类，那么：fliable f=new bird()；</li>
+<li>fliable为抽象类，bird为继承fliable的类，那么：fliable f=new bird()；</li>
+</ol>
+</li>
+<li><p>我的理解：使用多个父类引用多个不同子类对象，不同子类对象的引用可以实现不同子类的方法；</p>
+<ul>
+<li>多态时使用的成员变量如果冲突，使用的是父类的变量</li>
+<li>多态时使用的成员方法如果子类和父类冲突，使用子类的方法</li>
+<li>如果已经向上转型后需要调用子类特有的方法需要向下转型</li>
+</ul>
+</li>
+<li><p><a href="https://blog.csdn.net/lingang1991/article/details/69905944" target="_blank" rel="noopener">网上比较通俗易懂的参考资料</a></p>
+</li>
+</ul>
+</li>
+<li><p><strong>抽象：</strong></p>
+<ul>
+<li><p>抽象的意义在于把设计和方法的实现分开,抽象类定义了一个方法,但要通过子类来实现他的方法</p>
+</li>
+<li><p>特点:</p>
+<ol>
+<li><p>有抽象方法的类一定是抽象类</p>
+</li>
+<li><p>抽象类只能用来被继承,不能实例化只能通过子类来实现</p>
+</li>
+<li><p>抽象类可以有其它的方法  不一定只有抽象方法</p>
+</li>
+<li><p>如果子类只覆盖了部分抽象方法，那么该子类还是一个抽象类</p>
+</li>
+<li><p>抽象方法和抽象类都必须被abstract关键字修饰</p>
+</li>
+</ol>
+</li>
+<li>我的理解：<strong>预留</strong>；抽象类就是用来被子类继承实现的，可以说是保留方法和属性，只声明不实现，因为必须要在子类里实例化，所以基本上无需在抽象类中实现具体的。如果子类也不知道该不该完成这个方法，就可以继续抽象这个方法，等下一个子类来完成。</li>
+</ul>
+</li>
+<li><p><strong>equal:</strong></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fynfvysa0tj311r0u0tk7.jpg" alt="from core java"></p>
+</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/dd734bac.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/dd734bac.html&text=core java笔记(第五章-继承)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/dd734bac.html&title=core java笔记(第五章-继承)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/dd734bac.html&is_video=false&description=core java笔记(第五章-继承)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=core java笔记(第五章-继承)&body=Check out this article: http://ryziii.github.io/post/dd734bac.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/dd734bac.html&title=core java笔记(第五章-继承)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/dd734bac.html&title=core java笔记(第五章-继承)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/dd734bac.html&title=core java笔记(第五章-继承)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/dd734bac.html&title=core java笔记(第五章-继承)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/dd734bac.html&name=core java笔记(第五章-继承)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 Rysi
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="xml允许使用实体引用表示特殊字符：cdata:\&amp;lt;![CDATA[文本内容]]\&amp;gt;  xml解析方式  DOM：Document Object Model：文档对象模型 SAX：Simple API for XML 行业闺房 JSXP：java API for XML：java解析xml文档的API   xpath xpath节点：   xpath基本关系：  基本值：没有父节点的">
+<meta name="keywords" content="Java Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xml和xpath">
+<meta property="og:url" content="http://ryziii.github.io/post/888f9884.html">
+<meta property="og:site_name" content="Rysi&#39;s Blog">
+<meta property="og:description" content="xml允许使用实体引用表示特殊字符：cdata:\&amp;lt;![CDATA[文本内容]]\&amp;gt;  xml解析方式  DOM：Document Object Model：文档对象模型 SAX：Simple API for XML 行业闺房 JSXP：java API for XML：java解析xml文档的API   xpath xpath节点：   xpath基本关系：  基本值：没有父节点的">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fyng50mrmjj30j605sgmb.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fyng4laplmj30j608i40a.jpg">
+<meta property="og:updated_time" content="2020-10-21T09:28:00.366Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="xml和xpath">
+<meta name="twitter:description" content="xml允许使用实体引用表示特殊字符：cdata:\&amp;lt;![CDATA[文本内容]]\&amp;gt;  xml解析方式  DOM：Document Object Model：文档对象模型 SAX：Simple API for XML 行业闺房 JSXP：java API for XML：java解析xml文档的API   xpath xpath节点：   xpath基本关系：  基本值：没有父节点的">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fyng50mrmjj30j605sgmb.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>xml和xpath</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="Rysi&#39;s Blog" type="application/atom+xml" />
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/post/85ffea81.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/post/ba1c11f7.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/888f9884.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/888f9884.html&text=xml和xpath"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/888f9884.html&title=xml和xpath"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/888f9884.html&is_video=false&description=xml和xpath"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=xml和xpath&body=Check out this article: http://ryziii.github.io/post/888f9884.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/888f9884.html&title=xml和xpath"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/888f9884.html&title=xml和xpath"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/888f9884.html&title=xml和xpath"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/888f9884.html&title=xml和xpath"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/888f9884.html&name=xml和xpath&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        xml和xpath
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Rysi's Blog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-10-16T02:46:54.000Z" itemprop="datePublished">2018-10-16</time>
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Java-Web/">Java Web</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <ol>
+<li><p>xml允许使用实体引用表示特殊字符：<img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fyng50mrmjj30j605sgmb.jpg" alt=""><code>cdata:\&lt;![CDATA[文本内容]]\&gt;</code></p>
+</li>
+<li><p>xml解析方式</p>
+<ul>
+<li>DOM：Document Object Model：文档对象模型</li>
+<li>SAX：Simple API for XML 行业闺房</li>
+<li>JSXP：java API for XML：java解析xml文档的API</li>
+</ul>
+</li>
+<li><p>xpath</p>
+<p>xpath节点：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fyng4laplmj30j608i40a.jpg" alt=""></p>
+<ol>
+<li><p>xpath基本关系：</p>
+<ul>
+<li><p>基本值：没有父节点的子节点</p>
+</li>
+<li><p>项：一个项代表一个节点或基本值</p>
+</li>
+<li><p>序列：序列可以表示节点集(多个节点)或者项</p>
+</li>
+</ul>
+</li>
+<li><p>节点关系：</p>
+<ul>
+<li>父节点</li>
+<li>子节点</li>
+<li>兄弟节点</li>
+<li>祖先节点</li>
+<li>后代节点</li>
+</ul>
+</li>
+<li><p>xpath相对路径绝对路径：xpath绝对路径以／开头，相对路径不以／开头</p>
+<ul>
+<li>/list/demo/xxx绝对路径</li>
+<li>list/demo/xxx相对路径</li>
+</ul>
+</li>
+<li><p>xpath基础语法：xpath使用路径表达式定位xml文档中的节点和节点集</p>
+</li>
+</ol>
+</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/888f9884.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/888f9884.html&text=xml和xpath"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/888f9884.html&title=xml和xpath"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/888f9884.html&is_video=false&description=xml和xpath"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=xml和xpath&body=Check out this article: http://ryziii.github.io/post/888f9884.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/888f9884.html&title=xml和xpath"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/888f9884.html&title=xml和xpath"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/888f9884.html&title=xml和xpath"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/888f9884.html&title=xml和xpath"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/888f9884.html&name=xml和xpath&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 Rysi
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

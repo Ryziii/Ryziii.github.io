@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="HTTP协议HTTP协议特点 支持客户/服务器模式：浏览器向服务器请求 简单快速：get、post… 灵活：允许传输任意类型数据 无连接：请求结束后断开连接 无状态：不保留状态，之后的事务不知道之前的事  HTTP协议请求/响应步骤 客户端连接到Web服务器 客户端发送HTTP请求 服务器接受请求并返回HTTP响应 关闭TCP连接 客户端解析HTML  HTTP状态码 1XX：提示信息 2XX：成">
+<meta name="keywords" content="interview">
+<meta property="og:type" content="article">
+<meta property="og:title" content="interview HTTP协议相关">
+<meta property="og:url" content="http://ryziii.github.io/post/28a3ef0.html">
+<meta property="og:site_name" content="Rysi&#39;s Blog">
+<meta property="og:description" content="HTTP协议HTTP协议特点 支持客户/服务器模式：浏览器向服务器请求 简单快速：get、post… 灵活：允许传输任意类型数据 无连接：请求结束后断开连接 无状态：不保留状态，之后的事务不知道之前的事  HTTP协议请求/响应步骤 客户端连接到Web服务器 客户端发送HTTP请求 服务器接受请求并返回HTTP响应 关闭TCP连接 客户端解析HTML  HTTP状态码 1XX：提示信息 2XX：成">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://i.imgur.com/2A4VivD.jpg">
+<meta property="og:image" content="https://i.imgur.com/SVAxPO9.jpg">
+<meta property="og:image" content="https://i.imgur.com/2d8R8ou.jpg">
+<meta property="og:image" content="https://i.imgur.com/vFPDreT.jpg">
+<meta property="og:updated_time" content="2020-12-03T11:21:59.551Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="interview HTTP协议相关">
+<meta name="twitter:description" content="HTTP协议HTTP协议特点 支持客户/服务器模式：浏览器向服务器请求 简单快速：get、post… 灵活：允许传输任意类型数据 无连接：请求结束后断开连接 无状态：不保留状态，之后的事务不知道之前的事  HTTP协议请求/响应步骤 客户端连接到Web服务器 客户端发送HTTP请求 服务器接受请求并返回HTTP响应 关闭TCP连接 客户端解析HTML  HTTP状态码 1XX：提示信息 2XX：成">
+<meta name="twitter:image" content="https://i.imgur.com/2A4VivD.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>interview HTTP协议相关</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="Rysi&#39;s Blog" type="application/atom+xml" />
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/post/df0d4913.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/post/27e25b32.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/28a3ef0.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/28a3ef0.html&text=interview HTTP协议相关"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/28a3ef0.html&title=interview HTTP协议相关"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/28a3ef0.html&is_video=false&description=interview HTTP协议相关"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=interview HTTP协议相关&body=Check out this article: http://ryziii.github.io/post/28a3ef0.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/28a3ef0.html&title=interview HTTP协议相关"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/28a3ef0.html&title=interview HTTP协议相关"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/28a3ef0.html&title=interview HTTP协议相关"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/28a3ef0.html&title=interview HTTP协议相关"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/28a3ef0.html&name=interview HTTP协议相关&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP协议"><span class="toc-number">1.</span> <span class="toc-text">HTTP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP协议特点"><span class="toc-number">1.1.</span> <span class="toc-text">HTTP协议特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP协议请求-响应步骤"><span class="toc-number">1.2.</span> <span class="toc-text">HTTP协议请求/响应步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP状态码"><span class="toc-number">1.3.</span> <span class="toc-text">HTTP状态码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie与Session"><span class="toc-number">2.</span> <span class="toc-text">Cookie与Session</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Cookie"><span class="toc-number">2.1.</span> <span class="toc-text">Cookie</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Session"><span class="toc-number">2.2.</span> <span class="toc-text">Session</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cookie与Session的区别"><span class="toc-number">2.3.</span> <span class="toc-text">Cookie与Session的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GET和POST请求的区别"><span class="toc-number">3.</span> <span class="toc-text">GET和POST请求的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP和HTTPS"><span class="toc-number">4.</span> <span class="toc-text">HTTP和HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SSL是什么"><span class="toc-number">4.1.</span> <span class="toc-text">SSL是什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#几类常见的加密方式"><span class="toc-number">4.2.</span> <span class="toc-text">几类常见的加密方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTPS传输流程"><span class="toc-number">4.3.</span> <span class="toc-text">HTTPS传输流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTPS和HTTP区别"><span class="toc-number">4.4.</span> <span class="toc-text">HTTPS和HTTP区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTPS真的安全吗"><span class="toc-number">4.5.</span> <span class="toc-text">HTTPS真的安全吗</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HSTS"><span class="toc-number">4.5.1.</span> <span class="toc-text">HSTS</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Socket"><span class="toc-number">5.</span> <span class="toc-text">Socket</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Socket通信过程"><span class="toc-number">5.1.</span> <span class="toc-text">Socket通信过程</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        interview HTTP协议相关
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Rysi's Blog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2020-10-22T12:30:49.000Z" itemprop="datePublished">2020-10-22</time>
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/interview/">interview</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h3><h4 id="HTTP协议特点"><a href="#HTTP协议特点" class="headerlink" title="HTTP协议特点"></a>HTTP协议特点</h4><ul>
+<li>支持客户/服务器模式：浏览器向服务器请求</li>
+<li>简单快速：get、post…</li>
+<li>灵活：允许传输任意类型数据</li>
+<li>无连接：请求结束后断开连接</li>
+<li>无状态：不保留状态，之后的事务不知道之前的事</li>
+</ul>
+<h4 id="HTTP协议请求-响应步骤"><a href="#HTTP协议请求-响应步骤" class="headerlink" title="HTTP协议请求/响应步骤"></a>HTTP协议请求/响应步骤</h4><ol>
+<li>客户端连接到Web服务器</li>
+<li>客户端发送HTTP请求</li>
+<li>服务器接受请求并返回HTTP响应</li>
+<li>关闭TCP连接</li>
+<li>客户端解析HTML</li>
+</ol>
+<h4 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h4><ol>
+<li>1XX：提示信息</li>
+<li>2XX：成功</li>
+<li>3XX：重定向</li>
+<li>4XX：客户端错误</li>
+<li>5XX：服务端错误 </li>
+</ol>
+<h3 id="Cookie与Session"><a href="#Cookie与Session" class="headerlink" title="Cookie与Session"></a>Cookie与Session</h3><h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>服务器发给客户的信息，客户端以文本的形式保存在本地<br>Cookie的设置过程：<br><img src="https://i.imgur.com/2A4VivD.jpg" alt=""></p>
+<h4 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h4><p>保存在服务器上<br>Session实现方式：<br><img src="https://i.imgur.com/SVAxPO9.jpg" alt=""></p>
+<ol>
+<li>使用Cookie实现：在Cookie中写入SessionID，这样在服务端和客户端交互时就带有SessionID</li>
+<li>使用URL回写：服务器发给客户端页面中所有连接都带有SessionID，这样在浏览器点击任何一个URL时都会带回SessionID</li>
+</ol>
+<h4 id="Cookie与Session的区别"><a href="#Cookie与Session的区别" class="headerlink" title="Cookie与Session的区别"></a>Cookie与Session的区别</h4><ul>
+<li>Cookie存储在客户端浏览器上，Session存储在服务器上</li>
+<li>Session比Cookie安全（因为Cookie存放在本地，可以被人本地分析）</li>
+<li>Session因为存放在服务器上所以会影响服务器性能，为减轻服务器开销应当使用Cookie</li>
+</ul>
+<h3 id="GET和POST请求的区别"><a href="#GET和POST请求的区别" class="headerlink" title="GET和POST请求的区别"></a>GET和POST请求的区别</h3><ul>
+<li>HTTP报文层面：GET将请求信息放入URL，POST将请求信息放入报文体(bodyw)内（GET请求信息长度理论上不受限制，但实际上受浏览器客户端的限制）</li>
+<li>数据库层面：GET符合幂等性和安全性，POST不符合（因为GET是做查询，不影响数据库）</li>
+<li>其他层面：GET可以被缓存、被存储，POST不行</li>
+</ul>
+<h3 id="HTTP和HTTPS"><a href="#HTTP和HTTPS" class="headerlink" title="HTTP和HTTPS"></a>HTTP和HTTPS</h3><p>HTTPS为更安全的HTTP，比HTTP多了SSL</p>
+<h4 id="SSL是什么"><a href="#SSL是什么" class="headerlink" title="SSL是什么"></a>SSL是什么</h4><p><img src="https://i.imgur.com/2d8R8ou.jpg" alt=""></p>
+<h4 id="几类常见的加密方式"><a href="#几类常见的加密方式" class="headerlink" title="几类常见的加密方式"></a>几类常见的加密方式</h4><ul>
+<li>对称加密：加解密使用同一个密钥</li>
+<li>非对称加密：加解密使用的密钥都不用</li>
+<li>哈希算法：将任意长度信息转换为固定长度的值，算法不可逆</li>
+<li>数字签名：将签名加密附在信息中</li>
+</ul>
+<h4 id="HTTPS传输流程"><a href="#HTTPS传输流程" class="headerlink" title="HTTPS传输流程"></a>HTTPS传输流程</h4><ol>
+<li>客户端将支持的加密算法信息发送给服务器</li>
+<li>服务器选择一套客户端支持的加密算法，以证书的方式回发客户端</li>
+<li>客户端验证证书的合法性，并结合证书公钥加密信息发送给服务器</li>
+<li>服务器使用私钥揭秘信息，验证哈希，加密响应消息回发给客户端</li>
+<li>客户端解密响应消息，并对消息进行验真，之后进行加密交互数据</li>
+</ol>
+<h4 id="HTTPS和HTTP区别"><a href="#HTTPS和HTTP区别" class="headerlink" title="HTTPS和HTTP区别"></a>HTTPS和HTTP区别</h4><ul>
+<li>HTTPS需要到CA申请证书</li>
+<li>HTTPS是密文传输，HTTP是明文传输（因为HTTPS经过SSL加密）</li>
+<li>HTTPS使用的是443端口，HTTP使用80</li>
+<li>HTTPS=HTTP+加密+认证+完整性保护</li>
+</ul>
+<h4 id="HTTPS真的安全吗"><a href="#HTTPS真的安全吗" class="headerlink" title="HTTPS真的安全吗"></a>HTTPS真的安全吗</h4><p>在浏览器上输入url时如果不输入https，则浏览器默认填充http，一般网站使用http跳转https，这时就容易受到攻击，应该使用HSTS标准优化</p>
+<h5 id="HSTS"><a href="#HSTS" class="headerlink" title="HSTS"></a>HSTS</h5><p>HSTS（HTTP Strict Transport Security）是严格传输安全的缩写。<br>如果一个网站生命HSTS策略，则浏览器必须拒绝所有HTTP连接并阻止用户接受不安全的SSL证书。</p>
+<h3 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h3><h4 id="Socket通信过程"><a href="#Socket通信过程" class="headerlink" title="Socket通信过程"></a>Socket通信过程</h4><p><img src="https://i.imgur.com/vFPDreT.jpg" alt=""></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP协议"><span class="toc-number">1.</span> <span class="toc-text">HTTP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP协议特点"><span class="toc-number">1.1.</span> <span class="toc-text">HTTP协议特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP协议请求-响应步骤"><span class="toc-number">1.2.</span> <span class="toc-text">HTTP协议请求/响应步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP状态码"><span class="toc-number">1.3.</span> <span class="toc-text">HTTP状态码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie与Session"><span class="toc-number">2.</span> <span class="toc-text">Cookie与Session</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Cookie"><span class="toc-number">2.1.</span> <span class="toc-text">Cookie</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Session"><span class="toc-number">2.2.</span> <span class="toc-text">Session</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cookie与Session的区别"><span class="toc-number">2.3.</span> <span class="toc-text">Cookie与Session的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GET和POST请求的区别"><span class="toc-number">3.</span> <span class="toc-text">GET和POST请求的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP和HTTPS"><span class="toc-number">4.</span> <span class="toc-text">HTTP和HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SSL是什么"><span class="toc-number">4.1.</span> <span class="toc-text">SSL是什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#几类常见的加密方式"><span class="toc-number">4.2.</span> <span class="toc-text">几类常见的加密方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTPS传输流程"><span class="toc-number">4.3.</span> <span class="toc-text">HTTPS传输流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTPS和HTTP区别"><span class="toc-number">4.4.</span> <span class="toc-text">HTTPS和HTTP区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTPS真的安全吗"><span class="toc-number">4.5.</span> <span class="toc-text">HTTPS真的安全吗</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HSTS"><span class="toc-number">4.5.1.</span> <span class="toc-text">HSTS</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Socket"><span class="toc-number">5.</span> <span class="toc-text">Socket</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Socket通信过程"><span class="toc-number">5.1.</span> <span class="toc-text">Socket通信过程</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/28a3ef0.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/28a3ef0.html&text=interview HTTP协议相关"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/28a3ef0.html&title=interview HTTP协议相关"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/28a3ef0.html&is_video=false&description=interview HTTP协议相关"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=interview HTTP协议相关&body=Check out this article: http://ryziii.github.io/post/28a3ef0.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/28a3ef0.html&title=interview HTTP协议相关"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/28a3ef0.html&title=interview HTTP协议相关"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/28a3ef0.html&title=interview HTTP协议相关"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/28a3ef0.html&title=interview HTTP协议相关"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/28a3ef0.html&name=interview HTTP协议相关&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 Rysi
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
