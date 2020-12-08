@@ -6,7 +6,7 @@
   <link href="http://ryziii.github.io/atom.xml" rel="self"/>
   
   <link href="http://ryziii.github.io/"/>
-  <updated>2020-12-04T08:43:52.592Z</updated>
+  <updated>2020-12-08T13:29:22.983Z</updated>
   <id>http://ryziii.github.io/</id>
   
   <author>
@@ -15,6 +15,76 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>interview Java底层：JVM、GC</title>
+    <link href="http://ryziii.github.io/post/c0e4061e.html"/>
+    <id>http://ryziii.github.io/post/c0e4061e.html</id>
+    <published>2020-12-08T07:47:34.000Z</published>
+    <updated>2020-12-08T13:29:22.983Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="引子————谈到Java你会想到什么"><a href="#引子————谈到Java你会想到什么" class="headerlink" title="引子————谈到Java你会想到什么"></a>引子————谈到Java你会想到什么</h2><ol><li>平台无关性，一次编译处处运行；</li><li>GC(Garbage Collection)垃圾回收机制；</li><li>语言特性：范型、反射、Lambda表达式；</li><li>面向对象：封装、继承、多态；</li><li>类库：集合类、并发类、网络类、IO类；</li><li>异常处理；</li></ol><h3 id="Java的平台无关性"><a href="#Java的平台无关性" class="headerlink" title="Java的平台无关性"></a>Java的平台无关性</h3><p>Java源代码被编译为字节码，由不同平台的JVM进行解析，Java源代码在不同平台上不需要重新编译，JVM在执行字节码时会自动将其转化为能在该平台上运行的机器指令。</p><h4 id="字节码：-为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行"><a href="#字节码：-为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行" class="headerlink" title="字节码： 为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行"></a>字节码： 为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行</h4><ol><li>字节码是中间文件，从源代码到字节码过程中有许多校验检查工作，如果直接由JVM执行Java代码将在这一步浪费很多时间。</li><li>其他语言也可以转化成字节码由JVM执行。</li></ol><h3 id="JVM如何加载-class文件"><a href="#JVM如何加载-class文件" class="headerlink" title="JVM如何加载.class文件"></a>JVM如何加载.class文件</h3><p><img src="https://i.imgur.com/FfHnpTj.png" alt="FfHnpTj"></p><h3 id="Java反射"><a href="#Java反射" class="headerlink" title="Java反射"></a>Java反射</h3><p>Java反射是在运行状态中，对任意一个类都能知道这个类的所有属性和方法；对任意一个对象，都能调用这个它的任意方法和属性；这种能够动态获取信息以及动态调用对象方法的功能称为Java语言的反射机制。</p><p>实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">package com.ryz.javabasic.reflect;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.Field;</span><br><span class="line">import java.lang.reflect.InvocationTargetException;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line">public class ReflectSample &#123;</span><br><span class="line">    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchFieldException &#123;</span><br><span class="line">        Class rc = Class.forName(&quot;com.ryz.javabasic.reflect.Robot&quot;);</span><br><span class="line">        Robot r = (Robot)rc.getDeclaredConstructor().newInstance();</span><br><span class="line">        System.out.println(&quot;Class name is &quot; + rc.getName());</span><br><span class="line"></span><br><span class="line">        /*</span><br><span class="line">         * getDeclaredMethod可以获取类中包括私有的所有方法，但不能获取继承的</span><br><span class="line">         */</span><br><span class="line">        Method getHello = rc.getDeclaredMethod(&quot;throwHello&quot;, String.class);</span><br><span class="line">        //私有方法需要设置Accessible</span><br><span class="line">        getHello.setAccessible(true);</span><br><span class="line">        Object str = (String) getHello.invoke(r,&quot;test&quot;);</span><br><span class="line">        System.out.println(str);</span><br><span class="line"></span><br><span class="line">        /*</span><br><span class="line">         * getMethod不可以获取私有方法，但是可以获取继承的方法</span><br><span class="line">         */</span><br><span class="line">        Method sayHi = rc.getMethod(&quot;sayHi&quot;, String.class);</span><br><span class="line">        sayHi.invoke(r,&quot;welcome&quot;);</span><br><span class="line"></span><br><span class="line">        /*</span><br><span class="line">         * 类中变量的获取与设置</span><br><span class="line">         */</span><br><span class="line">        Field f = rc.getDeclaredField(&quot;name&quot;);</span><br><span class="line">        f.setAccessible(true);</span><br><span class="line">        f.set(r,&quot;小明&quot;);</span><br><span class="line">        sayHi.invoke(r,&quot;welcome&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h4 id="为什么要用到反射"><a href="#为什么要用到反射" class="headerlink" title="为什么要用到反射"></a>为什么要用到反射</h4><ol><li>提高程序的灵活性<br> 比如写JDBC的时候，使用配置文件获取配置加载驱动，就是用过反射加载。</li><li>屏蔽细节，方便实用<br> 使用Spring的时候用XML注入就用到反射机制</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;引子————谈到Java你会想到什么&quot;&gt;&lt;a href=&quot;#引子————谈到Java你会想到什么&quot; class=&quot;headerlink&quot; title=&quot;引子————谈到Java你会想到什么&quot;&gt;&lt;/a&gt;引子————谈到Java你会想到什么&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;</summary>
+      
+    
+    
+    
+    
+    <category term="Java" scheme="http://ryziii.github.io/tags/Java/"/>
+    
+    <category term="interview" scheme="http://ryziii.github.io/tags/interview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>interview 笔记备份</title>
+    <link href="http://ryziii.github.io/post/38e3a3e6.html"/>
+    <id>http://ryziii.github.io/post/38e3a3e6.html</id>
+    <published>2020-12-06T14:02:35.000Z</published>
+    <updated>2020-12-06T14:08:53.442Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="9-接口和抽象类有什么不同？"><a href="#9-接口和抽象类有什么不同？" class="headerlink" title="9.接口和抽象类有什么不同？"></a>9.接口和抽象类有什么不同？</h4><p>Java同时提供和支持抽象类和接口，它们的实现有一些共同的特点，也有如下不同：</p><ul><li>接口中所有的方法默认都是抽象的，而抽象类可以同时包含抽象和非抽象的方法。</li><li>一个类可以实现多个接口，但它只能继承一个抽象类。</li><li>一个类要实现某个接口，必须实现这个接口声明的所有方法。而一个类不需要实现抽象父类中声明的所有方法，不过，这时候这个类也必须声明为抽象类。</li><li>抽象类可以实现接口，而且不需要实现接口中的方法。</li><li>接口中声明的变量默认是final的，而抽象类可以包含非final的变量。</li><li>接口中的成员默认是public的，而抽象类的成员可以是private，protected，或public的。</li><li>接口是绝对抽象的，不可实例化，抽象类也不可以实例化，但可以在main方法中触发实例化（注：通过匿名类实现）。</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h4 id=&quot;9-接口和抽象类有什么不同？&quot;&gt;&lt;a href=&quot;#9-接口和抽象类有什么不同？&quot; class=&quot;headerlink&quot; title=&quot;9.接口和抽象类有什么不同？&quot;&gt;&lt;/a&gt;9.接口和抽象类有什么不同？&lt;/h4&gt;&lt;p&gt;Java同时提供和支持抽象类和接口，它们的实</summary>
+      
+    
+    
+    
+    
+    <category term="interview" scheme="http://ryziii.github.io/tags/interview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>interview Shell指令</title>
+    <link href="http://ryziii.github.io/post/a1bbe4a9.html"/>
+    <id>http://ryziii.github.io/post/a1bbe4a9.html</id>
+    <published>2020-12-04T08:57:04.000Z</published>
+    <updated>2020-12-08T13:29:12.192Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Linux体系结构"><a href="#Linux体系结构" class="headerlink" title="Linux体系结构"></a>Linux体系结构</h2><p>Linux体系结构主要分为用户态（用户上层活动）和内核态</p><p>内核：本质上是一段管理计算机硬件设备的程序<br>系统调用：内核的访问接口<br>公共函数库：是对系统调用的封装，方便程序使用<br>shell：是命令解释器，功能强大，可编程</p><h2 id="Linux指令"><a href="#Linux指令" class="headerlink" title="Linux指令"></a>Linux指令</h2><h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><p>find / -name “**”</p><p>-iname 不区分大小写</p><h3 id="grep-与-管道操作符"><a href="#grep-与-管道操作符" class="headerlink" title="grep 与 管道操作符 |"></a>grep 与 管道操作符 |</h3><p><img src="https://i.imgur.com/poBR68p.jpg" alt=""></p><p>管道操作符可以连接各个指令，管道操作符左边的指令输出是右边指令的输入</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 包含test[正则]的文段</span><br><span class="line">grep -o &apos;test[正则]&apos; </span><br><span class="line"></span><br><span class="line">//不包含test[正则]的文段</span><br><span class="line">grep -v &apos;test[正则]&apos;</span><br></pre></td></tr></table></figure><h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h3><p>awk是对文件分割查找的命令，默认的分隔符是空格，可以使用<code>-F &quot;,&quot;</code>来改变分隔符<br><img src="https://i.imgur.com/86MMlWu.png" alt="86MMlWu"></p><p>添加表头的命令为NR<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;($1==&quot;test1&quot; &amp;&amp; $2==&quot;test31&quot;) || NR==1 &#123;print $0&#125;&apos; netstat.txt</span><br></pre></td></tr></table></figure></p><p><img src="https://i.imgur.com/nwgWIS3.png" alt="nwgWIS3"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;arr[$1]++&#125;END&#123;for(i in arr)print i &quot;\t&quot; arr[i]&#125;</span><br></pre></td></tr></table></figure><h3 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h3><p>sed(stream editor) 流编辑器，常用于字符串替换、删除、修改</p><p><img src="https://i.imgur.com/HhQbhsP.png" alt="HhQbhsP"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sed -i &apos;s/^Str/String/&apos; replace.txt     替换以Str开头的字符串为String</span><br><span class="line">sed -i &apos;s/\.$/\;/&apos; replace.txt          替换以&apos;.&apos;为结尾的字符串为&apos;;&apos;</span><br><span class="line">sed -i &apos;s/Jack/me/g&apos; replace.txt        全局替换&apos;Jack&apos;为&apos;me&apos;</span><br><span class="line"></span><br><span class="line">sed -i &apos;/Integer/d&apos; replace.txt         删除Integer所在的行</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Linux体系结构&quot;&gt;&lt;a href=&quot;#Linux体系结构&quot; class=&quot;headerlink&quot; title=&quot;Linux体系结构&quot;&gt;&lt;/a&gt;Linux体系结构&lt;/h2&gt;&lt;p&gt;Linux体系结构主要分为用户态（用户上层活动）和内核态&lt;/p&gt;
+&lt;p&gt;内核：本质上</summary>
+      
+    
+    
+    
+    
+    <category term="interview" scheme="http://ryziii.github.io/tags/interview/"/>
+    
+  </entry>
   
   <entry>
     <title>interview Redis</title>
@@ -395,74 +465,6 @@
     
     
     <category term="leetcode" scheme="http://ryziii.github.io/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>html基础知识记录(持续更新)</title>
-    <link href="http://ryziii.github.io/post/318304a3.html"/>
-    <id>http://ryziii.github.io/post/318304a3.html</id>
-    <published>2019-01-22T02:43:22.000Z</published>
-    <updated>2020-10-21T08:21:20.793Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="u-标签"><a href="#u-标签" class="headerlink" title="u 标签"></a>u 标签</h3><p>u标签表斜体,如:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">u</span>&gt;</span>111<span class="tag">&lt;/<span class="name">u</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p><u>111</u></p><h3 id="strong-标签"><a href="#strong-标签" class="headerlink" title="strong 标签"></a>strong 标签</h3><p>b标签为粗体,strong在浏览器上的效果看上去相同,但是strong标签有着重强调的意思,另附一个小知识,盲人朋友们在使用阅读设备时,strong标签会让文字重(zhong)读</p><h3 id="em标签"><a href="#em标签" class="headerlink" title="em标签"></a>em标签</h3><p>em 标签也表强调,在浏览器上效果为斜体</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;u-标签&quot;&gt;&lt;a href=&quot;#u-标签&quot; class=&quot;headerlink&quot; title=&quot;u 标签&quot;&gt;&lt;/a&gt;u 标签&lt;/h3&gt;&lt;p&gt;u标签表斜体,如:&lt;br&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td cla</summary>
-      
-    
-    
-    
-    
-    <category term="html" scheme="http://ryziii.github.io/tags/html/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL的limit与分页查询</title>
-    <link href="http://ryziii.github.io/post/cf5eab58.html"/>
-    <id>http://ryziii.github.io/post/cf5eab58.html</id>
-    <published>2019-01-22T02:18:41.000Z</published>
-    <updated>2020-10-21T08:21:20.763Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="limit用法"><a href="#limit用法" class="headerlink" title="limit用法"></a>limit用法</h2><p>在mysql中有时需要使用限制查找行数,这在mysql语句中有自带的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM tableName LIMIT [offset,] rows|LIMIT rows OFFSET length</span><br><span class="line"></span><br><span class="line">SELECT * FROM table WHERE username = 1 LIMIT 10 OFFSET 5</span><br><span class="line">SELECT * FROM table WHERE username = 1 LIMIT 5,10</span><br></pre></td></tr></table></figure></p><p>LIMIT可以用于返回指定数量的mysql记录,LIMIT接受一个或两个整形参数.如果给了两个参数,第一个参数为<strong><u>偏移量</u></strong>,第二个参数为指定返回记录数.<strong><u>mysql初始记录数行偏移量为0不是1</u></strong></p><p>如果需要检索某一偏移量到记录集结束的所有记录集,可以指定第二个参数为-1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM table LIMIT 5,-1</span><br></pre></td></tr></table></figure></p><h2 id="mysql分页查询性能分析"><a href="#mysql分页查询性能分析" class="headerlink" title="mysql分页查询性能分析"></a>mysql分页查询性能分析</h2><p>基本的mysql分页方式就是<code>SELECT ... FORM ... WHERE ... ORDER BY ... LIMIT ...</code><br>当数据量增大,子页变多,<u>LIMIT语句的偏移量增大时,查询速度会变慢</u><br>有几种方法可以提高查询速度</p><ol><li>通过自查询的方式优化速度</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table WHERE id &gt;= </span><br><span class="line">(SELECT id FROM table WHERE username = &apos;11&apos; ORDER BY id LIMIT 10000,1) LIMIT 10</span><br></pre></td></tr></table></figure><ol><li>通过join分页方式</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM &apos;table1&apos; AS t1</span><br><span class="line">JOIN (SELECT id FROM &apos;table1&apos; ORDER BY id ASC LIMIT &quot;.($page-1)*$pagesize.&quot;,1) AS t2</span><br><span class="line">WHERE t1.id &lt;= t2.id ORDER BY t1.id ASC LIMIT $pagesize;</span><br></pre></td></tr></table></figure><p>参考链接:<a href="https://segmentfault.com/a/1190000008859706" target="_blank" rel="noopener">https://segmentfault.com/a/1190000008859706</a></p><h2 id="分析结果"><a href="#分析结果" class="headerlink" title="分析结果"></a>分析结果</h2><p>不使用分页查询直接用limit查询的话大数据量如100w的话mysql性能收到很大影响,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SQL代码1：平均用时6.6秒 SELECT * FROM `cdb_posts` ORDER BY pid LIMIT 1000000 , 30</span><br><span class="line"></span><br><span class="line">SQL代码2：平均用时0.6秒 SELECT * FROM `cdb_posts` WHERE pid &gt;= (SELECT pid FROM  </span><br><span class="line">`cdb_posts` ORDER BY pid LIMIT 1000000 , 1) LIMIT 30</span><br></pre></td></tr></table></figure></p><p>因为要取出所有字段内容，第一种需要跨越大量数据块并取出，而第二种基本通过直接根据索引字段定位后，才取出相应内容，效率自然大大提升。对limit的优化，不是直接使用limit，而是首先获取到offset的id，然后直接使用limit size来获取数据。<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fzf767ld4fj31640mewi6.jpg" alt=""><br><strong>为了保证index索引列连续，可以为每个表加一个自增字段，并且加上索引</strong></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;limit用法&quot;&gt;&lt;a href=&quot;#limit用法&quot; class=&quot;headerlink&quot; title=&quot;limit用法&quot;&gt;&lt;/a&gt;limit用法&lt;/h2&gt;&lt;p&gt;在mysql中有时需要使用限制查找行数,这在mysql语句中有自带的&lt;br&gt;&lt;figure clas</summary>
-      
-    
-    
-    
-    
-    <category term="Mysql" scheme="http://ryziii.github.io/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HttpServletRequest——获取URL方法</title>
-    <link href="http://ryziii.github.io/post/19bd0d6c.html"/>
-    <id>http://ryziii.github.io/post/19bd0d6c.html</id>
-    <published>2019-01-22T02:06:26.000Z</published>
-    <updated>2020-10-21T08:21:20.776Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="request-getRequestURL"><a href="#request-getRequestURL" class="headerlink" title="request.getRequestURL()"></a>request.getRequestURL()</h3><p>返回的是完整的url，包括Http协议，端口号，servlet名字和映射路径，但它不包含请求参数。</p><h3 id="request-getRequestURI"><a href="#request-getRequestURI" class="headerlink" title="request.getRequestURI()"></a>request.getRequestURI()</h3><pre><code>得到的是request URL的部分值，并且web容器没有decode过的</code></pre><h3 id="request-getContextPath"><a href="#request-getContextPath" class="headerlink" title="request.getContextPath()"></a>request.getContextPath()</h3><pre><code>返回 the context of the request.</code></pre><h3 id="request-getServletPath"><a href="#request-getServletPath" class="headerlink" title="request.getServletPath()"></a>request.getServletPath()</h3><pre><code>返回调用servlet的部分url.</code></pre><h3 id="request-getQueryString"><a href="#request-getQueryString" class="headerlink" title="request.getQueryString()"></a>request.getQueryString()</h3><pre><code>返回url路径后面的查询字符串</code></pre><h3 id="获得客户机信息"><a href="#获得客户机信息" class="headerlink" title="获得客户机信息"></a>获得客户机信息</h3><pre><code>getRequestURL方法返回客户端发出请求时的完整URL。getRequestURI方法返回请求行中的资源名部分。getQueryString 方法返回请求行中的参数部分。getRemoteAddr方法返回发出请求的客户机的IP地址 getRemoteHost方法返回发出请求的客户机的完整主机名getRemotePort方法返回客户机所使用的网络端口号getLocalAddr方法返回WEB服务器的IP地址。getLocalName方法返回WEB服务器的主机名 getMethod得到客户机请求方式</code></pre><h3 id="获得客户机请求头"><a href="#获得客户机请求头" class="headerlink" title="获得客户机请求头"></a>获得客户机请求头</h3><pre><code>getHeader(string name)方法 getHeaders(String name)方法 getHeaderNames方法 </code></pre><h3 id="获得客户机请求参数-客户端提交的数据"><a href="#获得客户机请求参数-客户端提交的数据" class="headerlink" title="获得客户机请求参数(客户端提交的数据)"></a>获得客户机请求参数(客户端提交的数据)</h3><pre><code>getParameter(name)方法getParameterValues（String name）方法getParameterNames方法 getParameterMap方法</code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;request-getRequestURL&quot;&gt;&lt;a href=&quot;#request-getRequestURL&quot; class=&quot;headerlink&quot; title=&quot;request.getRequestURL()&quot;&gt;&lt;/a&gt;request.getRequestURL</summary>
-      
-    
-    
-    
-    
-    <category term="Java" scheme="http://ryziii.github.io/tags/Java/"/>
-    
-    <category term="HttpServletRequest" scheme="http://ryziii.github.io/tags/HttpServletRequest/"/>
     
   </entry>
   
