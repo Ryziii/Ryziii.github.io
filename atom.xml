@@ -136,9 +136,9 @@
     
     
     
-    <category term="Mysql" scheme="http://ryziii.github.io/tags/Mysql/"/>
-    
     <category term="interview" scheme="http://ryziii.github.io/tags/interview/"/>
+    
+    <category term="Mysql" scheme="http://ryziii.github.io/tags/Mysql/"/>
     
   </entry>
   
@@ -197,7 +197,7 @@
     <link href="http://ryziii.github.io/post/75d57196.html"/>
     <id>http://ryziii.github.io/post/75d57196.html</id>
     <published>2019-10-10T14:21:01.000Z</published>
-    <updated>2020-12-03T11:21:16.250Z</updated>
+    <updated>2020-12-08T14:15:56.816Z</updated>
     
     <content type="html"><![CDATA[<h2 id="RTT和RTO"><a href="#RTT和RTO" class="headerlink" title="RTT和RTO"></a>RTT和RTO</h2><ol><li>RTT是发送一个数据包到收到ACK所花费的时间；</li><li>RTO是重传时间间隔，当没有收到回应是，一定时间间隔后会重传数据包，RTO是根据RTT计算出的。</li></ol><h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><p><img src="https://i.imgur.com/xiCrFsF.png" alt=""><br><img src="https://i.imgur.com/sLuPbHQ.png" alt=""><br><img src="https://i.imgur.com/H52iLrk.png" alt=""><br>滑动窗口用于做流量控制和乱序重排<br>TCP发送方和接收方都维护着一个数据缓存区，<br>发送方缓存区有如下四种状态：</p><ol><li>已发送已收到ACK</li><li>已发送未收到ACK</li><li>未发送可发送</li><li>不可发送</li></ol><p>接收方缓存区有如下三种状态：</p><ol><li>已接收并已回复ACK</li><li>允许接收</li><li>不允许接收</li></ol><p><a href="https://www.cnblogs.com/lingyejun/p/7158028.html" target="_blank" rel="noopener">可参考1</a><br><a href="https://my.oschina.net/funcy/blog/3006133" target="_blank" rel="noopener">可参考2</a></p>]]></content>
     
@@ -221,7 +221,7 @@
     <link href="http://ryziii.github.io/post/beaf26b1.html"/>
     <id>http://ryziii.github.io/post/beaf26b1.html</id>
     <published>2019-10-10T13:12:24.000Z</published>
-    <updated>2020-12-03T11:20:52.954Z</updated>
+    <updated>2020-12-08T14:16:37.721Z</updated>
     
     <content type="html"><![CDATA[<h2 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h2><p><img src="https://ryziii.github.io/post-images/1570713886846.jpeg" alt="">[interview] TCP断开连接需要进行“四次挥手”</p><ol><li>Client向Server发送带有FIN包(seq = u)的包，用于关闭Client到Server的数据连接，并进入FIN_WAIT_1状态；</li><li>Server接收到FIN包后向Client发送一个ACK包(ack=u+1,seq=v),并进入CLOSE_WAIT状态,Client收到后进入FIN_WAIT_2;</li><li>待Server发送完数据后，再向Client发送一个FIN+ACK包(seq=w,ack=u+1)，用于关闭Server到Client的数据传送，并进入LAST_ACK状态；</li><li>Client收到FIN报文后进入TIMEWAIT状态，接着向Server发送一个ACK包(ack=w+1,seq=u+1)，Server进入CLOSE状态。</li></ol><blockquote><p>注：Client进入TIMEWAIT状态后2MSL后就进入CLOSE状态，Linux中MSL一般为30s。MSL是为了让Server有足够的时间收到最后一个ACK包。</p></blockquote><h2 id="为什么需要四次挥手"><a href="#为什么需要四次挥手" class="headerlink" title="为什么需要四次挥手"></a>为什么需要四次挥手</h2><p>因为TCP连接是全双工的，所以Client和Server都需要FIN报文和ACK报文。</p><h2 id="服务器出现大量CLISE-WAIT"><a href="#服务器出现大量CLISE-WAIT" class="headerlink" title="服务器出现大量CLISE_WAIT"></a>服务器出现大量CLISE_WAIT</h2><p>因为代码中没有释放资源<br>netstat -n |awk ‘/^tcp/{++S[$NF]}END{for(a in S) print a,S[a]}’</p>]]></content>
     
@@ -239,28 +239,26 @@
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://ryziii.github.io/post/0.html"/>
-    <id>http://ryziii.github.io/post/0.html</id>
-    <published>2019-10-10T13:05:04.000Z</published>
-    <updated>2020-12-03T11:20:46.116Z</updated>
+    <title>interview 三次握手</title>
+    <link href="http://ryziii.github.io/post/5cde0e4d.html"/>
+    <id>http://ryziii.github.io/post/5cde0e4d.html</id>
+    <published>2019-10-10T13:00:00.000Z</published>
+    <updated>2020-12-08T14:17:18.034Z</updated>
     
-    <content type="html"><![CDATA[<hr><p>title: interview 三次握手<br>abbrlink: 61361c3a<br>date: 2019-10-10 21:00:00<br>tags:</p><ul><li>interview</li></ul><hr><h2 id="三次握手过程"><a href="#三次握手过程" class="headerlink" title="三次握手过程"></a>三次握手过程</h2><p>在TCP/IP协议中，TCP通过三次握手来创建一个可靠的连接。</p><ol><li>第一次握手，发送端向服务器发送SYN包(syn=j)，并进入SYN_SEND状态，等待服务器回应。</li><li>第二次握手，服务器收到发送端发来的SYN包，必须确认发送端的SYN包(ack=j+1)，并发送一个SYN(syn=k),即SYN+ACK包。此时服务器进入SYN_RECIV状态。</li><li>第三次握手，客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1)，此时双方建立连接，进入ESTABLISHED状态，完成三次握手。</li></ol><h2 id="为什么需要三次握手？"><a href="#为什么需要三次握手？" class="headerlink" title="为什么需要三次握手？"></a>为什么需要三次握手？</h2><p>为了初始化Sequence Number，防止后续建立连接后发送数据乱序</p><h2 id="SYN超时隐患"><a href="#SYN超时隐患" class="headerlink" title="SYN超时隐患"></a>SYN超时隐患</h2><p>Server收到Client的SYN，发送SYN-ACK后未收到CLient的ACK确认，Server会不断重试直至超时，Linux默认63s<br>SYN超时会造成Server在时间内才会断开连接，攻击者会让服务器无法处理正常连接请求。Linux会构造一个SYNcookie只有请求者可以回复，防止被恶意进攻</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="三次握手过程"><a href="#三次握手过程" class="headerlink" title="三次握手过程"></a>三次握手过程</h2><p>在TCP/IP协议中，TCP通过三次握手来创建一个可靠的连接。</p><ol><li>第一次握手，发送端向服务器发送SYN包(syn=j)，并进入SYN_SEND状态，等待服务器回应。</li><li>第二次握手，服务器收到发送端发来的SYN包，必须确认发送端的SYN包(ack=j+1)，并发送一个SYN(syn=k),即SYN+ACK包。此时服务器进入SYN_RECIV状态。</li><li>第三次握手，客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1)，此时双方建立连接，进入ESTABLISHED状态，完成三次握手。</li></ol><h2 id="为什么需要三次握手？"><a href="#为什么需要三次握手？" class="headerlink" title="为什么需要三次握手？"></a>为什么需要三次握手？</h2><p>为了初始化Sequence Number，防止后续建立连接后发送数据乱序</p><h2 id="SYN超时隐患"><a href="#SYN超时隐患" class="headerlink" title="SYN超时隐患"></a>SYN超时隐患</h2><p>Server收到Client的SYN，发送SYN-ACK后未收到CLient的ACK确认，Server会不断重试直至超时，Linux默认63s<br>SYN超时会造成Server在时间内才会断开连接，攻击者会让服务器无法处理正常连接请求。Linux会构造一个SYNcookie只有请求者可以回复，防止被恶意进攻</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;hr&gt;
-&lt;p&gt;title: interview 三次握手&lt;br&gt;abbrlink: 61361c3a&lt;br&gt;date: 2019-10-10 21:00:00&lt;br&gt;tags:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;interview&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;三次握</summary>
+    <summary type="html">&lt;h2 id=&quot;三次握手过程&quot;&gt;&lt;a href=&quot;#三次握手过程&quot; class=&quot;headerlink&quot; title=&quot;三次握手过程&quot;&gt;&lt;/a&gt;三次握手过程&lt;/h2&gt;&lt;p&gt;在TCP/IP协议中，TCP通过三次握手来创建一个可靠的连接。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;第一次握手，发送端</summary>
       
     
     
     
+    
+    <category term="interview" scheme="http://ryziii.github.io/tags/interview/"/>
     
   </entry>
   
@@ -269,7 +267,7 @@
     <link href="http://ryziii.github.io/post/bfd03033.html"/>
     <id>http://ryziii.github.io/post/bfd03033.html</id>
     <published>2019-01-25T08:31:30.000Z</published>
-    <updated>2020-12-03T11:19:52.157Z</updated>
+    <updated>2020-12-08T14:16:37.661Z</updated>
     
     <content type="html"><![CDATA[<p>题目链接:<a href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/</a></p><p>找树有几层,递归即可</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> root==<span class="keyword">null</span>?<span class="number">0</span>:dfs(root,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(TreeNode root,<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root.left==<span class="keyword">null</span>&amp;&amp;root.right==<span class="keyword">null</span>) <span class="keyword">return</span> len;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(root.left!=<span class="keyword">null</span>&amp;&amp;root.right==<span class="keyword">null</span>) <span class="keyword">return</span> dfs(root.left,len+<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(root.left==<span class="keyword">null</span>&amp;&amp;root.right!=<span class="keyword">null</span>) <span class="keyword">return</span> dfs(root.right,len+<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> Math.max(dfs(root.left,len+<span class="number">1</span>),dfs(root.right,len+<span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//看到讨论区有个人一行搞定</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> root == <span class="keyword">null</span> ? <span class="number">0</span> : Math.max(maxDepth(root.left), maxDepth(root.right)) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     

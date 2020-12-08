@@ -15,28 +15,28 @@
 <meta property="og:description" content="TCP四次挥手[interview] TCP断开连接需要进行“四次挥手”  Client向Server发送带有FIN包(seq = u)的包，用于关闭Client到Server的数据连接，并进入FIN_WAIT_1状态； Server接收到FIN包后向Client发送一个ACK包(ack=u+1,seq=v),并进入CLOSE_WAIT状态,Client收到后进入FIN_WAIT_2; 待Serv">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://ryziii.github.io/post-images/1570713886846.jpeg">
-<meta property="og:updated_time" content="2020-12-03T11:20:52.954Z">
+<meta property="og:updated_time" content="2020-12-08T14:16:37.721Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="interview TCP四次挥手">
 <meta name="twitter:description" content="TCP四次挥手[interview] TCP断开连接需要进行“四次挥手”  Client向Server发送带有FIN包(seq = u)的包，用于关闭Client到Server的数据连接，并进入FIN_WAIT_1状态； Server接收到FIN包后向Client发送一个ACK包(ack=u+1,seq=v),并进入CLOSE_WAIT状态,Client收到后进入FIN_WAIT_2; 待Serv">
 <meta name="twitter:image" content="https://ryziii.github.io/post-images/1570713886846.jpeg">
     
     
+      
         
-          
-              <link rel="shortcut icon" href="/images/favicon.ico">
-          
+          <link rel="shortcut icon" href="/images/favicon.ico">
         
+      
+      
         
-          
-            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-          
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
         
+      
+      
         
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
         
+      
     
     <!-- title -->
     <title>interview TCP四次挥手</title>
@@ -80,7 +80,7 @@
         <li><a class="icon" href="/post/75d57196.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/post/0.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/post/5cde0e4d.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -103,6 +103,7 @@
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/beaf26b1.html&title=interview TCP四次挥手"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/beaf26b1.html&title=interview TCP四次挥手"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/beaf26b1.html&name=interview TCP四次挥手&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/beaf26b1.html&t=interview TCP四次挥手"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -126,11 +127,14 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">Rysi's Blog</span>
+        <span itemprop="name">Rysi</span>
       </span>
       
     <div class="postdate">
+      
         <time datetime="2019-10-10T13:12:24.000Z" itemprop="datePublished">2019-10-10</time>
+        
+      
     </div>
 
 
@@ -200,6 +204,7 @@
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/beaf26b1.html&title=interview TCP四次挥手"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/beaf26b1.html&title=interview TCP四次挥手"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/beaf26b1.html&name=interview TCP四次挥手&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/beaf26b1.html&t=interview TCP四次挥手"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -217,7 +222,11 @@
         
         <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2020 Rysi
+    Copyright &copy;
+    
+    
+    2016-2020
+    Rysi
   </div>
   <div class="footer-right">
     <nav>
@@ -237,15 +246,36 @@
 </footer>
 
     </div>
-</body>
-</html>
-<!-- styles -->
+    <!-- styles -->
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 <link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
-<!-- jquery -->
+    <!-- jquery -->
 <script src="/lib/jquery/jquery.min.js"></script>
 <script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
 <script src="/js/main.js"></script>
 <!-- search -->
 
@@ -253,6 +283,10 @@
 
 <!-- Baidu Analytics -->
 
+<!-- Umami Analytics -->
+
 <!-- Disqus Comments -->
 
 
+</body>
+</html>

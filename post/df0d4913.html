@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="关系型数据库基本架构 关系数据库索引所采取的数据结构B Tree B+ Tree 密集索引和稀疏索引密集索引：文件中每个搜索码值都对应一个索引值稀疏索引：文件只为索引码的某些值建立索引项  为什么要使用索引使用索引可以避免全表扫描，可以提升效率 什么样的信息能成为索引唯一键、主键、能将信息区分开的字段 索引的数据结构主流是B+Tree，还有哈希、bitmap等，MySql不支持bitmap，Ino">
-<meta name="keywords" content="Mysql,interview">
+<meta name="keywords" content="interview,Mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="interview 数据库相关">
 <meta property="og:url" content="http://ryziii.github.io/post/df0d4913.html">
@@ -24,21 +24,21 @@
 <meta name="twitter:image" content="https://i.imgur.com/Uq2eYn9.jpg">
     
     
+      
         
-          
-              <link rel="shortcut icon" href="/images/favicon.ico">
-          
+          <link rel="shortcut icon" href="/images/favicon.ico">
         
+      
+      
         
-          
-            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-          
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
         
+      
+      
         
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
         
+      
     
     <!-- title -->
     <title>interview 数据库相关</title>
@@ -105,6 +105,7 @@
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/df0d4913.html&title=interview 数据库相关"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/df0d4913.html&title=interview 数据库相关"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/df0d4913.html&name=interview 数据库相关&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/df0d4913.html&t=interview 数据库相关"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -128,11 +129,14 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">Rysi's Blog</span>
+        <span itemprop="name">Rysi</span>
       </span>
       
     <div class="postdate">
+      
         <time datetime="2020-10-27T05:41:36.000Z" itemprop="datePublished">2020-10-27</time>
+        
+      
     </div>
 
 
@@ -226,6 +230,7 @@
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/df0d4913.html&title=interview 数据库相关"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/df0d4913.html&title=interview 数据库相关"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/df0d4913.html&name=interview 数据库相关&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/df0d4913.html&t=interview 数据库相关"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -243,7 +248,11 @@
         
         <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2020 Rysi
+    Copyright &copy;
+    
+    
+    2016-2020
+    Rysi
   </div>
   <div class="footer-right">
     <nav>
@@ -263,15 +272,36 @@
 </footer>
 
     </div>
-</body>
-</html>
-<!-- styles -->
+    <!-- styles -->
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 <link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
-<!-- jquery -->
+    <!-- jquery -->
 <script src="/lib/jquery/jquery.min.js"></script>
 <script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
 <script src="/js/main.js"></script>
 <!-- search -->
 
@@ -279,6 +309,10 @@
 
 <!-- Baidu Analytics -->
 
+<!-- Umami Analytics -->
+
 <!-- Disqus Comments -->
 
 
+</body>
+</html>
