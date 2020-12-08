@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="引子————谈到Java你会想到什么 平台无关性，一次编译处处运行； GC(Garbage Collection)垃圾回收机制； 语言特性：范型、反射、Lambda表达式； 面向对象：封装、继承、多态； 类库：集合类、并发类、网络类、IO类； 异常处理；  Java的平台无关性Java源代码被编译为字节码，由不同平台的JVM进行解析，Java源代码在不同平台上不需要重新编译，JVM在执行字节码时会">
-<meta name="keywords" content="Java,interview">
+<meta name="keywords" content="Java,interview,JVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="interview Java底层：JVM、GC">
 <meta property="og:url" content="http://ryziii.github.io/post/c0e4061e.html">
@@ -15,7 +15,7 @@
 <meta property="og:description" content="引子————谈到Java你会想到什么 平台无关性，一次编译处处运行； GC(Garbage Collection)垃圾回收机制； 语言特性：范型、反射、Lambda表达式； 面向对象：封装、继承、多态； 类库：集合类、并发类、网络类、IO类； 异常处理；  Java的平台无关性Java源代码被编译为字节码，由不同平台的JVM进行解析，Java源代码在不同平台上不需要重新编译，JVM在执行字节码时会">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://i.imgur.com/FfHnpTj.png">
-<meta property="og:updated_time" content="2020-12-08T13:29:22.983Z">
+<meta property="og:updated_time" content="2020-12-08T13:59:46.534Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="interview Java底层：JVM、GC">
 <meta name="twitter:description" content="引子————谈到Java你会想到什么 平台无关性，一次编译处处运行； GC(Garbage Collection)垃圾回收机制； 语言特性：范型、反射、Lambda表达式； 面向对象：封装、继承、多态； 类库：集合类、并发类、网络类、IO类； 异常处理；  Java的平台无关性Java源代码被编译为字节码，由不同平台的JVM进行解析，Java源代码在不同平台上不需要重新编译，JVM在执行字节码时会">
@@ -105,7 +105,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引子————谈到Java你会想到什么"><span class="toc-number">1.</span> <span class="toc-text">引子————谈到Java你会想到什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java的平台无关性"><span class="toc-number">1.1.</span> <span class="toc-text">Java的平台无关性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字节码：-为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行"><span class="toc-number">1.1.1.</span> <span class="toc-text">字节码： 为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM如何加载-class文件"><span class="toc-number">1.2.</span> <span class="toc-text">JVM如何加载.class文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java反射"><span class="toc-number">1.3.</span> <span class="toc-text">Java反射</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么要用到反射"><span class="toc-number">1.3.1.</span> <span class="toc-text">为什么要用到反射</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引子————谈到Java你会想到什么"><span class="toc-number">1.</span> <span class="toc-text">引子————谈到Java你会想到什么</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java的平台无关性"><span class="toc-number">1.1.</span> <span class="toc-text">Java的平台无关性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#字节码：-为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行"><span class="toc-number">1.1.1.</span> <span class="toc-text">字节码： 为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM如何加载-class文件"><span class="toc-number">1.2.</span> <span class="toc-text">JVM如何加载.class文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java反射"><span class="toc-number">1.3.</span> <span class="toc-text">Java反射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么要用到反射"><span class="toc-number">1.3.1.</span> <span class="toc-text">为什么要用到反射</span></a></li></ol></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -137,7 +137,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/Java/">Java</a>, <a class="tag-link" href="/tags/interview/">interview</a>
+        <a class="tag-link" href="/tags/JVM/">JVM</a>, <a class="tag-link" href="/tags/Java/">Java</a>, <a class="tag-link" href="/tags/interview/">interview</a>
     </div>
 
 
@@ -146,7 +146,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="引子————谈到Java你会想到什么"><a href="#引子————谈到Java你会想到什么" class="headerlink" title="引子————谈到Java你会想到什么"></a>引子————谈到Java你会想到什么</h2><ol>
+    <h1 id="引子————谈到Java你会想到什么"><a href="#引子————谈到Java你会想到什么" class="headerlink" title="引子————谈到Java你会想到什么"></a>引子————谈到Java你会想到什么</h1><ol>
 <li>平台无关性，一次编译处处运行；</li>
 <li>GC(Garbage Collection)垃圾回收机制；</li>
 <li>语言特性：范型、反射、Lambda表达式；</li>
@@ -154,15 +154,15 @@
 <li>类库：集合类、并发类、网络类、IO类；</li>
 <li>异常处理；</li>
 </ol>
-<h3 id="Java的平台无关性"><a href="#Java的平台无关性" class="headerlink" title="Java的平台无关性"></a>Java的平台无关性</h3><p>Java源代码被编译为字节码，由不同平台的JVM进行解析，Java源代码在不同平台上不需要重新编译，JVM在执行字节码时会自动将其转化为能在该平台上运行的机器指令。</p>
-<h4 id="字节码：-为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行"><a href="#字节码：-为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行" class="headerlink" title="字节码： 为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行"></a>字节码： 为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行</h4><ol>
+<h2 id="Java的平台无关性"><a href="#Java的平台无关性" class="headerlink" title="Java的平台无关性"></a>Java的平台无关性</h2><p>Java源代码被编译为字节码，由不同平台的JVM进行解析，Java源代码在不同平台上不需要重新编译，JVM在执行字节码时会自动将其转化为能在该平台上运行的机器指令。</p>
+<h3 id="字节码：-为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行"><a href="#字节码：-为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行" class="headerlink" title="字节码： 为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行"></a>字节码： 为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行</h3><ol>
 <li>字节码是中间文件，从源代码到字节码过程中有许多校验检查工作，如果直接由JVM执行Java代码将在这一步浪费很多时间。</li>
 <li>其他语言也可以转化成字节码由JVM执行。</li>
 </ol>
-<h3 id="JVM如何加载-class文件"><a href="#JVM如何加载-class文件" class="headerlink" title="JVM如何加载.class文件"></a>JVM如何加载.class文件</h3><p><img src="https://i.imgur.com/FfHnpTj.png" alt="FfHnpTj"></p>
-<h3 id="Java反射"><a href="#Java反射" class="headerlink" title="Java反射"></a>Java反射</h3><p>Java反射是在运行状态中，对任意一个类都能知道这个类的所有属性和方法；对任意一个对象，都能调用这个它的任意方法和属性；这种能够动态获取信息以及动态调用对象方法的功能称为Java语言的反射机制。</p>
+<h2 id="JVM如何加载-class文件"><a href="#JVM如何加载-class文件" class="headerlink" title="JVM如何加载.class文件"></a>JVM如何加载.class文件</h2><p><img src="https://i.imgur.com/FfHnpTj.png" alt="FfHnpTj"></p>
+<h2 id="Java反射"><a href="#Java反射" class="headerlink" title="Java反射"></a>Java反射</h2><p>Java反射是在运行状态中，对任意一个类都能知道这个类的所有属性和方法；对任意一个对象，都能调用这个它的任意方法和属性；这种能够动态获取信息以及动态调用对象方法的功能称为Java语言的反射机制。</p>
 <p>实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">package com.ryz.javabasic.reflect;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.Field;</span><br><span class="line">import java.lang.reflect.InvocationTargetException;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line">public class ReflectSample &#123;</span><br><span class="line">    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchFieldException &#123;</span><br><span class="line">        Class rc = Class.forName(&quot;com.ryz.javabasic.reflect.Robot&quot;);</span><br><span class="line">        Robot r = (Robot)rc.getDeclaredConstructor().newInstance();</span><br><span class="line">        System.out.println(&quot;Class name is &quot; + rc.getName());</span><br><span class="line"></span><br><span class="line">        /*</span><br><span class="line">         * getDeclaredMethod可以获取类中包括私有的所有方法，但不能获取继承的</span><br><span class="line">         */</span><br><span class="line">        Method getHello = rc.getDeclaredMethod(&quot;throwHello&quot;, String.class);</span><br><span class="line">        //私有方法需要设置Accessible</span><br><span class="line">        getHello.setAccessible(true);</span><br><span class="line">        Object str = (String) getHello.invoke(r,&quot;test&quot;);</span><br><span class="line">        System.out.println(str);</span><br><span class="line"></span><br><span class="line">        /*</span><br><span class="line">         * getMethod不可以获取私有方法，但是可以获取继承的方法</span><br><span class="line">         */</span><br><span class="line">        Method sayHi = rc.getMethod(&quot;sayHi&quot;, String.class);</span><br><span class="line">        sayHi.invoke(r,&quot;welcome&quot;);</span><br><span class="line"></span><br><span class="line">        /*</span><br><span class="line">         * 类中变量的获取与设置</span><br><span class="line">         */</span><br><span class="line">        Field f = rc.getDeclaredField(&quot;name&quot;);</span><br><span class="line">        f.setAccessible(true);</span><br><span class="line">        f.set(r,&quot;小明&quot;);</span><br><span class="line">        sayHi.invoke(r,&quot;welcome&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="为什么要用到反射"><a href="#为什么要用到反射" class="headerlink" title="为什么要用到反射"></a>为什么要用到反射</h4><ol>
+<h3 id="为什么要用到反射"><a href="#为什么要用到反射" class="headerlink" title="为什么要用到反射"></a>为什么要用到反射</h3><ol>
 <li>提高程序的灵活性<br> 比如写JDBC的时候，使用配置文件获取配置加载驱动，就是用过反射加载。</li>
 <li>屏蔽细节，方便实用<br> 使用Spring的时候用XML注入就用到反射机制</li>
 </ol>
@@ -191,7 +191,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引子————谈到Java你会想到什么"><span class="toc-number">1.</span> <span class="toc-text">引子————谈到Java你会想到什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java的平台无关性"><span class="toc-number">1.1.</span> <span class="toc-text">Java的平台无关性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字节码：-为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行"><span class="toc-number">1.1.1.</span> <span class="toc-text">字节码： 为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM如何加载-class文件"><span class="toc-number">1.2.</span> <span class="toc-text">JVM如何加载.class文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java反射"><span class="toc-number">1.3.</span> <span class="toc-text">Java反射</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么要用到反射"><span class="toc-number">1.3.1.</span> <span class="toc-text">为什么要用到反射</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引子————谈到Java你会想到什么"><span class="toc-number">1.</span> <span class="toc-text">引子————谈到Java你会想到什么</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java的平台无关性"><span class="toc-number">1.1.</span> <span class="toc-text">Java的平台无关性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#字节码：-为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行"><span class="toc-number">1.1.1.</span> <span class="toc-text">字节码： 为什么JVM要先将源码文件编译为字节码不直接将源码文件解析成机器码去执行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM如何加载-class文件"><span class="toc-number">1.2.</span> <span class="toc-text">JVM如何加载.class文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java反射"><span class="toc-number">1.3.</span> <span class="toc-text">Java反射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么要用到反射"><span class="toc-number">1.3.1.</span> <span class="toc-text">为什么要用到反射</span></a></li></ol></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

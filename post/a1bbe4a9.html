@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Linux体系结构Linux体系结构主要分为用户态（用户上层活动）和内核态 内核：本质上是一段管理计算机硬件设备的程序系统调用：内核的访问接口公共函数库：是对系统调用的封装，方便程序使用shell：是命令解释器，功能强大，可编程 Linux指令findfind / -name “**” -iname 不区分大小写 grep 与 管道操作符 | 管道操作符可以连接各个指令，管道操作符左边的指令输出是">
-<meta name="keywords" content="interview">
+<meta name="keywords" content="interview,Linux,Shell">
 <meta property="og:type" content="article">
 <meta property="og:title" content="interview Shell指令">
 <meta property="og:url" content="http://ryziii.github.io/post/a1bbe4a9.html">
@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://i.imgur.com/86MMlWu.png">
 <meta property="og:image" content="https://i.imgur.com/nwgWIS3.png">
 <meta property="og:image" content="https://i.imgur.com/HhQbhsP.png">
-<meta property="og:updated_time" content="2020-12-08T13:29:12.192Z">
+<meta property="og:updated_time" content="2020-12-08T13:51:50.497Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="interview Shell指令">
 <meta name="twitter:description" content="Linux体系结构Linux体系结构主要分为用户态（用户上层活动）和内核态 内核：本质上是一段管理计算机硬件设备的程序系统调用：内核的访问接口公共函数库：是对系统调用的封装，方便程序使用shell：是命令解释器，功能强大，可编程 Linux指令findfind / -name “**” -iname 不区分大小写 grep 与 管道操作符 | 管道操作符可以连接各个指令，管道操作符左边的指令输出是">
@@ -110,7 +110,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux体系结构"><span class="toc-number">1.</span> <span class="toc-text">Linux体系结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux指令"><span class="toc-number">2.</span> <span class="toc-text">Linux指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#find"><span class="toc-number">2.1.</span> <span class="toc-text">find</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grep-与-管道操作符"><span class="toc-number">2.2.</span> <span class="toc-text">grep 与 管道操作符 |</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#awk"><span class="toc-number">2.3.</span> <span class="toc-text">awk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sed"><span class="toc-number">2.4.</span> <span class="toc-text">sed</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux体系结构"><span class="toc-number">1.</span> <span class="toc-text">Linux体系结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux指令"><span class="toc-number">2.</span> <span class="toc-text">Linux指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#find"><span class="toc-number">2.1.</span> <span class="toc-text">find</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#grep-与-管道操作符"><span class="toc-number">2.2.</span> <span class="toc-text">grep 与 管道操作符 |</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#awk"><span class="toc-number">2.3.</span> <span class="toc-text">awk</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sed"><span class="toc-number">2.4.</span> <span class="toc-text">sed</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -142,7 +142,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/interview/">interview</a>
+        <a class="tag-link" href="/tags/Linux/">Linux</a>, <a class="tag-link" href="/tags/Shell/">Shell</a>, <a class="tag-link" href="/tags/interview/">interview</a>
     </div>
 
 
@@ -151,18 +151,18 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="Linux体系结构"><a href="#Linux体系结构" class="headerlink" title="Linux体系结构"></a>Linux体系结构</h2><p>Linux体系结构主要分为用户态（用户上层活动）和内核态</p>
+    <h1 id="Linux体系结构"><a href="#Linux体系结构" class="headerlink" title="Linux体系结构"></a>Linux体系结构</h1><p>Linux体系结构主要分为用户态（用户上层活动）和内核态</p>
 <p>内核：本质上是一段管理计算机硬件设备的程序<br>系统调用：内核的访问接口<br>公共函数库：是对系统调用的封装，方便程序使用<br>shell：是命令解释器，功能强大，可编程</p>
-<h2 id="Linux指令"><a href="#Linux指令" class="headerlink" title="Linux指令"></a>Linux指令</h2><h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><p>find / -name “**”</p>
+<h1 id="Linux指令"><a href="#Linux指令" class="headerlink" title="Linux指令"></a>Linux指令</h1><h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><p>find / -name “**”</p>
 <p>-iname 不区分大小写</p>
-<h3 id="grep-与-管道操作符"><a href="#grep-与-管道操作符" class="headerlink" title="grep 与 管道操作符 |"></a>grep 与 管道操作符 |</h3><p><img src="https://i.imgur.com/poBR68p.jpg" alt=""></p>
+<h2 id="grep-与-管道操作符"><a href="#grep-与-管道操作符" class="headerlink" title="grep 与 管道操作符 |"></a>grep 与 管道操作符 |</h2><p><img src="https://i.imgur.com/poBR68p.jpg" alt=""></p>
 <p>管道操作符可以连接各个指令，管道操作符左边的指令输出是右边指令的输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 包含test[正则]的文段</span><br><span class="line">grep -o &apos;test[正则]&apos; </span><br><span class="line"></span><br><span class="line">//不包含test[正则]的文段</span><br><span class="line">grep -v &apos;test[正则]&apos;</span><br></pre></td></tr></table></figure>
-<h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h3><p>awk是对文件分割查找的命令，默认的分隔符是空格，可以使用<code>-F &quot;,&quot;</code>来改变分隔符<br><img src="https://i.imgur.com/86MMlWu.png" alt="86MMlWu"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 包含test[正则]的文段</span><br><span class="line">grep -o &apos;test[正则]&apos; </span><br><span class="line">#</span><br><span class="line">//不包含test[正则]的文段</span><br><span class="line">grep -v &apos;test[正则]&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h2><p>awk是对文件分割查找的命令，默认的分隔符是空格，可以使用<code>-F &quot;,&quot;</code>来改变分隔符<br><img src="https://i.imgur.com/86MMlWu.png" alt="86MMlWu"></p>
 <p>添加表头的命令为NR<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;($1==&quot;test1&quot; &amp;&amp; $2==&quot;test31&quot;) || NR==1 &#123;print $0&#125;&apos; netstat.txt</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/nwgWIS3.png" alt="nwgWIS3"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;arr[$1]++&#125;END&#123;for(i in arr)print i &quot;\t&quot; arr[i]&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h3><p>sed(stream editor) 流编辑器，常用于字符串替换、删除、修改</p>
+<h2 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h2><p>sed(stream editor) 流编辑器，常用于字符串替换、删除、修改</p>
 <p><img src="https://i.imgur.com/HhQbhsP.png" alt="HhQbhsP"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sed -i &apos;s/^Str/String/&apos; replace.txt     替换以Str开头的字符串为String</span><br><span class="line">sed -i &apos;s/\.$/\;/&apos; replace.txt          替换以&apos;.&apos;为结尾的字符串为&apos;;&apos;</span><br><span class="line">sed -i &apos;s/Jack/me/g&apos; replace.txt        全局替换&apos;Jack&apos;为&apos;me&apos;</span><br><span class="line"></span><br><span class="line">sed -i &apos;/Integer/d&apos; replace.txt         删除Integer所在的行</span><br></pre></td></tr></table></figure>
 
@@ -190,7 +190,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux体系结构"><span class="toc-number">1.</span> <span class="toc-text">Linux体系结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux指令"><span class="toc-number">2.</span> <span class="toc-text">Linux指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#find"><span class="toc-number">2.1.</span> <span class="toc-text">find</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grep-与-管道操作符"><span class="toc-number">2.2.</span> <span class="toc-text">grep 与 管道操作符 |</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#awk"><span class="toc-number">2.3.</span> <span class="toc-text">awk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sed"><span class="toc-number">2.4.</span> <span class="toc-text">sed</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux体系结构"><span class="toc-number">1.</span> <span class="toc-text">Linux体系结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux指令"><span class="toc-number">2.</span> <span class="toc-text">Linux指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#find"><span class="toc-number">2.1.</span> <span class="toc-text">find</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#grep-与-管道操作符"><span class="toc-number">2.2.</span> <span class="toc-text">grep 与 管道操作符 |</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#awk"><span class="toc-number">2.3.</span> <span class="toc-text">awk</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sed"><span class="toc-number">2.4.</span> <span class="toc-text">sed</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
