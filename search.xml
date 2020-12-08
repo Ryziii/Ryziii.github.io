@@ -93,9 +93,9 @@
       
         <tags>
             
-            <tag> interview </tag>
-            
             <tag> Mysql </tag>
+            
+            <tag> interview </tag>
             
         </tags>
       
@@ -174,9 +174,9 @@
     </entry>
     
     <entry>
-      <title>interview 三次握手</title>
-      <link href="/post/5cde0e4d.html"/>
-      <url>/post/5cde0e4d.html</url>
+      <title>interview TCP三次握手</title>
+      <link href="/post/56765b2b.html"/>
+      <url>/post/56765b2b.html</url>
       
         <content type="html"><![CDATA[<h2 id="三次握手过程"><a href="#三次握手过程" class="headerlink" title="三次握手过程"></a>三次握手过程</h2><p>在TCP/IP协议中，TCP通过三次握手来创建一个可靠的连接。</p><ol><li>第一次握手，发送端向服务器发送SYN包(syn=j)，并进入SYN_SEND状态，等待服务器回应。</li><li>第二次握手，服务器收到发送端发来的SYN包，必须确认发送端的SYN包(ack=j+1)，并发送一个SYN(syn=k),即SYN+ACK包。此时服务器进入SYN_RECIV状态。</li><li>第三次握手，客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1)，此时双方建立连接，进入ESTABLISHED状态，完成三次握手。</li></ol><h2 id="为什么需要三次握手？"><a href="#为什么需要三次握手？" class="headerlink" title="为什么需要三次握手？"></a>为什么需要三次握手？</h2><p>为了初始化Sequence Number，防止后续建立连接后发送数据乱序</p><h2 id="SYN超时隐患"><a href="#SYN超时隐患" class="headerlink" title="SYN超时隐患"></a>SYN超时隐患</h2><p>Server收到Client的SYN，发送SYN-ACK后未收到CLient的ACK确认，Server会不断重试直至超时，Linux默认63s<br>SYN超时会造成Server在时间内才会断开连接，攻击者会让服务器无法处理正常连接请求。Linux会构造一个SYNcookie只有请求者可以回复，防止被恶意进攻</p>]]></content>
       

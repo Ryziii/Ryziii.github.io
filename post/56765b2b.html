@@ -9,14 +9,14 @@
     <meta name="description" content="三次握手过程在TCP/IP协议中，TCP通过三次握手来创建一个可靠的连接。  第一次握手，发送端向服务器发送SYN包(syn=j)，并进入SYN_SEND状态，等待服务器回应。 第二次握手，服务器收到发送端发来的SYN包，必须确认发送端的SYN包(ack=j+1)，并发送一个SYN(syn=k),即SYN+ACK包。此时服务器进入SYN_RECIV状态。 第三次握手，客户端收到服务器的SYN+AC">
 <meta name="keywords" content="interview">
 <meta property="og:type" content="article">
-<meta property="og:title" content="interview 三次握手">
-<meta property="og:url" content="http://ryziii.github.io/post/5cde0e4d.html">
+<meta property="og:title" content="interview TCP三次握手">
+<meta property="og:url" content="http://ryziii.github.io/post/56765b2b.html">
 <meta property="og:site_name" content="Rysi&#39;s Blog">
 <meta property="og:description" content="三次握手过程在TCP/IP协议中，TCP通过三次握手来创建一个可靠的连接。  第一次握手，发送端向服务器发送SYN包(syn=j)，并进入SYN_SEND状态，等待服务器回应。 第二次握手，服务器收到发送端发来的SYN包，必须确认发送端的SYN包(ack=j+1)，并发送一个SYN(syn=k),即SYN+ACK包。此时服务器进入SYN_RECIV状态。 第三次握手，客户端收到服务器的SYN+AC">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2020-12-08T14:17:18.034Z">
+<meta property="og:updated_time" content="2020-12-08T14:18:19.269Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="interview 三次握手">
+<meta name="twitter:title" content="interview TCP三次握手">
 <meta name="twitter:description" content="三次握手过程在TCP/IP协议中，TCP通过三次握手来创建一个可靠的连接。  第一次握手，发送端向服务器发送SYN包(syn=j)，并进入SYN_SEND状态，等待服务器回应。 第二次握手，服务器收到发送端发来的SYN包，必须确认发送端的SYN包(ack=j+1)，并发送一个SYN(syn=k),即SYN+ACK包。此时服务器进入SYN_RECIV状态。 第三次握手，客户端收到服务器的SYN+AC">
     
     
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>interview 三次握手</title>
+    <title>interview TCP三次握手</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
@@ -91,17 +91,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/5cde0e4d.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/5cde0e4d.html&text=interview 三次握手"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/5cde0e4d.html&title=interview 三次握手"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/5cde0e4d.html&is_video=false&description=interview 三次握手"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=interview 三次握手&body=Check out this article: http://ryziii.github.io/post/5cde0e4d.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/5cde0e4d.html&title=interview 三次握手"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/5cde0e4d.html&title=interview 三次握手"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/5cde0e4d.html&title=interview 三次握手"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/5cde0e4d.html&title=interview 三次握手"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/5cde0e4d.html&name=interview 三次握手&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/5cde0e4d.html&t=interview 三次握手"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/56765b2b.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/56765b2b.html&text=interview TCP三次握手"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/56765b2b.html&title=interview TCP三次握手"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/56765b2b.html&is_video=false&description=interview TCP三次握手"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=interview TCP三次握手&body=Check out this article: http://ryziii.github.io/post/56765b2b.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/56765b2b.html&title=interview TCP三次握手"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/56765b2b.html&title=interview TCP三次握手"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/56765b2b.html&title=interview TCP三次握手"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/56765b2b.html&title=interview TCP三次握手"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/56765b2b.html&name=interview TCP三次握手&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/56765b2b.html&t=interview TCP三次握手"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -118,7 +118,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        interview 三次握手
+        interview TCP三次握手
     </h1>
 
 
@@ -188,17 +188,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/5cde0e4d.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/5cde0e4d.html&text=interview 三次握手"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/5cde0e4d.html&title=interview 三次握手"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/5cde0e4d.html&is_video=false&description=interview 三次握手"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=interview 三次握手&body=Check out this article: http://ryziii.github.io/post/5cde0e4d.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/5cde0e4d.html&title=interview 三次握手"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/5cde0e4d.html&title=interview 三次握手"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/5cde0e4d.html&title=interview 三次握手"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/5cde0e4d.html&title=interview 三次握手"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/5cde0e4d.html&name=interview 三次握手&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/5cde0e4d.html&t=interview 三次握手"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/56765b2b.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/56765b2b.html&text=interview TCP三次握手"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/56765b2b.html&title=interview TCP三次握手"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/56765b2b.html&is_video=false&description=interview TCP三次握手"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=interview TCP三次握手&body=Check out this article: http://ryziii.github.io/post/56765b2b.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/56765b2b.html&title=interview TCP三次握手"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/56765b2b.html&title=interview TCP三次握手"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/56765b2b.html&title=interview TCP三次握手"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/56765b2b.html&title=interview TCP三次握手"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/56765b2b.html&name=interview TCP三次握手&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/56765b2b.html&t=interview TCP三次握手"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
