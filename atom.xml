@@ -6,7 +6,7 @@
   <link href="http://ryziii.github.io/atom.xml" rel="self"/>
   
   <link href="http://ryziii.github.io/"/>
-  <updated>2020-12-12T06:57:37.179Z</updated>
+  <updated>2020-12-12T07:00:50.741Z</updated>
   <id>http://ryziii.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://ryziii.github.io/post/5e51fdfc.html"/>
     <id>http://ryziii.github.io/post/5e51fdfc.html</id>
     <published>2020-12-12T06:39:55.000Z</published>
-    <updated>2020-12-12T06:57:37.179Z</updated>
+    <updated>2020-12-12T07:00:50.741Z</updated>
     
     <content type="html"><![CDATA[<h2 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h2><p>今天用Alfred写一个py脚本用于调用tesseract做ocr文字识别，用py需要用到一个AppKit库来处理系统剪切板截图，在zsh终端pip3下载PyObjC库。在Alfred中继续调试py脚本，发现依然无法找到AppKit库，一开始以为是python版本的问题于是:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/local/bin/python3 /usr/local/bin/python-bak</span><br><span class="line">ln -s /usr/local/Celler/python@3.9/3.9.1/bin/python /usr/local/bin</span><br></pre></td></tr></table></figure><p>做了ln将/usr/local/bin/python3替换掉，<strong>问题依旧</strong><br>以为是链接问题做了一系列的.zshrc bash_profile文件的修改，<strong>问题依旧</strong><br>最后发现Alfred调用的是系统/usr/bin/python3，于是尝试替换/usr/bin/python3，出现Read-only file system问题，发现macOS从Catalina开始就不再支持<code>mount /</code>了</p><p>于是乎最后的解决办法是在Alfred里用绝对路径调用python3处理脚本…..</p>]]></content>
     
@@ -37,11 +37,37 @@
   </entry>
   
   <entry>
+    <title>interview JVM： 内存模型</title>
+    <link href="http://ryziii.github.io/post/58916ece.html"/>
+    <id>http://ryziii.github.io/post/58916ece.html</id>
+    <published>2020-12-10T12:01:44.000Z</published>
+    <updated>2020-12-12T07:01:54.030Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="JVM架构图"><a href="#JVM架构图" class="headerlink" title="JVM架构图"></a>JVM架构图</h1><p><img src="https://i.imgur.com/FfHnpTj.png" alt="FfHnpTj"></p><blockquote><p>上图中Runtime Data Area就是Java内存模型</p></blockquote><p><img src="https://i.imgur.com/6Mm3zCF.png" alt="030a4908f7dcdd708d64cb46f34fa83e"></p><h3 id="程序计数器-Program-Counter-Register"><a href="#程序计数器-Program-Counter-Register" class="headerlink" title="程序计数器 (Program Counter Register)"></a>程序计数器 (Program Counter Register)</h3><ul><li>Program Counter Register是线程当前正在执行字节码指令的地址(逻辑地址)</li><li>通过改变计数器的值来选取下一条需要执行的字节码指令</li><li>每个线程拥有一个计数器，是一对一关系，即“线程私有”</li><li>对Java方法计数，如果是Native方法则计数器值为Undefined</li><li>是JVM内存模型中唯一一个不会OutOfMemory的区域</li></ul><blockquote><p>因为PCRegister只是字节码行号指示器，就是指向下一条待运行的指令的地址，永远就在内存中，所以PCRegister是JVM内存模型中唯一不规定OutOfMemory的区域</p></blockquote><h4 id="逻辑地址与物理地址"><a href="#逻辑地址与物理地址" class="headerlink" title="逻辑地址与物理地址"></a>逻辑地址与物理地址</h4><p>逻辑地址就是C语言中指针指向的地址，由段标识符和段偏移量构成，是内存管理系统产物。<br>物理地址就是内存或闪存上的真实地址。</p><blockquote><p>为什么需要逻辑地址？<br>现代操作系统需要运行多任务，需要支持运行多个进程，如果直接为进程分配内存，分配多还是分配少不好掌握。如果采用动态内存分配，则一个进程容易取不到一个完整的连续的内存空间。此时就催生出操作系统的虚拟内存系统，虚拟内存系统是对内存系统的抽象，操作系统以分页(page)的机制管理内存，每个分页4kb，虚拟内存空间中的分页(page)映射到物理内存中的一个分页(page)，操作系统只需要维护一份映射表做地址转换即可。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;JVM架构图&quot;&gt;&lt;a href=&quot;#JVM架构图&quot; class=&quot;headerlink&quot; title=&quot;JVM架构图&quot;&gt;&lt;/a&gt;JVM架构图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/FfHnpTj.png&quot; alt=&quot;FfHnpT</summary>
+      
+    
+    
+    
+    
+    <category term="Java" scheme="http://ryziii.github.io/tags/Java/"/>
+    
+    <category term="interview" scheme="http://ryziii.github.io/tags/interview/"/>
+    
+    <category term="JVM" scheme="http://ryziii.github.io/tags/JVM/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Sublime 快捷键</title>
     <link href="http://ryziii.github.io/post/d9ed0149.html"/>
     <id>http://ryziii.github.io/post/d9ed0149.html</id>
     <published>2020-12-10T04:48:28.000Z</published>
-    <updated>2020-12-10T07:45:03.102Z</updated>
+    <updated>2020-12-12T07:00:50.739Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Sublime-Text-3-快捷键"><a href="#Sublime-Text-3-快捷键" class="headerlink" title="Sublime Text 3 快捷键"></a>Sublime Text 3 快捷键</h1><p>Ctrl+Shift+P：打开命令面板<br>Ctrl+P：搜索项目中的文件<br>Ctrl+G：跳转到第几行<br>Ctrl+W：关闭当前打开文件<br>Ctrl+Shift+W：关闭所有打开文件<br>Ctrl+Shift+V：粘贴并格式化<br>Ctrl+D：选择单词，重复可增加选择下一个相同的单词<br>Ctrl+L：选择行，重复可依次增加选择下一行<br>Ctrl+Shift+L：选择多行<br>Ctrl+Shift+Enter：在当前行前插入新行<br>Ctrl+X：删除当前行<br>Ctrl+M：跳转到对应括号<br>Ctrl+U：软撤销，撤销光标位置<br>Ctrl+J：选择标签内容<br>Ctrl+F：查找内容<br>Ctrl+Shift+F：查找并替换<br>Ctrl+H：替换<br>Ctrl+R：前往 method<br>Ctrl+N：新建窗口<br>Ctrl+K+B：开关侧栏<br>Ctrl+Shift+M：选中当前括号内容，重复可选着括号本身<br>Ctrl+F2：设置/删除标记<br>Ctrl+/：注释当前行<br>Ctrl+Shift+/：当前位置插入注释<br>Ctrl+Alt+/：块注释，并Focus到首行，写注释说明用的<br>Ctrl+Shift+A：选择当前标签前后，修改标签用的<br>F11：全屏<br>Shift+F11：全屏免打扰模式，只编辑当前文件<br>Alt+F3：选择所有相同的词<br>Alt+.：闭合标签<br>Alt+Shift+数字：分屏显示<br>Alt+数字：切换打开第N个文件<br>Shift+右键拖动：光标多不，用来更改或插入列内容<br>鼠标的前进后退键可切换Tab文件<br>按Ctrl，依次点击或选取，可需要编辑的多个位置<br>按Ctrl+Shift+上下键，可替换行</p><p>##选择类<br>Ctrl+D 选中光标所占的文本，继续操作则会选中下一个相同的文本。</p><p>Alt+F3 选中文本按下快捷键，即可一次性选择全部的相同文本进行同时编辑。举个栗子：快速选中并更改所有相同的变量名、函数名等。</p><p>Ctrl+L 选中整行，继续操作则继续选择下一行，效果和 Shift+↓ 效果一样。</p><p>Ctrl+Shift+L 先选中多行，再按下快捷键，会在每行行尾插入光标，即可同时编辑这些行。</p><p>Ctrl+Shift+M 选择括号内的内容（继续选择父括号）。举个栗子：快速选中删除函数中的代码，重写函数体代码或重写括号内里的内容。</p><p>Ctrl+M 光标移动至括号内结束或开始的位置。</p><p>Ctrl+Enter 在下一行插入新行。举个栗子：即使光标不在行尾，也能快速向下插入一行。</p><p>Ctrl+Shift+Enter 在上一行插入新行。举个栗子：即使光标不在行首，也能快速向上插入一行。</p><p>Ctrl+Shift+[ 选中代码，按下快捷键，折叠代码。</p><p>Ctrl+Shift+] 选中代码，按下快捷键，展开代码。</p><p>Ctrl+K+0 展开所有折叠代码。</p><p>Ctrl+← 向左单位性地移动光标，快速移动光标。</p><p>Ctrl+→ 向右单位性地移动光标，快速移动光标。</p><p>shift+↑ 向上选中多行。</p><p>shift+↓ 向下选中多行。</p><p>Shift+← 向左选中文本。</p><p>Shift+→ 向右选中文本。</p><p>Ctrl+Shift+← 向左单位性地选中文本。</p><p>Ctrl+Shift+→ 向右单位性地选中文本。</p><p>Ctrl+Shift+↑ 将光标所在行和上一行代码互换（将光标所在行插入到上一行之前）。</p><p>Ctrl+Shift+↓ 将光标所在行和下一行代码互换（将光标所在行插入到下一行之后）。</p><p>Ctrl+Alt+↑ 向上添加多行光标，可同时编辑多行。</p><p>Ctrl+Alt+↓ 向下添加多行光标，可同时编辑多行。</p><h2 id="编辑类"><a href="#编辑类" class="headerlink" title="编辑类"></a>编辑类</h2><p>Ctrl+J 合并选中的多行代码为一行。举个栗子：将多行格式的CSS属性合并为一行。</p><p>Ctrl+Shift+D 复制光标所在整行，插入到下一行。</p><p>Tab 向右缩进。</p><p>Shift+Tab 向左缩进。</p><p>Ctrl+K+K 从光标处开始删除代码至行尾。</p><p>Ctrl+Shift+K 删除整行。</p><p>Ctrl+/ 注释单行。</p><p>Ctrl+Shift+/ 注释多行。</p><p>Ctrl+K+U 转换大写。</p><p>Ctrl+K+L 转换小写。</p><p>Ctrl+Z 撤销。</p><p>Ctrl+Y 恢复撤销。</p><p>Ctrl+U 软撤销，感觉和 Gtrl+Z 一样。</p><p>Ctrl+F2 设置书签</p><p>Ctrl+T 左右字母互换。</p><p>F6 单词检测拼写</p><h2 id="搜索类"><a href="#搜索类" class="headerlink" title="搜索类"></a>搜索类</h2><p>Ctrl+F 打开底部搜索框，查找关键字。</p><p>Ctrl+shift+F 在文件夹内查找，与普通编辑器不同的地方是sublime允许添加多个文件夹进行查找，略高端，未研究。</p><p>Ctrl+P 打开搜索框。举个栗子：1、输入当前项目中的文件名，快速搜索文件，2、输入@和关键字，查找文件中函数名，3、输入：和数字，跳转到文件中该行代码，4、输入#和关键字，查找变量名。</p><p>Ctrl+G 打开搜索框，自动带：，输入数字跳转到该行代码。举个栗子：在页面代码比较长的文件中快速定位。</p><p>Ctrl+R 打开搜索框，自动带@，输入关键字，查找文件中的函数名。举个栗子：在函数较多的页面快速查找某个函数。</p><p>Ctrl+： 打开搜索框，自动带#，输入关键字，查找文件中的变量名、属性名等。</p><p>Ctrl+Shift+P 打开命令框。场景栗子：打开命名框，输入关键字，调用sublime text或插件的功能，例如使用package安装插件。</p><p>Esc 退出光标多行选择，退出搜索框，命令框等。</p><h2 id="显示类"><a href="#显示类" class="headerlink" title="显示类"></a>显示类</h2><p>Ctrl+Tab 按文件浏览过的顺序，切换当前窗口的标签页。</p><p>Ctrl+PageDown 向左切换当前窗口的标签页。</p><p>Ctrl+PageUp 向右切换当前窗口的标签页。</p><p>Alt+Shift+1 窗口分屏，恢复默认1屏（非小键盘的数字）</p><p>Alt+Shift+2 左右分屏-2列</p><p>Alt+Shift+3 左右分屏-3列</p><p>Alt+Shift+4 左右分屏-4列</p><p>Alt+Shift+5 等分4屏</p><p>Alt+Shift+8 垂直分屏-2屏</p><p>Alt+Shift+9 垂直分屏-3屏</p><p>Ctrl+K+B 开启/关闭侧边栏。</p><p>F11 全屏模式</p><p>Shift+F11 免打扰模式</p><p>Ctrl+k+2 折叠注释和方法</p><p>Ctrl+k+3 折叠if</p><p>Ctrl+k+4 折叠switch</p>]]></content>
     
@@ -61,7 +87,7 @@
     <link href="http://ryziii.github.io/post/eef7a1b5.html"/>
     <id>http://ryziii.github.io/post/eef7a1b5.html</id>
     <published>2020-12-09T15:01:05.000Z</published>
-    <updated>2020-12-10T07:45:03.096Z</updated>
+    <updated>2020-12-12T07:00:50.740Z</updated>
     
     <content type="html"><![CDATA[<h1 id="如何更新"><a href="#如何更新" class="headerlink" title="如何更新"></a>如何更新</h1><p>更新 Homebrew 自己：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew update</span><br></pre></td></tr></table></figure></p><p>查看哪些安装包需要更新：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew outdated</span><br></pre></td></tr></table></figure></p><p>更新：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew upgrade             # 更新所有的包</span><br><span class="line">brew upgrade $FORMULA    # 更新指定的包</span><br></pre></td></tr></table></figure></p><p>清理旧版本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew cleanup             # 清理所有包的旧版本</span><br><span class="line">brew cleanup $FORMULA    # 清理指定包的旧版本</span><br><span class="line">brew cleanup -n          # 查看可清理的旧版本包，不执行实际操作</span><br></pre></td></tr></table></figure></p><p>锁定不想更新的包：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew pin $FORMULA      # 锁定某个包</span><br><span class="line">brew unpin $FORMULA    # 取消锁定</span><br></pre></td></tr></table></figure></p><p>查看安装包的相关信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew info $FORMULA    # 显示某个包的信息</span><br><span class="line">brew info             # 显示安装了包数量，文件数量，和总占用空间</span><br><span class="line">brew deps --installed --tree # 查看已安装的包的依赖，树形显示</span><br></pre></td></tr></table></figure></p><h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>列出已安装包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew list</span><br></pre></td></tr></table></figure></p><p>删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew rm $FORMULA                # 删除某个包</span><br><span class="line">brew uninstall $FORMULA         # 卸载某个包</span><br><span class="line">brew uninstall --force $FORMULA # 删除所有版本</span><br></pre></td></tr></table></figure></p>]]></content>
     
@@ -440,28 +466,6 @@
       
       
     <summary type="html">&lt;p&gt;题目地址:&lt;a href=&quot;https://leetcode-cn.com/problems/same-tree/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://leetcode-cn.com/problems/same-tree/&lt;/a&gt;</summary>
-      
-    
-    
-    
-    
-    <category term="leetcode" scheme="http://ryziii.github.io/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>简单模拟题 leetcode-12</title>
-    <link href="http://ryziii.github.io/post/83597930.html"/>
-    <id>http://ryziii.github.io/post/83597930.html</id>
-    <published>2019-01-22T07:49:28.000Z</published>
-    <updated>2020-10-21T08:21:20.746Z</updated>
-    
-    <content type="html"><![CDATA[<p>题目链接:<a href="https://leetcode-cn.com/problems/integer-to-roman/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/integer-to-roman/</a></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">intToRoman</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        Map&lt;String,Integer&gt; map = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</span><br><span class="line">        map.put(<span class="string">"M"</span>,<span class="number">1000</span>);</span><br><span class="line">        map.put(<span class="string">"CM"</span>,<span class="number">900</span>);</span><br><span class="line">        map.put(<span class="string">"D"</span>,<span class="number">500</span>);</span><br><span class="line">        map.put(<span class="string">"CD"</span>,<span class="number">400</span>);</span><br><span class="line">        map.put(<span class="string">"C"</span>,<span class="number">100</span>);</span><br><span class="line">        map.put(<span class="string">"XC"</span>,<span class="number">90</span>);</span><br><span class="line">        map.put(<span class="string">"L"</span>,<span class="number">50</span>);</span><br><span class="line">        map.put(<span class="string">"XL"</span>,<span class="number">40</span>);</span><br><span class="line">        map.put(<span class="string">"X"</span>,<span class="number">10</span>);</span><br><span class="line">        map.put(<span class="string">"IX"</span>,<span class="number">9</span>);</span><br><span class="line">        map.put(<span class="string">"V"</span>,<span class="number">5</span>);</span><br><span class="line">        map.put(<span class="string">"IV"</span>,<span class="number">4</span>);</span><br><span class="line">        map.put(<span class="string">"I"</span>,<span class="number">1</span>);</span><br><span class="line">        StringBuilder sb  =<span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">while</span>(num!=<span class="number">0</span>)&#123;</span><br><span class="line">            Iterator it = map.keySet().iterator();</span><br><span class="line">            <span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">                String c = (String) it.next();</span><br><span class="line">                <span class="keyword">int</span> va = map.get(c);</span><br><span class="line">                <span class="keyword">if</span>(num&gt;=va)&#123;</span><br><span class="line">                    sb.append(c);</span><br><span class="line">                    num-=va;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;题目链接:&lt;a href=&quot;https://leetcode-cn.com/problems/integer-to-roman/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://leetcode-cn.com/problems/integer</summary>
       
     
     
