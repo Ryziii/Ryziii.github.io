@@ -4,25 +4,6 @@
   
     
     <entry>
-      <title>youtube-dl与ffmpeg常用指令</title>
-      <link href="post/345e1706.html"/>
-      <url>post/345e1706.html</url>
-      
-        <content type="html"><![CDATA[<h3 id="下载视频并嵌入字幕"><a href="#下载视频并嵌入字幕" class="headerlink" title="下载视频并嵌入字幕"></a>下载视频并嵌入字幕</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl --write-sub --embed-sub --all-subs -f <span class="string">&#x27;bestvideo[height&lt;=1080]+bestaudio/best[height&lt;=1080]&#x27;</span> https://www.youtube.com/watch?v=C4EAenqPchE</span><br></pre></td></tr></table></figure><h3 id="ffmpeg合并mp4和m4a"><a href="#ffmpeg合并mp4和m4a" class="headerlink" title="ffmpeg合并mp4和m4a"></a>ffmpeg合并mp4和m4a</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i video.mp4 -i audio.wav \-c:v copy -c:a aac -strict experimental output.mp4</span><br></pre></td></tr></table></figure><h3 id="音频码率转换"><a href="#音频码率转换" class="headerlink" title="音频码率转换"></a>音频码率转换</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp3 -ab 128 output.mp3</span><br></pre></td></tr></table></figure><blockquote><p>128为自己设置的码率</p></blockquote>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> youtube-dl </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>interview Java底层知识：GC垃圾回收机制</title>
       <link href="post/30cfdbe7.html"/>
       <url>post/30cfdbe7.html</url>
@@ -40,6 +21,25 @@
             <tag> 垃圾回收 </tag>
             
             <tag> GC </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>youtube-dl与ffmpeg常用指令</title>
+      <link href="post/345e1706.html"/>
+      <url>post/345e1706.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="下载视频并嵌入字幕"><a href="#下载视频并嵌入字幕" class="headerlink" title="下载视频并嵌入字幕"></a>下载视频并嵌入字幕</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl --write-sub --embed-sub --all-subs -f <span class="string">&#x27;bestvideo[height&lt;=1080]+bestaudio/best[height&lt;=1080]&#x27;</span> https://www.youtube.com/watch?v=C4EAenqPchE</span><br></pre></td></tr></table></figure><h3 id="ffmpeg合并mp4和m4a"><a href="#ffmpeg合并mp4和m4a" class="headerlink" title="ffmpeg合并mp4和m4a"></a>ffmpeg合并mp4和m4a</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i video.mp4 -i audio.wav \-c:v copy -c:a aac -strict experimental output.mp4</span><br></pre></td></tr></table></figure><h3 id="音频码率转换"><a href="#音频码率转换" class="headerlink" title="音频码率转换"></a>音频码率转换</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp3 -ab 128 output.mp3</span><br></pre></td></tr></table></figure><blockquote><p>128为自己设置的码率</p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> youtube-dl </tag>
             
         </tags>
       

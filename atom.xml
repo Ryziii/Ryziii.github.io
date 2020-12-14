@@ -6,7 +6,7 @@
   <link href="http://ryziii.github.io/atom.xml" rel="self"/>
   
   <link href="http://ryziii.github.io/"/>
-  <updated>2020-12-14T14:39:20.421Z</updated>
+  <updated>2020-12-14T16:21:32.754Z</updated>
   <id>http://ryziii.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>interview Java底层知识：GC垃圾回收机制</title>
+    <link href="http://ryziii.github.io/post/30cfdbe7.html"/>
+    <id>http://ryziii.github.io/post/30cfdbe7.html</id>
+    <published>2020-12-14T12:04:24.000Z</published>
+    <updated>2020-12-14T16:21:32.754Z</updated>
+    
+    
+    
+    
+    
+    <category term="Java" scheme="http://ryziii.github.io/tags/Java/"/>
+    
+    <category term="interview" scheme="http://ryziii.github.io/tags/interview/"/>
+    
+    <category term="垃圾回收" scheme="http://ryziii.github.io/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/"/>
+    
+    <category term="GC" scheme="http://ryziii.github.io/tags/GC/"/>
+    
+  </entry>
   
   <entry>
     <title>youtube-dl与ffmpeg常用指令</title>
@@ -35,27 +56,6 @@
     
     
     <category term="youtube-dl" scheme="http://ryziii.github.io/tags/youtube-dl/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>interview Java底层知识：GC垃圾回收机制</title>
-    <link href="http://ryziii.github.io/post/30cfdbe7.html"/>
-    <id>http://ryziii.github.io/post/30cfdbe7.html</id>
-    <published>2020-12-14T07:47:34.000Z</published>
-    <updated>2020-12-14T15:53:17.624Z</updated>
-    
-    
-    
-    
-    
-    <category term="Java" scheme="http://ryziii.github.io/tags/Java/"/>
-    
-    <category term="interview" scheme="http://ryziii.github.io/tags/interview/"/>
-    
-    <category term="垃圾回收" scheme="http://ryziii.github.io/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/"/>
-    
-    <category term="GC" scheme="http://ryziii.github.io/tags/GC/"/>
     
   </entry>
   
