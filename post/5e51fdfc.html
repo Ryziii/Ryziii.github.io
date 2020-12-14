@@ -7,13 +7,14 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="问题复现今天用Alfred写一个py脚本用于调用tesseract做ocr文字识别，用py需要用到一个AppKit库来处理系统剪切板截图，在zsh终端pip3下载PyObjC库。在Alfred中继续调试py脚本，发现依然无法找到AppKit库，一开始以为是python版本的问题于是: 12mv /usr/local/bin/python3 /usr/local/bin/python-bakln -">
+<meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="macOS系统终端默认python版本问题">
 <meta property="og:url" content="http://ryziii.github.io/post/5e51fdfc.html">
 <meta property="og:site_name" content="Rysi&#39;s Blog">
 <meta property="og:description" content="问题复现今天用Alfred写一个py脚本用于调用tesseract做ocr文字识别，用py需要用到一个AppKit库来处理系统剪切板截图，在zsh终端pip3下载PyObjC库。在Alfred中继续调试py脚本，发现依然无法找到AppKit库，一开始以为是python版本的问题于是: 12mv /usr/local/bin/python3 /usr/local/bin/python-bakln -">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2020-12-13T12:56:00.071Z">
+<meta property="og:updated_time" content="2020-12-14T10:58:57.903Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="macOS系统终端默认python版本问题">
 <meta name="twitter:description" content="问题复现今天用Alfred写一个py脚本用于调用tesseract做ocr文字识别，用py需要用到一个AppKit库来处理系统剪切板截图，在zsh终端pip3下载PyObjC库。在Alfred中继续调试py脚本，发现依然无法找到AppKit库，一开始以为是python版本的问题于是: 12mv /usr/local/bin/python3 /usr/local/bin/python-bakln -">
@@ -138,6 +139,11 @@
       
 
       
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Python/">Python</a>
+    </div>
+
 
     </div>
   </header>
@@ -145,7 +151,7 @@
 
   <div class="content" itemprop="articleBody">
     <h2 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h2><p>今天用Alfred写一个py脚本用于调用tesseract做ocr文字识别，用py需要用到一个AppKit库来处理系统剪切板截图，在zsh终端pip3下载PyObjC库。在Alfred中继续调试py脚本，发现依然无法找到AppKit库，一开始以为是python版本的问题于是:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/local/bin/python3 /usr/local/bin/python-bak</span><br><span class="line">ln -s /usr/local/Celler/python@3.9/3.9.1/bin/python /usr/local/bin</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/<span class="built_in">local</span>/bin/python3 /usr/<span class="built_in">local</span>/bin/python-bak</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/Celler/python@3.9/3.9.1/bin/python /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
 <p>做了ln将/usr/local/bin/python3替换掉，<strong>问题依旧</strong><br>以为是链接问题做了一系列的.zshrc bash_profile文件的修改，<strong>问题依旧</strong><br>最后发现Alfred调用的是系统/usr/bin/python3，于是尝试替换/usr/bin/python3，出现Read-only file system问题，发现macOS从Catalina开始就不再支持<code>mount /</code>了</p>
 <p>于是乎最后的解决办法是在Alfred里用绝对路径调用python3处理脚本…..</p>
 
