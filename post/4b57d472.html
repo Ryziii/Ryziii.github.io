@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="servlet用到的基础函数与技巧servlet中获取传过来的url地址：request.getRequestUrl()servlet中获取传过来的参数：request.getQueryString()  servlet中的注解@WebFilter：  此为filter注解，可以设置filtername，urlPattern，initParams(设置初始化值)  例子：   @WebFilter">
+    <meta name="description" content="servlet用到的基础函数与技巧servlet中获取传过来的url地址：request.getRequestUrl()servlet中获取传过来的参数：request.getQueryString()  servlet中的注解@WebFilter：  此为filter注解，可以设置filtername，urlPattern，initParams(设置初始化值)  例子：   1234@WebFi">
 <meta name="keywords" content="Java Web">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java ee学习过程中使用到的一些函数与技巧(持续更新)">
 <meta property="og:url" content="http://ryziii.github.io/post/4b57d472.html">
 <meta property="og:site_name" content="Rysi&#39;s Blog">
-<meta property="og:description" content="servlet用到的基础函数与技巧servlet中获取传过来的url地址：request.getRequestUrl()servlet中获取传过来的参数：request.getQueryString()  servlet中的注解@WebFilter：  此为filter注解，可以设置filtername，urlPattern，initParams(设置初始化值)  例子：   @WebFilter">
+<meta property="og:description" content="servlet用到的基础函数与技巧servlet中获取传过来的url地址：request.getRequestUrl()servlet中获取传过来的参数：request.getQueryString()  servlet中的注解@WebFilter：  此为filter注解，可以设置filtername，urlPattern，initParams(设置初始化值)  例子：   1234@WebFi">
 <meta property="og:locale" content="zh">
 <meta property="og:updated_time" content="2020-12-08T13:49:57.465Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java ee学习过程中使用到的一些函数与技巧(持续更新)">
-<meta name="twitter:description" content="servlet用到的基础函数与技巧servlet中获取传过来的url地址：request.getRequestUrl()servlet中获取传过来的参数：request.getQueryString()  servlet中的注解@WebFilter：  此为filter注解，可以设置filtername，urlPattern，initParams(设置初始化值)  例子：   @WebFilter">
+<meta name="twitter:description" content="servlet用到的基础函数与技巧servlet中获取传过来的url地址：request.getRequestUrl()servlet中获取传过来的参数：request.getQueryString()  servlet中的注解@WebFilter：  此为filter注解，可以设置filtername，urlPattern，initParams(设置初始化值)  例子：   1234@WebFi">
     
     
       
@@ -153,10 +153,10 @@
     <h3 id="servlet用到的基础函数与技巧"><a href="#servlet用到的基础函数与技巧" class="headerlink" title="servlet用到的基础函数与技巧"></a>servlet用到的基础函数与技巧</h3><p>servlet中获取传过来的url地址：request.getRequestUrl()<br>servlet中获取传过来的参数：request.getQueryString()</p>
 <ul>
 <li><p>servlet中的注解@WebFilter：<br>  此为filter注解，可以设置filtername，urlPattern，initParams(设置初始化值)<br>  例子：</p>
-  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@WebFilter</span>(filterName=<span class="string">"xxxxFilter"</span>,urlPatterns=<span class="string">"/*"</span>,initParams=&#123;</span><br><span class="line">    <span class="meta">@WebInitParam</span>(name=<span class="string">"systemName"</span>,value=<span class="string">"aaaa"</span>,</span><br><span class="line">    <span class="meta">@WebInitParam</span>(name=<span class="string">"version"</span>,value<span class="string">"2.0"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebFilter</span>(filterName=<span class="string">"xxxxFilter"</span>,urlPatterns=<span class="string">"/*"</span>,initParams=&#123;</span><br><span class="line">    <span class="meta">@WebInitParam</span>(name=<span class="string">"systemName"</span>,value=<span class="string">"aaaa"</span>,</span><br><span class="line">    <span class="meta">@WebInitParam</span>(name=<span class="string">"version"</span>,value<span class="string">"2.0"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="jsp中使用到的基础函数与技巧"><a href="#jsp中使用到的基础函数与技巧" class="headerlink" title="jsp中使用到的基础函数与技巧"></a>jsp中使用到的基础函数与技巧</h3><p>如何让js获取当前页面input的id值<br><figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;input value = "xxx" naem = "xxx" id = "xxx" onclick = "show(this)"&gt;&lt;/input&gt;</span><br><span class="line">&lt;script type = <span class="string">"text/javascript"</span>&gt;</span><br><span class="line">function(o)&#123;</span><br><span class="line">    var id = o.id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="jsp中使用到的基础函数与技巧"><a href="#jsp中使用到的基础函数与技巧" class="headerlink" title="jsp中使用到的基础函数与技巧"></a>jsp中使用到的基础函数与技巧</h3><p>如何让js获取当前页面input的id值<br><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;input value = "xxx" naem = "xxx" id = "xxx" onclick = "show(this)"&gt;&lt;/input&gt;</span><br><span class="line">&lt;script type = <span class="string">"text/javascript"</span>&gt;</span><br><span class="line">function(o)&#123;</span><br><span class="line">    var id = o.id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
   </div>
 </article>

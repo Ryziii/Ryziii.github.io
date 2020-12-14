@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="题目链接:https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/ 直接把后面的塞前面就行了,题目说不考虑后面只返回len class Solution &amp;#123;    public int removeDuplicates(int[] nums) &amp;#123;        if(nums==null)&amp;#12">
+    <meta name="description" content="题目链接:https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/ 直接把后面的塞前面就行了,题目说不考虑后面只返回len 123456789101112131415class Solution &amp;#123;    public int removeDuplicates(int[] nums) &amp;#123;">
 <meta name="keywords" content="leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode 26">
 <meta property="og:url" content="http://ryziii.github.io/post/1589be5.html">
 <meta property="og:site_name" content="Rysi&#39;s Blog">
-<meta property="og:description" content="题目链接:https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/ 直接把后面的塞前面就行了,题目说不考虑后面只返回len class Solution &amp;#123;    public int removeDuplicates(int[] nums) &amp;#123;        if(nums==null)&amp;#12">
+<meta property="og:description" content="题目链接:https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/ 直接把后面的塞前面就行了,题目说不考虑后面只返回len 123456789101112131415class Solution &amp;#123;    public int removeDuplicates(int[] nums) &amp;#123;">
 <meta property="og:locale" content="zh">
 <meta property="og:updated_time" content="2020-10-21T08:21:20.807Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode 26">
-<meta name="twitter:description" content="题目链接:https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/ 直接把后面的塞前面就行了,题目说不考虑后面只返回len class Solution &amp;#123;    public int removeDuplicates(int[] nums) &amp;#123;        if(nums==null)&amp;#12">
+<meta name="twitter:description" content="题目链接:https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/ 直接把后面的塞前面就行了,题目说不考虑后面只返回len 123456789101112131415class Solution &amp;#123;    public int removeDuplicates(int[] nums) &amp;#123;">
     
     
       
@@ -152,7 +152,7 @@
   <div class="content" itemprop="articleBody">
     <p>题目链接:<a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/</a></p>
 <p>直接把后面的塞前面就行了,题目说不考虑后面只返回len</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>,i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;nums.length)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]!=nums[len])&#123;</span><br><span class="line">                nums[len++]=nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> len+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>,i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;nums.length)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]!=nums[len])&#123;</span><br><span class="line">                nums[len++]=nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> len+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   </div>
 </article>
 

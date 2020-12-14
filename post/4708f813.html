@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="最近经常用hexo写总结经验和学习笔记，但是每次hexo clean &amp;amp;&amp;amp; hexo d -g的时候都需要输入密码。因为我不是部署到github page是部署到个人的服务器上（按照类似这两个教程教程1、教程2部署的），所以网上很多经验教程不适用。   网上很多人说的方法如下，在_config.yml中设置deploy把http改成git，此方法不适用我。 　deploy:　t">
+    <meta name="description" content="最近经常用hexo写总结经验和学习笔记，但是每次hexo clean &amp;amp;&amp;amp; hexo d -g的时候都需要输入密码。因为我不是部署到github page是部署到个人的服务器上（按照类似这两个教程教程1、教程2部署的），所以网上很多经验教程不适用。   网上很多人说的方法如下，在_config.yml中设置deploy把http改成git，此方法不适用我。 1234　deplo">
 <meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决hexo 需要部署到服务器上每次都需要输入密码">
 <meta property="og:url" content="http://ryziii.github.io/post/4708f813.html">
 <meta property="og:site_name" content="Rysi&#39;s Blog">
-<meta property="og:description" content="最近经常用hexo写总结经验和学习笔记，但是每次hexo clean &amp;amp;&amp;amp; hexo d -g的时候都需要输入密码。因为我不是部署到github page是部署到个人的服务器上（按照类似这两个教程教程1、教程2部署的），所以网上很多经验教程不适用。   网上很多人说的方法如下，在_config.yml中设置deploy把http改成git，此方法不适用我。 　deploy:　t">
+<meta property="og:description" content="最近经常用hexo写总结经验和学习笔记，但是每次hexo clean &amp;amp;&amp;amp; hexo d -g的时候都需要输入密码。因为我不是部署到github page是部署到个人的服务器上（按照类似这两个教程教程1、教程2部署的），所以网上很多经验教程不适用。   网上很多人说的方法如下，在_config.yml中设置deploy把http改成git，此方法不适用我。 1234　deplo">
 <meta property="og:locale" content="zh">
 <meta property="og:updated_time" content="2018-12-29T03:09:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决hexo 需要部署到服务器上每次都需要输入密码">
-<meta name="twitter:description" content="最近经常用hexo写总结经验和学习笔记，但是每次hexo clean &amp;amp;&amp;amp; hexo d -g的时候都需要输入密码。因为我不是部署到github page是部署到个人的服务器上（按照类似这两个教程教程1、教程2部署的），所以网上很多经验教程不适用。   网上很多人说的方法如下，在_config.yml中设置deploy把http改成git，此方法不适用我。 　deploy:　t">
+<meta name="twitter:description" content="最近经常用hexo写总结经验和学习笔记，但是每次hexo clean &amp;amp;&amp;amp; hexo d -g的时候都需要输入密码。因为我不是部署到github page是部署到个人的服务器上（按照类似这两个教程教程1、教程2部署的），所以网上很多经验教程不适用。   网上很多人说的方法如下，在_config.yml中设置deploy把http改成git，此方法不适用我。 1234　deplo">
     
     
       
@@ -152,7 +152,7 @@
   <div class="content" itemprop="articleBody">
     <p>  最近经常用hexo写总结经验和学习笔记，但是每次hexo clean &amp;&amp; hexo d -g的时候都需要输入密码。因为我不是部署到github page是部署到个人的服务器上（按照类似这两个教程<a href="https://segmentfault.com/a/1190000009363890" target="_blank" rel="noopener">教程1</a>、<a href="https://segmentfault.com/a/1190000010680022" target="_blank" rel="noopener">教程2</a>部署的），所以网上很多经验教程不适用。</p>
 <p>  网上很多人说的方法如下，在_config.yml中设置deploy把http改成git，此方法不适用我。</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line">　<span class="attr">deploy:</span></span><br><span class="line">　<span class="attr">type:git</span></span><br><span class="line">　<span class="attr">repository:git@xxx:xxx.git</span></span><br><span class="line">　<span class="attr">branch:master</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">　<span class="attr">deploy:</span></span><br><span class="line">　<span class="attr">type:git</span></span><br><span class="line">　<span class="attr">repository:git@xxx:xxx.git</span></span><br><span class="line">　<span class="attr">branch:master</span></span><br></pre></td></tr></table></figure>
 <p>  我使用的是ssh免密登陆，一开始一直找不到问题在哪里，后来看到<a href="https://www.jianshu.com/p/59eeb1493a45" target="_blank" rel="noopener">这个帖子</a>终于发现问题。因为给服务器创建了一个git用户，所以需要切换用户到git然后设置ssh key，之前一直在root用户下设置的，巨坑。。。</p>
 <p>  设置ssh key过程：</p>
 <ol>

@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://i.imgur.com/vkvxseT.jpg">
 <meta property="og:image" content="https://i.imgur.com/dKR4ppt.png">
 <meta property="og:image" content="https://i.imgur.com/POe6lQA.jpg">
-<meta property="og:updated_time" content="2020-12-13T13:25:59.461Z">
+<meta property="og:updated_time" content="2020-12-14T13:48:27.666Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="interview Java底层知识：JVM内存模型">
 <meta name="twitter:description" content="JVM内存模型架构图  上图中Runtime Data Area就是Java内存模型 Java内存模型参考资料   Java内存模型-线程独占内存结构模型中线程独占的有：程序计数器(Program Counter Register)、Java虚拟机栈、本地方法栈 程序计数器 (Program Counter Register) Program Counter Register是线程当前正在执行字节">
@@ -224,7 +224,8 @@
 <li>内存分配方式：栈支持静态和动态分配，堆只支持动态分配；</li>
 <li>效率：<strong>栈的效率比堆高</strong>，因为计算机底层本身就是用栈管理内存，栈的操作只有出入栈比堆简单的多，但在灵活性与动态管理方面不如堆，堆的实现采用的数据结构是双向链表，比栈复杂的多。</li>
 </ol>
-<h3 id="元空间-Metaspace-、堆-Heap-、线程私有部分之间的联系"><a href="#元空间-Metaspace-、堆-Heap-、线程私有部分之间的联系" class="headerlink" title="元空间(Metaspace)、堆(Heap)、线程私有部分之间的联系"></a>元空间(Metaspace)、堆(Heap)、线程私有部分之间的联系</h3><p><img src="https://i.imgur.com/vkvxseT.jpg" width="600"><br><img src="https://i.imgur.com/dKR4ppt.png" width="600"></p>
+<h3 id="元空间-Metaspace-、堆-Heap-、线程私有部分之间的联系"><a href="#元空间-Metaspace-、堆-Heap-、线程私有部分之间的联系" class="headerlink" title="元空间(Metaspace)、堆(Heap)、线程私有部分之间的联系"></a>元空间(Metaspace)、堆(Heap)、线程私有部分之间的联系</h3><p><img src="https://i.imgur.com/vkvxseT.jpg" width="600"></p>
+<p><img src="https://i.imgur.com/dKR4ppt.png" width="600"></p>
 <h3 id="不同JDK版本之间intern"><a href="#不同JDK版本之间intern" class="headerlink" title="不同JDK版本之间intern()"></a>不同JDK版本之间intern()</h3><p><img src="https://i.imgur.com/POe6lQA.jpg" width="600"></p>
 
   </div>

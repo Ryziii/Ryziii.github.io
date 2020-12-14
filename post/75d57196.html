@@ -6,22 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="RTT和RTO RTT是发送一个数据包到收到ACK所花费的时间； RTO是重传时间间隔，当没有收到回应是，一定时间间隔后会重传数据包，RTO是根据RTT计算出的。  滑动窗口滑动窗口用于做流量控制和乱序重排TCP发送方和接收方都维护着一个数据缓存区，发送方缓存区有如下四种状态：  已发送已收到ACK 已发送未收到ACK 未发送可发送 不可发送  接收方缓存区有如下三种状态：  已接收并已回复ACK">
+    <meta name="description" content="RTT和RTO RTT是发送一个数据包到收到ACK所花费的时间； RTO是重传时间间隔，当没有收到回应是，一定时间间隔后会重传数据包，RTO是根据RTT计算出的。  滑动窗口   滑动窗口是用于做流量控制和乱序重排。TCP发送方和接收方都维护着一个数据缓存区，发送方缓存区有如下四种状态：  已发送已收到ACK 已发送未收到ACK 未发送可发送 不可发送  接收方缓存区有如下三种状态：  已接收并已">
 <meta name="keywords" content="interview">
 <meta property="og:type" content="article">
 <meta property="og:title" content="interview TCP滑动窗口">
 <meta property="og:url" content="http://ryziii.github.io/post/75d57196.html">
 <meta property="og:site_name" content="Rysi&#39;s Blog">
-<meta property="og:description" content="RTT和RTO RTT是发送一个数据包到收到ACK所花费的时间； RTO是重传时间间隔，当没有收到回应是，一定时间间隔后会重传数据包，RTO是根据RTT计算出的。  滑动窗口滑动窗口用于做流量控制和乱序重排TCP发送方和接收方都维护着一个数据缓存区，发送方缓存区有如下四种状态：  已发送已收到ACK 已发送未收到ACK 未发送可发送 不可发送  接收方缓存区有如下三种状态：  已接收并已回复ACK">
+<meta property="og:description" content="RTT和RTO RTT是发送一个数据包到收到ACK所花费的时间； RTO是重传时间间隔，当没有收到回应是，一定时间间隔后会重传数据包，RTO是根据RTT计算出的。  滑动窗口   滑动窗口是用于做流量控制和乱序重排。TCP发送方和接收方都维护着一个数据缓存区，发送方缓存区有如下四种状态：  已发送已收到ACK 已发送未收到ACK 未发送可发送 不可发送  接收方缓存区有如下三种状态：  已接收并已">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://i.imgur.com/xiCrFsF.png">
-<meta property="og:image" content="https://i.imgur.com/sLuPbHQ.png">
-<meta property="og:image" content="https://i.imgur.com/H52iLrk.png">
-<meta property="og:updated_time" content="2020-12-08T14:15:56.816Z">
+<meta property="og:image" content="https://i.imgur.com/yNoei6J.png">
+<meta property="og:image" content="https://i.imgur.com/znAiTFe.png">
+<meta property="og:image" content="https://i.imgur.com/XmGyAGr.png">
+<meta property="og:updated_time" content="2020-12-14T14:06:03.662Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="interview TCP滑动窗口">
-<meta name="twitter:description" content="RTT和RTO RTT是发送一个数据包到收到ACK所花费的时间； RTO是重传时间间隔，当没有收到回应是，一定时间间隔后会重传数据包，RTO是根据RTT计算出的。  滑动窗口滑动窗口用于做流量控制和乱序重排TCP发送方和接收方都维护着一个数据缓存区，发送方缓存区有如下四种状态：  已发送已收到ACK 已发送未收到ACK 未发送可发送 不可发送  接收方缓存区有如下三种状态：  已接收并已回复ACK">
-<meta name="twitter:image" content="https://i.imgur.com/xiCrFsF.png">
+<meta name="twitter:description" content="RTT和RTO RTT是发送一个数据包到收到ACK所花费的时间； RTO是重传时间间隔，当没有收到回应是，一定时间间隔后会重传数据包，RTO是根据RTT计算出的。  滑动窗口   滑动窗口是用于做流量控制和乱序重排。TCP发送方和接收方都维护着一个数据缓存区，发送方缓存区有如下四种状态：  已发送已收到ACK 已发送未收到ACK 未发送可发送 不可发送  接收方缓存区有如下三种状态：  已接收并已">
+<meta name="twitter:image" content="https://i.imgur.com/yNoei6J.png">
     
     
       
@@ -158,7 +158,10 @@
 <li>RTT是发送一个数据包到收到ACK所花费的时间；</li>
 <li>RTO是重传时间间隔，当没有收到回应是，一定时间间隔后会重传数据包，RTO是根据RTT计算出的。</li>
 </ol>
-<h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><p><img src="https://i.imgur.com/xiCrFsF.png" alt=""><br><img src="https://i.imgur.com/sLuPbHQ.png" alt=""><br><img src="https://i.imgur.com/H52iLrk.png" alt=""><br>滑动窗口用于做流量控制和乱序重排<br>TCP发送方和接收方都维护着一个数据缓存区，<br>发送方缓存区有如下四种状态：</p>
+<h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><p><img src="https://i.imgur.com/yNoei6J.png" width="650px"></p>
+<p><img src="https://i.imgur.com/znAiTFe.png" width="650px"></p>
+<p><img src="https://i.imgur.com/XmGyAGr.png" width="650px"></p>
+<p>滑动窗口是用于做流量控制和乱序重排。TCP发送方和接收方都维护着一个数据缓存区，发送方缓存区有如下四种状态：</p>
 <ol>
 <li>已发送已收到ACK</li>
 <li>已发送未收到ACK</li>
@@ -171,7 +174,10 @@
 <li>允许接收</li>
 <li>不允许接收</li>
 </ol>
-<p><a href="https://www.cnblogs.com/lingyejun/p/7158028.html" target="_blank" rel="noopener">可参考1</a><br><a href="https://my.oschina.net/funcy/blog/3006133" target="_blank" rel="noopener">可参考2</a></p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/lingyejun/p/7158028.html" target="_blank" rel="noopener">参考网址1</a></p>
+<p><a href="https://my.oschina.net/funcy/blog/3006133" target="_blank" rel="noopener">参考网址2</a></p>
+</blockquote>
 
   </div>
 </article>
