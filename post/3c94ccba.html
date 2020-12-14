@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="使用brew安装nginx并修改配置文件1brew install nginx 安装后配置文件在/usr/local/etc/nginx/nginx.conf 在配置文件中可以添加123456789server&amp;#123;    listen 8089;    server_name localhost;    location /upload&amp;#123;        root xxx/;">
+    <meta name="description" content="使用brew安装nginx并修改配置文件brew install nginx 安装后配置文件在/usr/local/etc/nginx/nginx.conf 在配置文件中可以添加server&amp;#123;    listen 8089;    server_name localhost;    location /upload&amp;#123;        root xxx/;        acces">
 <meta name="keywords" content="Linux,nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用nginx搭建静态图片服务器">
 <meta property="og:url" content="http://ryziii.github.io/post/3c94ccba.html">
 <meta property="og:site_name" content="Rysi&#39;s Blog">
-<meta property="og:description" content="使用brew安装nginx并修改配置文件1brew install nginx 安装后配置文件在/usr/local/etc/nginx/nginx.conf 在配置文件中可以添加123456789server&amp;#123;    listen 8089;    server_name localhost;    location /upload&amp;#123;        root xxx/;">
+<meta property="og:description" content="使用brew安装nginx并修改配置文件brew install nginx 安装后配置文件在/usr/local/etc/nginx/nginx.conf 在配置文件中可以添加server&amp;#123;    listen 8089;    server_name localhost;    location /upload&amp;#123;        root xxx/;        acces">
 <meta property="og:locale" content="zh">
 <meta property="og:updated_time" content="2020-10-21T09:26:28.558Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用nginx搭建静态图片服务器">
-<meta name="twitter:description" content="使用brew安装nginx并修改配置文件1brew install nginx 安装后配置文件在/usr/local/etc/nginx/nginx.conf 在配置文件中可以添加123456789server&amp;#123;    listen 8089;    server_name localhost;    location /upload&amp;#123;        root xxx/;">
+<meta name="twitter:description" content="使用brew安装nginx并修改配置文件brew install nginx 安装后配置文件在/usr/local/etc/nginx/nginx.conf 在配置文件中可以添加server&amp;#123;    listen 8089;    server_name localhost;    location /upload&amp;#123;        root xxx/;        acces">
     
     
       
@@ -150,9 +150,9 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h3 id="使用brew安装nginx并修改配置文件"><a href="#使用brew安装nginx并修改配置文件" class="headerlink" title="使用brew安装nginx并修改配置文件"></a>使用brew安装nginx并修改配置文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install nginx</span><br></pre></td></tr></table></figure>
+    <h3 id="使用brew安装nginx并修改配置文件"><a href="#使用brew安装nginx并修改配置文件" class="headerlink" title="使用brew安装nginx并修改配置文件"></a>使用brew安装nginx并修改配置文件</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">brew install nginx</span><br></pre></td></tr></table></figure>
 <p>安装后配置文件在<code>/usr/local/etc/nginx/nginx.conf</code></p>
-<p>在配置文件中可以添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">    listen 8089;</span><br><span class="line">    server_name localhost;</span><br><span class="line">    location /upload&#123;</span><br><span class="line">        root xxx/;</span><br><span class="line">        access_log on;</span><br><span class="line">        autoindex on;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在配置文件中可以添加<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">    listen 8089;</span><br><span class="line">    server_name localhost;</span><br><span class="line">    location /upload&#123;</span><br><span class="line">        root xxx/;</span><br><span class="line">        access_log on;</span><br><span class="line">        autoindex on;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>使用<code>sudo nginx -s reload</code>重启nginx服务，即可在<code>localhost:8089</code>访问xxx/upload下的静态文件</p>
 
   </div>

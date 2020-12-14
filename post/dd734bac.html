@@ -161,7 +161,7 @@
 <li><p>子类可以增加域、增加方法、覆盖超类的方法，但是<strong>不能删除继承的任何域和方法。</strong></p>
 </li>
 <li><p>如果字累的构造器没有显式地调用超类的构造器，则将自动调用超类默认构造器(没有参数)。如果超类没有不带参数的构造器，并且在子类的构造器中又没有显式的调用超类的其他构造器，则Java编译器将报错。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Manager</span><span class="params">(String name,<span class="keyword">double</span> salary,<span class="keyword">int</span> year,<span class="keyword">int</span> month,<span class="keyword">int</span> day)</span></span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(name,salary,year,month,day);</span><br><span class="line">    bonus = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Manager</span><span class="params">(String name,<span class="keyword">double</span> salary,<span class="keyword">int</span> year,<span class="keyword">int</span> month,<span class="keyword">int</span> day)</span></span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(name,salary,year,month,day);</span><br><span class="line">    bonus = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>

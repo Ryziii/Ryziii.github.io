@@ -6,19 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="limit用法在mysql中有时需要使用限制查找行数,这在mysql语句中有自带的1234SELECT * FROM tableName LIMIT [offset,] rows|LIMIT rows OFFSET lengthSELECT * FROM table WHERE username = 1 LIMIT 10 OFFSET 5SELECT * FROM table WHERE user">
+    <meta name="description" content="limit用法在mysql中有时需要使用限制查找行数,这在mysql语句中有自带的SELECT * FROM tableName LIMIT [offset,] rows|LIMIT rows OFFSET lengthSELECT * FROM table WHERE username = 1 LIMIT 10 OFFSET 5SELECT * FROM table WHERE username">
 <meta name="keywords" content="Mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL的limit与分页查询">
 <meta property="og:url" content="http://ryziii.github.io/post/cf5eab58.html">
 <meta property="og:site_name" content="Rysi&#39;s Blog">
-<meta property="og:description" content="limit用法在mysql中有时需要使用限制查找行数,这在mysql语句中有自带的1234SELECT * FROM tableName LIMIT [offset,] rows|LIMIT rows OFFSET lengthSELECT * FROM table WHERE username = 1 LIMIT 10 OFFSET 5SELECT * FROM table WHERE user">
+<meta property="og:description" content="limit用法在mysql中有时需要使用限制查找行数,这在mysql语句中有自带的SELECT * FROM tableName LIMIT [offset,] rows|LIMIT rows OFFSET lengthSELECT * FROM table WHERE username = 1 LIMIT 10 OFFSET 5SELECT * FROM table WHERE username">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fzf767ld4fj31640mewi6.jpg">
 <meta property="og:updated_time" content="2020-10-21T08:21:20.763Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL的limit与分页查询">
-<meta name="twitter:description" content="limit用法在mysql中有时需要使用限制查找行数,这在mysql语句中有自带的1234SELECT * FROM tableName LIMIT [offset,] rows|LIMIT rows OFFSET lengthSELECT * FROM table WHERE username = 1 LIMIT 10 OFFSET 5SELECT * FROM table WHERE user">
+<meta name="twitter:description" content="limit用法在mysql中有时需要使用限制查找行数,这在mysql语句中有自带的SELECT * FROM tableName LIMIT [offset,] rows|LIMIT rows OFFSET lengthSELECT * FROM table WHERE username = 1 LIMIT 10 OFFSET 5SELECT * FROM table WHERE username">
 <meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fzf767ld4fj31640mewi6.jpg">
     
     
@@ -152,20 +152,20 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="limit用法"><a href="#limit用法" class="headerlink" title="limit用法"></a>limit用法</h2><p>在mysql中有时需要使用限制查找行数,这在mysql语句中有自带的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM tableName LIMIT [offset,] rows|LIMIT rows OFFSET length</span><br><span class="line"></span><br><span class="line">SELECT * FROM table WHERE username = 1 LIMIT 10 OFFSET 5</span><br><span class="line">SELECT * FROM table WHERE username = 1 LIMIT 5,10</span><br></pre></td></tr></table></figure></p>
+    <h2 id="limit用法"><a href="#limit用法" class="headerlink" title="limit用法"></a>limit用法</h2><p>在mysql中有时需要使用限制查找行数,这在mysql语句中有自带的<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SELECT * FROM tableName LIMIT [offset,] rows|LIMIT rows OFFSET length</span><br><span class="line"></span><br><span class="line">SELECT * FROM table WHERE username = 1 LIMIT 10 OFFSET 5</span><br><span class="line">SELECT * FROM table WHERE username = 1 LIMIT 5,10</span><br></pre></td></tr></table></figure></p>
 <p>LIMIT可以用于返回指定数量的mysql记录,LIMIT接受一个或两个整形参数.如果给了两个参数,第一个参数为<strong><u>偏移量</u></strong>,第二个参数为指定返回记录数.<strong><u>mysql初始记录数行偏移量为0不是1</u></strong></p>
-<p>如果需要检索某一偏移量到记录集结束的所有记录集,可以指定第二个参数为-1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM table LIMIT 5,-1</span><br></pre></td></tr></table></figure></p>
+<p>如果需要检索某一偏移量到记录集结束的所有记录集,可以指定第二个参数为-1<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM table LIMIT 5,-1</span><br></pre></td></tr></table></figure></p>
 <h2 id="mysql分页查询性能分析"><a href="#mysql分页查询性能分析" class="headerlink" title="mysql分页查询性能分析"></a>mysql分页查询性能分析</h2><p>基本的mysql分页方式就是<code>SELECT ... FORM ... WHERE ... ORDER BY ... LIMIT ...</code><br>当数据量增大,子页变多,<u>LIMIT语句的偏移量增大时,查询速度会变慢</u><br>有几种方法可以提高查询速度</p>
 <ol>
 <li>通过自查询的方式优化速度</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table WHERE id &gt;= </span><br><span class="line">(SELECT id FROM table WHERE username = &apos;11&apos; ORDER BY id LIMIT 10000,1) LIMIT 10</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SELECT * FROM table WHERE id &gt;= </span><br><span class="line">(SELECT id FROM table WHERE username = &apos;11&apos; ORDER BY id LIMIT 10000,1) LIMIT 10</span><br></pre></td></tr></table></figure>
 <ol>
 <li>通过join分页方式</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM &apos;table1&apos; AS t1</span><br><span class="line">JOIN (SELECT id FROM &apos;table1&apos; ORDER BY id ASC LIMIT &quot;.($page-1)*$pagesize.&quot;,1) AS t2</span><br><span class="line">WHERE t1.id &lt;= t2.id ORDER BY t1.id ASC LIMIT $pagesize;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SELECT * FROM &apos;table1&apos; AS t1</span><br><span class="line">JOIN (SELECT id FROM &apos;table1&apos; ORDER BY id ASC LIMIT &quot;.($page-1)*$pagesize.&quot;,1) AS t2</span><br><span class="line">WHERE t1.id &lt;= t2.id ORDER BY t1.id ASC LIMIT $pagesize;</span><br></pre></td></tr></table></figure>
 <p>参考链接:<a href="https://segmentfault.com/a/1190000008859706" target="_blank" rel="noopener">https://segmentfault.com/a/1190000008859706</a></p>
-<h2 id="分析结果"><a href="#分析结果" class="headerlink" title="分析结果"></a>分析结果</h2><p>不使用分页查询直接用limit查询的话大数据量如100w的话mysql性能收到很大影响,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SQL代码1：平均用时6.6秒 SELECT * FROM `cdb_posts` ORDER BY pid LIMIT 1000000 , 30</span><br><span class="line"></span><br><span class="line">SQL代码2：平均用时0.6秒 SELECT * FROM `cdb_posts` WHERE pid &gt;= (SELECT pid FROM  </span><br><span class="line">`cdb_posts` ORDER BY pid LIMIT 1000000 , 1) LIMIT 30</span><br></pre></td></tr></table></figure></p>
+<h2 id="分析结果"><a href="#分析结果" class="headerlink" title="分析结果"></a>分析结果</h2><p>不使用分页查询直接用limit查询的话大数据量如100w的话mysql性能收到很大影响,<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SQL代码1：平均用时6.6秒 SELECT * FROM `cdb_posts` ORDER BY pid LIMIT 1000000 , 30</span><br><span class="line"></span><br><span class="line">SQL代码2：平均用时0.6秒 SELECT * FROM `cdb_posts` WHERE pid &gt;= (SELECT pid FROM  </span><br><span class="line">`cdb_posts` ORDER BY pid LIMIT 1000000 , 1) LIMIT 30</span><br></pre></td></tr></table></figure></p>
 <p>因为要取出所有字段内容，第一种需要跨越大量数据块并取出，而第二种基本通过直接根据索引字段定位后，才取出相应内容，效率自然大大提升。对limit的优化，不是直接使用limit，而是首先获取到offset的id，然后直接使用limit size来获取数据。<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fzf767ld4fj31640mewi6.jpg" alt=""><br><strong>为了保证index索引列连续，可以为每个表加一个自增字段，并且加上索引</strong></p>
 
   </div>

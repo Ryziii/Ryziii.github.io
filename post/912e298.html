@@ -6,19 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Redis介绍为什么Redis这么快 完全基于内存，绝大部分请求是内存操作，执行效率高 数据结构简单，对数据操作也简单 采用单线程，单线程也能处理高并发请求，想多核也可以启动多实例 采用多路I/O复用，非阻塞I/O  Redis提供的数据类型 String： 基本数据类型 Hash： String元素组成的字典，适合用于存储对象 1234// hmset lilei age 11 name &amp;ap">
+    <meta name="description" content="Redis介绍为什么Redis这么快 完全基于内存，绝大部分请求是内存操作，执行效率高 数据结构简单，对数据操作也简单 采用单线程，单线程也能处理高并发请求，想多核也可以启动多实例 采用多路I/O复用，非阻塞I/O  Redis提供的数据类型 String： 基本数据类型 Hash： String元素组成的字典，适合用于存储对象 // hmset lilei age 11 name &amp;apos;L">
 <meta name="keywords" content="interview,Redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="interview Redis">
 <meta property="og:url" content="http://ryziii.github.io/post/912e298.html">
 <meta property="og:site_name" content="Rysi&#39;s Blog">
-<meta property="og:description" content="Redis介绍为什么Redis这么快 完全基于内存，绝大部分请求是内存操作，执行效率高 数据结构简单，对数据操作也简单 采用单线程，单线程也能处理高并发请求，想多核也可以启动多实例 采用多路I/O复用，非阻塞I/O  Redis提供的数据类型 String： 基本数据类型 Hash： String元素组成的字典，适合用于存储对象 1234// hmset lilei age 11 name &amp;ap">
+<meta property="og:description" content="Redis介绍为什么Redis这么快 完全基于内存，绝大部分请求是内存操作，执行效率高 数据结构简单，对数据操作也简单 采用单线程，单线程也能处理高并发请求，想多核也可以启动多实例 采用多路I/O复用，非阻塞I/O  Redis提供的数据类型 String： 基本数据类型 Hash： String元素组成的字典，适合用于存储对象 // hmset lilei age 11 name &amp;apos;L">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://i.imgur.com/tGWjEg1.png">
 <meta property="og:updated_time" content="2020-12-08T13:59:46.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="interview Redis">
-<meta name="twitter:description" content="Redis介绍为什么Redis这么快 完全基于内存，绝大部分请求是内存操作，执行效率高 数据结构简单，对数据操作也简单 采用单线程，单线程也能处理高并发请求，想多核也可以启动多实例 采用多路I/O复用，非阻塞I/O  Redis提供的数据类型 String： 基本数据类型 Hash： String元素组成的字典，适合用于存储对象 1234// hmset lilei age 11 name &amp;ap">
+<meta name="twitter:description" content="Redis介绍为什么Redis这么快 完全基于内存，绝大部分请求是内存操作，执行效率高 数据结构简单，对数据操作也简单 采用单线程，单线程也能处理高并发请求，想多核也可以启动多实例 采用多路I/O复用，非阻塞I/O  Redis提供的数据类型 String： 基本数据类型 Hash： String元素组成的字典，适合用于存储对象 // hmset lilei age 11 name &amp;apos;L">
 <meta name="twitter:image" content="https://i.imgur.com/tGWjEg1.png">
     
     
@@ -161,16 +161,16 @@
 <h3 id="Redis提供的数据类型"><a href="#Redis提供的数据类型" class="headerlink" title="Redis提供的数据类型"></a>Redis提供的数据类型</h3><ul>
 <li>String： 基本数据类型</li>
 <li><p>Hash： String元素组成的字典，适合用于存储对象</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// </span><br><span class="line">hmset lilei age 11 name &apos;Lilei&apos;</span><br><span class="line">hset lilei age 12</span><br><span class="line">hget lilei age</span><br></pre></td></tr></table></figure>
+<pre><code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// </span><br><span class="line">hmset lilei age 11 name &apos;Lilei&apos;</span><br><span class="line">hset lilei age 12</span><br><span class="line">hget lilei age</span><br></pre></td></tr></table></figure>
 </code></pre></li>
 <li><p>List： 列表，按照String元素插入顺序排序</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lpush mylist aaa</span><br><span class="line">lpush mylist bbb</span><br><span class="line">lrange mylist 0 100</span><br></pre></td></tr></table></figure>
+<pre><code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lpush mylist aaa</span><br><span class="line">lpush mylist bbb</span><br><span class="line">lrange mylist 0 100</span><br></pre></td></tr></table></figure>
 </code></pre></li>
 <li><p>Set： String元素组成的无序集合，通过哈希表实现，不允许重复</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// set是无序的</span><br><span class="line">sadd myset 11</span><br><span class="line">sadd myset aa</span><br><span class="line">smembers myset</span><br></pre></td></tr></table></figure>
+<pre><code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// set是无序的</span><br><span class="line">sadd myset 11</span><br><span class="line">sadd myset aa</span><br><span class="line">smembers myset</span><br></pre></td></tr></table></figure>
 </code></pre></li>
 <li><p>Sorted Set： 通过分数来为集合中的成员进行从小到大排序</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// zset比set多了一个权重参数</span><br><span class="line">127.0.0.1:6379&gt; zadd myzset 3 abc</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd myzset 1 ab</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd myzset 2 andn</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd myzset 2 andn</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; zadd myzset 2 andnn</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zrangebyscore myzset 0 10</span><br><span class="line">1) &quot;ab&quot;</span><br><span class="line">2) &quot;andn&quot;</span><br><span class="line">3) &quot;andnn&quot;</span><br><span class="line">4) &quot;abc&quot;</span><br></pre></td></tr></table></figure>
+<pre><code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// zset比set多了一个权重参数</span><br><span class="line">127.0.0.1:6379&gt; zadd myzset 3 abc</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd myzset 1 ab</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd myzset 2 andn</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd myzset 2 andn</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; zadd myzset 2 andnn</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zrangebyscore myzset 0 10</span><br><span class="line">1) &quot;ab&quot;</span><br><span class="line">2) &quot;andn&quot;</span><br><span class="line">3) &quot;andnn&quot;</span><br><span class="line">4) &quot;abc&quot;</span><br></pre></td></tr></table></figure>
 </code></pre></li>
 </ul>
 <ul>
@@ -198,7 +198,7 @@
 <li>SETNX是原子操作</li>
 <li>时间复杂度为O(1)</li>
 <li><p>返回值：设置成功返回1，设置失败返回0</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; get locknx</span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6379&gt; setnx locknx test</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; setnx locknx taks</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; get locknx</span><br><span class="line">&quot;test&quot;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">127.0.0.1:6379&gt; get locknx</span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6379&gt; setnx locknx test</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; setnx locknx taks</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; get locknx</span><br><span class="line">&quot;test&quot;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>因为SETNX具有如上特点所以经常被用作分布式锁，但SETNX设置后长期有效，所以可以使用EXPIRE指令</p>
@@ -210,7 +210,7 @@
 <li>NX: 如果键不存在则设置延迟</li>
 <li>XX: 如果键存在才设置延迟</li>
 <li><p>SET操作成功返回OK，否则返回nil</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set locktarget 123 ex 10 nx</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get locktarget</span><br><span class="line">&quot;123&quot;</span><br><span class="line">127.0.0.1:6379&gt; set locktarget 123 ex 10 nx</span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set locktarget 123 ex 10 nx</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get locktarget</span><br><span class="line">&quot;123&quot;</span><br><span class="line">127.0.0.1:6379&gt; set locktarget 123 ex 10 nx</span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="怎么避免大量key同时过期"><a href="#怎么避免大量key同时过期" class="headerlink" title="怎么避免大量key同时过期"></a>怎么避免大量key同时过期</h3><p>redis大量key删除key需要耗费资源，大量key同时过期可能造成卡顿，此时新的请求就会向后端数据库获取数据，对数据库造成很大压力。</p>

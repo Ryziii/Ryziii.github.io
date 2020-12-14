@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="String和StringBufferString类字符串创建后是不能改变的，在使用中会出现大量冗余，如下：  12String str = &quot;aaa&quot;;str.concat(&quot;bb&quot;);//此时产生了三个String对象，&apos;aaa&apos;,&apos;bb&apos;,&apos;aaabb&apos;  StringBuffer类是可变的，不会出现创建冗余的问题 12StringBuffer sb = new StringBuffer(&quot;">
+    <meta name="description" content="String和StringBufferString类字符串创建后是不能改变的，在使用中会出现大量冗余，如下：  String str = &quot;aaa&quot;;str.concat(&quot;bb&quot;);//此时产生了三个String对象，&apos;aaa&apos;,&apos;bb&apos;,&apos;aaabb&apos;  StringBuffer类是可变的，不会出现创建冗余的问题 StringBuffer sb = new StringBuffer(&quot;aaa&quot;">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java基础api学习">
 <meta property="og:url" content="http://ryziii.github.io/post/5f9b355f.html">
 <meta property="og:site_name" content="Rysi&#39;s Blog">
-<meta property="og:description" content="String和StringBufferString类字符串创建后是不能改变的，在使用中会出现大量冗余，如下：  12String str = &quot;aaa&quot;;str.concat(&quot;bb&quot;);//此时产生了三个String对象，&apos;aaa&apos;,&apos;bb&apos;,&apos;aaabb&apos;  StringBuffer类是可变的，不会出现创建冗余的问题 12StringBuffer sb = new StringBuffer(&quot;">
+<meta property="og:description" content="String和StringBufferString类字符串创建后是不能改变的，在使用中会出现大量冗余，如下：  String str = &quot;aaa&quot;;str.concat(&quot;bb&quot;);//此时产生了三个String对象，&apos;aaa&apos;,&apos;bb&apos;,&apos;aaabb&apos;  StringBuffer类是可变的，不会出现创建冗余的问题 StringBuffer sb = new StringBuffer(&quot;aaa&quot;">
 <meta property="og:locale" content="zh">
 <meta property="og:updated_time" content="2020-10-21T08:18:11.867Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java基础api学习">
-<meta name="twitter:description" content="String和StringBufferString类字符串创建后是不能改变的，在使用中会出现大量冗余，如下：  12String str = &quot;aaa&quot;;str.concat(&quot;bb&quot;);//此时产生了三个String对象，&apos;aaa&apos;,&apos;bb&apos;,&apos;aaabb&apos;  StringBuffer类是可变的，不会出现创建冗余的问题 12StringBuffer sb = new StringBuffer(&quot;">
+<meta name="twitter:description" content="String和StringBufferString类字符串创建后是不能改变的，在使用中会出现大量冗余，如下：  String str = &quot;aaa&quot;;str.concat(&quot;bb&quot;);//此时产生了三个String对象，&apos;aaa&apos;,&apos;bb&apos;,&apos;aaabb&apos;  StringBuffer类是可变的，不会出现创建冗余的问题 StringBuffer sb = new StringBuffer(&quot;aaa&quot;">
     
     
       
@@ -151,9 +151,9 @@
 
   <div class="content" itemprop="articleBody">
     <h2 id="String和StringBuffer"><a href="#String和StringBuffer" class="headerlink" title="String和StringBuffer"></a>String和StringBuffer</h2><p>String类字符串创建后是不能改变的，在使用中会出现大量冗余，如下：</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">"aaa"</span>;</span><br><span class="line">str.concat(<span class="string">"bb"</span>);<span class="comment">//此时产生了三个String对象，'aaa','bb','aaabb'</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String str = <span class="string">"aaa"</span>;</span><br><span class="line">str.concat(<span class="string">"bb"</span>);<span class="comment">//此时产生了三个String对象，'aaa','bb','aaabb'</span></span><br></pre></td></tr></table></figure>
 <p> StringBuffer类是可变的，不会出现创建冗余的问题</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer sb = <span class="keyword">new</span> StringBuffer(<span class="string">"aaa"</span>);</span><br><span class="line">bf.append(<span class="string">"bbb"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">StringBuffer sb = <span class="keyword">new</span> StringBuffer(<span class="string">"aaa"</span>);</span><br><span class="line">bf.append(<span class="string">"bbb"</span>);</span><br></pre></td></tr></table></figure>
   </div>
 </article>
 

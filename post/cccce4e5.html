@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="mysql部分约束使用主键约束12345CREATE TABLE pritest(    id INT(10) NOT NULL,    name CHAR(20) NOT NULL,    PRIMARY KEY pk_test(id))ENGINE=innodb; 外键约束12345CREATE TABLE foretest(    id INT(10) NOT NULL,    foid I">
+    <meta name="description" content="mysql部分约束使用主键约束CREATE TABLE pritest(    id INT(10) NOT NULL,    name CHAR(20) NOT NULL,    PRIMARY KEY pk_test(id))ENGINE=innodb; 外键约束CREATE TABLE foretest(    id INT(10) NOT NULL,    foid INT(10) NOT">
 <meta name="keywords" content="Mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql笔记1">
 <meta property="og:url" content="http://ryziii.github.io/post/cccce4e5.html">
 <meta property="og:site_name" content="Rysi&#39;s Blog">
-<meta property="og:description" content="mysql部分约束使用主键约束12345CREATE TABLE pritest(    id INT(10) NOT NULL,    name CHAR(20) NOT NULL,    PRIMARY KEY pk_test(id))ENGINE=innodb; 外键约束12345CREATE TABLE foretest(    id INT(10) NOT NULL,    foid I">
+<meta property="og:description" content="mysql部分约束使用主键约束CREATE TABLE pritest(    id INT(10) NOT NULL,    name CHAR(20) NOT NULL,    PRIMARY KEY pk_test(id))ENGINE=innodb; 外键约束CREATE TABLE foretest(    id INT(10) NOT NULL,    foid INT(10) NOT">
 <meta property="og:locale" content="zh">
 <meta property="og:updated_time" content="2020-10-21T09:27:41.707Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql笔记1">
-<meta name="twitter:description" content="mysql部分约束使用主键约束12345CREATE TABLE pritest(    id INT(10) NOT NULL,    name CHAR(20) NOT NULL,    PRIMARY KEY pk_test(id))ENGINE=innodb; 外键约束12345CREATE TABLE foretest(    id INT(10) NOT NULL,    foid I">
+<meta name="twitter:description" content="mysql部分约束使用主键约束CREATE TABLE pritest(    id INT(10) NOT NULL,    name CHAR(20) NOT NULL,    PRIMARY KEY pk_test(id))ENGINE=innodb; 外键约束CREATE TABLE foretest(    id INT(10) NOT NULL,    foid INT(10) NOT">
     
     
       
@@ -150,9 +150,9 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h3 id="mysql部分约束使用"><a href="#mysql部分约束使用" class="headerlink" title="mysql部分约束使用"></a>mysql部分约束使用</h3><h3 id="主键约束"><a href="#主键约束" class="headerlink" title="主键约束"></a>主键约束</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE pritest(</span><br><span class="line">    id INT(10) NOT NULL,</span><br><span class="line">    name CHAR(20) NOT NULL,</span><br><span class="line">    PRIMARY KEY pk_test(id)</span><br><span class="line">)ENGINE=innodb;</span><br></pre></td></tr></table></figure>
-<h3 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE foretest(</span><br><span class="line">    id INT(10) NOT NULL,</span><br><span class="line">    foid INT(10) NOT NULL,</span><br><span class="line">    FOREIGN KEY (foid) REFERENCES pritest(id)</span><br><span class="line">)ENGINE=innodb;</span><br></pre></td></tr></table></figure>
-<h3 id="清空表且主键重置"><a href="#清空表且主键重置" class="headerlink" title="清空表且主键重置"></a>清空表且主键重置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TRUNCATE TABLE pritest;</span><br></pre></td></tr></table></figure>
+    <h3 id="mysql部分约束使用"><a href="#mysql部分约束使用" class="headerlink" title="mysql部分约束使用"></a>mysql部分约束使用</h3><h3 id="主键约束"><a href="#主键约束" class="headerlink" title="主键约束"></a>主键约束</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CREATE TABLE pritest(</span><br><span class="line">    id INT(10) NOT NULL,</span><br><span class="line">    name CHAR(20) NOT NULL,</span><br><span class="line">    PRIMARY KEY pk_test(id)</span><br><span class="line">)ENGINE=innodb;</span><br></pre></td></tr></table></figure>
+<h3 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CREATE TABLE foretest(</span><br><span class="line">    id INT(10) NOT NULL,</span><br><span class="line">    foid INT(10) NOT NULL,</span><br><span class="line">    FOREIGN KEY (foid) REFERENCES pritest(id)</span><br><span class="line">)ENGINE=innodb;</span><br></pre></td></tr></table></figure>
+<h3 id="清空表且主键重置"><a href="#清空表且主键重置" class="headerlink" title="清空表且主键重置"></a>清空表且主键重置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">TRUNCATE TABLE pritest;</span><br></pre></td></tr></table></figure>
   </div>
 </article>
 
