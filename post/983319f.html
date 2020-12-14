@@ -6,18 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="利用maven导入fastjsonfastjson是一个阿里开源的java组件，可用maven导入12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;fastjson&amp;lt;/artifactId&amp;gt;    &amp;lt;version&amp;gt;*&amp;lt;/version&amp;">
-<meta name="keywords" content="Java,fastjson">
+    <meta name="description" content="利用maven导入fastjsonfastjson是一个阿里开源的java组件，可用maven导入 12345&lt;dependency&gt;    &lt;groupId&gt;com.alibaba&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;fastjson&lt;&#x2F;artifactId&gt;    &lt;version&gt;*&lt;&#x2F;version">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java利用fastjson判断字符串是否为一个json">
 <meta property="og:url" content="http://ryziii.github.io/post/983319f.html">
 <meta property="og:site_name" content="Rysi&#39;s Blog">
-<meta property="og:description" content="利用maven导入fastjsonfastjson是一个阿里开源的java组件，可用maven导入12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;fastjson&amp;lt;/artifactId&amp;gt;    &amp;lt;version&amp;gt;*&amp;lt;/version&amp;">
-<meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2020-12-08T13:50:45.931Z">
+<meta property="og:description" content="利用maven导入fastjsonfastjson是一个阿里开源的java组件，可用maven导入 12345&lt;dependency&gt;    &lt;groupId&gt;com.alibaba&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;fastjson&lt;&#x2F;artifactId&gt;    &lt;version&gt;*&lt;&#x2F;version">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-11-22T02:05:05.000Z">
+<meta property="article:modified_time" content="2020-12-08T13:50:45.931Z">
+<meta property="article:author" content="Rysi">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="fastjson">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java利用fastjson判断字符串是否为一个json">
-<meta name="twitter:description" content="利用maven导入fastjsonfastjson是一个阿里开源的java组件，可用maven导入12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;fastjson&amp;lt;/artifactId&amp;gt;    &amp;lt;version&amp;gt;*&amp;lt;/version&amp;">
     
     
       
@@ -39,17 +40,21 @@
     <!-- title -->
     <title>Java利用fastjson判断字符串是否为一个json</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
     <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
     
     <!-- rss -->
     
     
       <link rel="alternate" href="/atom.xml" title="Rysi&#39;s Blog" type="application/atom+xml" />
     
-</head>
+<meta name="generator" content="Hexo 5.2.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
@@ -91,22 +96,22 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/983319f.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/983319f.html&text=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/983319f.html&is_video=false&description=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/983319f.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://ryziii.github.io/post/983319f.html&text=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/983319f.html&is_video=false&description=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=Java利用fastjson判断字符串是否为一个json&body=Check out this article: http://ryziii.github.io/post/983319f.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/983319f.html&name=Java利用fastjson判断字符串是否为一个json&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/983319f.html&t=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/983319f.html&name=Java利用fastjson判断字符串是否为一个json&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/983319f.html&t=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#利用maven导入fastjson"><span class="toc-number">1.</span> <span class="toc-text">利用maven导入fastjson</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用fastjson判断字符串是否为一个json"><span class="toc-number">2.</span> <span class="toc-text">利用fastjson判断字符串是否为一个json</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8maven%E5%AF%BC%E5%85%A5fastjson"><span class="toc-number">1.</span> <span class="toc-text">利用maven导入fastjson</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8fastjson%E5%88%A4%E6%96%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%98%AF%E5%90%A6%E4%B8%BA%E4%B8%80%E4%B8%AAjson"><span class="toc-number">2.</span> <span class="toc-text">利用fastjson判断字符串是否为一个json</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -141,7 +146,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/Java/">Java</a>, <a class="tag-link" href="/tags/fastjson/">fastjson</a>
+        <a class="tag-link-link" href="/tags/Java/" rel="tag">Java</a>, <a class="tag-link-link" href="/tags/fastjson/" rel="tag">fastjson</a>
     </div>
 
 
@@ -150,7 +155,9 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="利用maven导入fastjson"><a href="#利用maven导入fastjson" class="headerlink" title="利用maven导入fastjson"></a>利用maven导入fastjson</h2><p><a href="https://github.com/alibaba/fastjson" target="_blank" rel="noopener">fastjson</a>是一个阿里开源的java组件，可用maven导入<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>*<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+    <h2 id="利用maven导入fastjson"><a href="#利用maven导入fastjson" class="headerlink" title="利用maven导入fastjson"></a>利用maven导入fastjson</h2><p><a target="_blank" rel="noopener" href="https://github.com/alibaba/fastjson">fastjson</a>是一个阿里开源的java组件，可用maven导入</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>*<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="利用fastjson判断字符串是否为一个json"><a href="#利用fastjson判断字符串是否为一个json" class="headerlink" title="利用fastjson判断字符串是否为一个json"></a>利用fastjson判断字符串是否为一个json</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isJson</span><span class="params">(String str)</span></span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span> result = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        Object ob = com.alibaba.fastjson.JSON.parse(str);</span><br><span class="line">        result = <span class="keyword">true</span>;</span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">        result = <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   </div>
 </article>
@@ -176,22 +183,22 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#利用maven导入fastjson"><span class="toc-number">1.</span> <span class="toc-text">利用maven导入fastjson</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用fastjson判断字符串是否为一个json"><span class="toc-number">2.</span> <span class="toc-text">利用fastjson判断字符串是否为一个json</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8maven%E5%AF%BC%E5%85%A5fastjson"><span class="toc-number">1.</span> <span class="toc-text">利用maven导入fastjson</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8fastjson%E5%88%A4%E6%96%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%98%AF%E5%90%A6%E4%B8%BA%E4%B8%80%E4%B8%AAjson"><span class="toc-number">2.</span> <span class="toc-text">利用fastjson判断字符串是否为一个json</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/983319f.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/983319f.html&text=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/983319f.html&is_video=false&description=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/983319f.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://ryziii.github.io/post/983319f.html&text=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/983319f.html&is_video=false&description=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=Java利用fastjson判断字符串是否为一个json&body=Check out this article: http://ryziii.github.io/post/983319f.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/983319f.html&name=Java利用fastjson判断字符串是否为一个json&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/983319f.html&t=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://ryziii.github.io/post/983319f.html&title=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/983319f.html&name=Java利用fastjson判断字符串是否为一个json&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/983319f.html&t=Java利用fastjson判断字符串是否为一个json"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -234,15 +241,25 @@
 
     </div>
     <!-- styles -->
+
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 <link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
+
     <!-- jquery -->
+
 <script src="/lib/jquery/jquery.min.js"></script>
+
+
 <script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 <!-- clipboard -->
 
-  <script src="/lib/clipboard/clipboard.min.js"></script>
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
@@ -263,7 +280,9 @@
   })
   </script>
 
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->

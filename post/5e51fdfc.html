@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="问题复现今天用Alfred写一个py脚本用于调用tesseract做ocr文字识别，用py需要用到一个AppKit库来处理系统剪切板截图，在zsh终端pip3下载PyObjC库。在Alfred中继续调试py脚本，发现依然无法找到AppKit库，一开始以为是python版本的问题于是: 12mv /usr/local/bin/python3 /usr/local/bin/python-bakln -">
-<meta name="keywords" content="Python">
+    <meta name="description" content="问题复现今天用Alfred写一个py脚本用于调用tesseract做ocr文字识别，用py需要用到一个AppKit库来处理系统剪切板截图，在zsh终端pip3下载PyObjC库。在Alfred中继续调试py脚本，发现依然无法找到AppKit库，一开始以为是python版本的问题于是: 12mv &#x2F;usr&#x2F;local&#x2F;bin&#x2F;python3 &#x2F;usr&#x2F;local&#x2F;bin&#x2F;python-bakln -">
 <meta property="og:type" content="article">
 <meta property="og:title" content="macOS系统终端默认python版本问题">
 <meta property="og:url" content="http://ryziii.github.io/post/5e51fdfc.html">
 <meta property="og:site_name" content="Rysi&#39;s Blog">
-<meta property="og:description" content="问题复现今天用Alfred写一个py脚本用于调用tesseract做ocr文字识别，用py需要用到一个AppKit库来处理系统剪切板截图，在zsh终端pip3下载PyObjC库。在Alfred中继续调试py脚本，发现依然无法找到AppKit库，一开始以为是python版本的问题于是: 12mv /usr/local/bin/python3 /usr/local/bin/python-bakln -">
-<meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2020-12-14T10:58:57.903Z">
+<meta property="og:description" content="问题复现今天用Alfred写一个py脚本用于调用tesseract做ocr文字识别，用py需要用到一个AppKit库来处理系统剪切板截图，在zsh终端pip3下载PyObjC库。在Alfred中继续调试py脚本，发现依然无法找到AppKit库，一开始以为是python版本的问题于是: 12mv &#x2F;usr&#x2F;local&#x2F;bin&#x2F;python3 &#x2F;usr&#x2F;local&#x2F;bin&#x2F;python-bakln -">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-12-12T06:39:55.000Z">
+<meta property="article:modified_time" content="2020-12-14T10:58:57.903Z">
+<meta property="article:author" content="Rysi">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="macOS系统终端默认python版本问题">
-<meta name="twitter:description" content="问题复现今天用Alfred写一个py脚本用于调用tesseract做ocr文字识别，用py需要用到一个AppKit库来处理系统剪切板截图，在zsh终端pip3下载PyObjC库。在Alfred中继续调试py脚本，发现依然无法找到AppKit库，一开始以为是python版本的问题于是: 12mv /usr/local/bin/python3 /usr/local/bin/python-bakln -">
     
     
       
@@ -39,17 +39,21 @@
     <!-- title -->
     <title>macOS系统终端默认python版本问题</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
     <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
     
     <!-- rss -->
     
     
       <link rel="alternate" href="/atom.xml" title="Rysi&#39;s Blog" type="application/atom+xml" />
     
-</head>
+<meta name="generator" content="Hexo 5.2.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
@@ -91,22 +95,22 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/5e51fdfc.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/5e51fdfc.html&text=macOS系统终端默认python版本问题"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/5e51fdfc.html&is_video=false&description=macOS系统终端默认python版本问题"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/5e51fdfc.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://ryziii.github.io/post/5e51fdfc.html&text=macOS系统终端默认python版本问题"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/5e51fdfc.html&is_video=false&description=macOS系统终端默认python版本问题"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=macOS系统终端默认python版本问题&body=Check out this article: http://ryziii.github.io/post/5e51fdfc.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/5e51fdfc.html&name=macOS系统终端默认python版本问题&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/5e51fdfc.html&t=macOS系统终端默认python版本问题"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/5e51fdfc.html&name=macOS系统终端默认python版本问题&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/5e51fdfc.html&t=macOS系统终端默认python版本问题"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题复现"><span class="toc-number">1.</span> <span class="toc-text">问题复现</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%A4%8D%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text">问题复现</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -141,7 +145,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/Python/">Python</a>
+        <a class="tag-link-link" href="/tags/Python/" rel="tag">Python</a>
     </div>
 
 
@@ -152,6 +156,7 @@
   <div class="content" itemprop="articleBody">
     <h2 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h2><p>今天用Alfred写一个py脚本用于调用tesseract做ocr文字识别，用py需要用到一个AppKit库来处理系统剪切板截图，在zsh终端pip3下载PyObjC库。在Alfred中继续调试py脚本，发现依然无法找到AppKit库，一开始以为是python版本的问题于是:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/<span class="built_in">local</span>/bin/python3 /usr/<span class="built_in">local</span>/bin/python-bak</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/Celler/python@3.9/3.9.1/bin/python /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
+
 <p>做了ln将/usr/local/bin/python3替换掉，<strong>问题依旧</strong><br>以为是链接问题做了一系列的.zshrc bash_profile文件的修改，<strong>问题依旧</strong><br>最后发现Alfred调用的是系统/usr/bin/python3，于是尝试替换/usr/bin/python3，出现Read-only file system问题，发现macOS从Catalina开始就不再支持<code>mount /</code>了</p>
 <p>于是乎最后的解决办法是在Alfred里用绝对路径调用python3处理脚本…..</p>
 
@@ -179,22 +184,22 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题复现"><span class="toc-number">1.</span> <span class="toc-text">问题复现</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%A4%8D%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text">问题复现</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/5e51fdfc.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/5e51fdfc.html&text=macOS系统终端默认python版本问题"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/5e51fdfc.html&is_video=false&description=macOS系统终端默认python版本问题"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/5e51fdfc.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://ryziii.github.io/post/5e51fdfc.html&text=macOS系统终端默认python版本问题"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/5e51fdfc.html&is_video=false&description=macOS系统终端默认python版本问题"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=macOS系统终端默认python版本问题&body=Check out this article: http://ryziii.github.io/post/5e51fdfc.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/5e51fdfc.html&name=macOS系统终端默认python版本问题&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/5e51fdfc.html&t=macOS系统终端默认python版本问题"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://ryziii.github.io/post/5e51fdfc.html&title=macOS系统终端默认python版本问题"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/5e51fdfc.html&name=macOS系统终端默认python版本问题&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/5e51fdfc.html&t=macOS系统终端默认python版本问题"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -237,15 +242,25 @@
 
     </div>
     <!-- styles -->
+
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 <link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
+
     <!-- jquery -->
+
 <script src="/lib/jquery/jquery.min.js"></script>
+
+
 <script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 <!-- clipboard -->
 
-  <script src="/lib/clipboard/clipboard.min.js"></script>
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
@@ -266,7 +281,9 @@
   })
   </script>
 
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->

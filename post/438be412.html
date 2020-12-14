@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="mysql默认字段不生效利用mybatis做持久层在navicat设置字段的默认值为1不生效,翻阅资料发现有12年的文章写的就很详细了上:https://cs-css.iteye.com/blog/1757249下:https://cs-css.iteye.com/blog/1757598 我在使用idea插件生成出的代码,使用这个代码就可以插入时给默认值不会给null了,应该是在插入前检查该字段">
-<meta name="keywords" content="Mysql">
+    <meta name="description" content="mysql默认字段不生效利用mybatis做持久层在navicat设置字段的默认值为1不生效,翻阅资料发现有12年的文章写的就很详细了上:https:&#x2F;&#x2F;cs-css.iteye.com&#x2F;blog&#x2F;1757249下:https:&#x2F;&#x2F;cs-css.iteye.com&#x2F;blog&#x2F;1757598 我在使用idea插件生成出的代码,使用这个代码就可以插入时给默认值不会给null了,应该是在插入前检查该字段">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql默认字段不生效问题">
 <meta property="og:url" content="http://ryziii.github.io/post/438be412.html">
 <meta property="og:site_name" content="Rysi&#39;s Blog">
-<meta property="og:description" content="mysql默认字段不生效利用mybatis做持久层在navicat设置字段的默认值为1不生效,翻阅资料发现有12年的文章写的就很详细了上:https://cs-css.iteye.com/blog/1757249下:https://cs-css.iteye.com/blog/1757598 我在使用idea插件生成出的代码,使用这个代码就可以插入时给默认值不会给null了,应该是在插入前检查该字段">
-<meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2020-12-08T13:49:24.605Z">
+<meta property="og:description" content="mysql默认字段不生效利用mybatis做持久层在navicat设置字段的默认值为1不生效,翻阅资料发现有12年的文章写的就很详细了上:https:&#x2F;&#x2F;cs-css.iteye.com&#x2F;blog&#x2F;1757249下:https:&#x2F;&#x2F;cs-css.iteye.com&#x2F;blog&#x2F;1757598 我在使用idea插件生成出的代码,使用这个代码就可以插入时给默认值不会给null了,应该是在插入前检查该字段">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-12-11T03:17:16.000Z">
+<meta property="article:modified_time" content="2020-12-08T13:49:24.605Z">
+<meta property="article:author" content="Rysi">
+<meta property="article:tag" content="Mysql">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mysql默认字段不生效问题">
-<meta name="twitter:description" content="mysql默认字段不生效利用mybatis做持久层在navicat设置字段的默认值为1不生效,翻阅资料发现有12年的文章写的就很详细了上:https://cs-css.iteye.com/blog/1757249下:https://cs-css.iteye.com/blog/1757598 我在使用idea插件生成出的代码,使用这个代码就可以插入时给默认值不会给null了,应该是在插入前检查该字段">
     
     
       
@@ -39,17 +39,21 @@
     <!-- title -->
     <title>mysql默认字段不生效问题</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
     <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
     
     <!-- rss -->
     
     
       <link rel="alternate" href="/atom.xml" title="Rysi&#39;s Blog" type="application/atom+xml" />
     
-</head>
+<meta name="generator" content="Hexo 5.2.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
@@ -91,22 +95,22 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/438be412.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/438be412.html&text=mysql默认字段不生效问题"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/438be412.html&is_video=false&description=mysql默认字段不生效问题"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/438be412.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://ryziii.github.io/post/438be412.html&text=mysql默认字段不生效问题"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/438be412.html&is_video=false&description=mysql默认字段不生效问题"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=mysql默认字段不生效问题&body=Check out this article: http://ryziii.github.io/post/438be412.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/438be412.html&name=mysql默认字段不生效问题&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/438be412.html&t=mysql默认字段不生效问题"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/438be412.html&name=mysql默认字段不生效问题&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/438be412.html&t=mysql默认字段不生效问题"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mysql默认字段不生效"><span class="toc-number">1.</span> <span class="toc-text">mysql默认字段不生效</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mysql%E9%BB%98%E8%AE%A4%E5%AD%97%E6%AE%B5%E4%B8%8D%E7%94%9F%E6%95%88"><span class="toc-number">1.</span> <span class="toc-text">mysql默认字段不生效</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -141,7 +145,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/Mysql/">Mysql</a>
+        <a class="tag-link-link" href="/tags/Mysql/" rel="tag">Mysql</a>
     </div>
 
 
@@ -150,9 +154,9 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="mysql默认字段不生效"><a href="#mysql默认字段不生效" class="headerlink" title="mysql默认字段不生效"></a>mysql默认字段不生效</h1><p>利用mybatis做持久层在navicat设置字段的默认值为1不生效,翻阅资料发现有12年的文章写的就很详细了<br>上:<a href="https://cs-css.iteye.com/blog/1757249" target="_blank" rel="noopener">https://cs-css.iteye.com/blog/1757249</a><br>下:<a href="https://cs-css.iteye.com/blog/1757598" target="_blank" rel="noopener">https://cs-css.iteye.com/blog/1757598</a></p>
-<p>我在使用idea插件生成出的代码,使用这个代码就可以插入时给默认值不会给null了,应该是在插入前检查该字段不为null再插入<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--auto generated Code--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertSelective"</span> <span class="attr">useGeneratedKeys</span>=<span class="string">"true"</span> <span class="attr">keyProperty</span>=<span class="string">"deviceManage.id"</span>&gt;</span></span><br><span class="line">        INSERT INTO s_deviceManage</span><br><span class="line">        <span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">"("</span> <span class="attr">suffix</span>=<span class="string">")"</span> <span class="attr">suffixOverrides</span>=<span class="string">","</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.id!=null"</span>&gt;</span> id,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.hostid!=null"</span>&gt;</span> hostid,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.storeHostId!=null"</span>&gt;</span> storeHostId,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.deviceid!=null"</span>&gt;</span> deviceid,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.status!=null"</span>&gt;</span> status,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.sessionid!=null"</span>&gt;</span> sessionid,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.token!=null"</span>&gt;</span> token,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.event!=null"</span>&gt;</span> event,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.roomid!=null"</span>&gt;</span> roomid,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.taskid!=null"</span>&gt;</span> taskid,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line">        VALUES</span><br><span class="line">        <span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">"("</span> <span class="attr">suffix</span>=<span class="string">")"</span> <span class="attr">suffixOverrides</span>=<span class="string">","</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.id!=null"</span>&gt;</span>#&#123;deviceManage.id,jdbcType=INTEGER&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.hostid!=null"</span>&gt;</span>#&#123;deviceManage.hostid,jdbcType=INTEGER&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.storeHostId!=null"</span>&gt;</span>#&#123;deviceManage.storeHostId,jdbcType=INTEGER&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.deviceid!=null"</span>&gt;</span>#&#123;deviceManage.deviceid,jdbcType=VARCHAR&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.status!=null"</span>&gt;</span>#&#123;deviceManage.status,jdbcType=INTEGER&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.sessionid!=null"</span>&gt;</span>#&#123;deviceManage.sessionid,jdbcType=VARCHAR&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.token!=null"</span>&gt;</span>#&#123;deviceManage.token,jdbcType=VARCHAR&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.event!=null"</span>&gt;</span>#&#123;deviceManage.event,jdbcType=VARCHAR&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.roomid!=null"</span>&gt;</span>#&#123;deviceManage.roomid,jdbcType=VARCHAR&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"deviceManage.taskid!=null"</span>&gt;</span>#&#123;deviceManage.taskid,jdbcType=VARCHAR&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-
+    <h1 id="mysql默认字段不生效"><a href="#mysql默认字段不生效" class="headerlink" title="mysql默认字段不生效"></a>mysql默认字段不生效</h1><p>利用mybatis做持久层在navicat设置字段的默认值为1不生效,翻阅资料发现有12年的文章写的就很详细了<br>上:<a target="_blank" rel="noopener" href="https://cs-css.iteye.com/blog/1757249">https://cs-css.iteye.com/blog/1757249</a><br>下:<a target="_blank" rel="noopener" href="https://cs-css.iteye.com/blog/1757598">https://cs-css.iteye.com/blog/1757598</a></p>
+<p>我在使用idea插件生成出的代码,使用这个代码就可以插入时给默认值不会给null了,应该是在插入前检查该字段不为null再插入</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--auto generated Code--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;insertSelective&quot;</span> <span class="attr">useGeneratedKeys</span>=<span class="string">&quot;true&quot;</span> <span class="attr">keyProperty</span>=<span class="string">&quot;deviceManage.id&quot;</span>&gt;</span></span><br><span class="line">        INSERT INTO s_deviceManage</span><br><span class="line">        <span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">&quot;(&quot;</span> <span class="attr">suffix</span>=<span class="string">&quot;)&quot;</span> <span class="attr">suffixOverrides</span>=<span class="string">&quot;,&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.id!=null&quot;</span>&gt;</span> id,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.hostid!=null&quot;</span>&gt;</span> hostid,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.storeHostId!=null&quot;</span>&gt;</span> storeHostId,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.deviceid!=null&quot;</span>&gt;</span> deviceid,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.status!=null&quot;</span>&gt;</span> status,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.sessionid!=null&quot;</span>&gt;</span> sessionid,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.token!=null&quot;</span>&gt;</span> token,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.event!=null&quot;</span>&gt;</span> event,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.roomid!=null&quot;</span>&gt;</span> roomid,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.taskid!=null&quot;</span>&gt;</span> taskid,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line">        VALUES</span><br><span class="line">        <span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">&quot;(&quot;</span> <span class="attr">suffix</span>=<span class="string">&quot;)&quot;</span> <span class="attr">suffixOverrides</span>=<span class="string">&quot;,&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.id!=null&quot;</span>&gt;</span>#&#123;deviceManage.id,jdbcType=INTEGER&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.hostid!=null&quot;</span>&gt;</span>#&#123;deviceManage.hostid,jdbcType=INTEGER&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.storeHostId!=null&quot;</span>&gt;</span>#&#123;deviceManage.storeHostId,jdbcType=INTEGER&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.deviceid!=null&quot;</span>&gt;</span>#&#123;deviceManage.deviceid,jdbcType=VARCHAR&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.status!=null&quot;</span>&gt;</span>#&#123;deviceManage.status,jdbcType=INTEGER&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.sessionid!=null&quot;</span>&gt;</span>#&#123;deviceManage.sessionid,jdbcType=VARCHAR&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.token!=null&quot;</span>&gt;</span>#&#123;deviceManage.token,jdbcType=VARCHAR&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.event!=null&quot;</span>&gt;</span>#&#123;deviceManage.event,jdbcType=VARCHAR&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.roomid!=null&quot;</span>&gt;</span>#&#123;deviceManage.roomid,jdbcType=VARCHAR&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;deviceManage.taskid!=null&quot;</span>&gt;</span>#&#123;deviceManage.taskid,jdbcType=VARCHAR&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
   </div>
 </article>
 
@@ -177,22 +181,22 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mysql默认字段不生效"><span class="toc-number">1.</span> <span class="toc-text">mysql默认字段不生效</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mysql%E9%BB%98%E8%AE%A4%E5%AD%97%E6%AE%B5%E4%B8%8D%E7%94%9F%E6%95%88"><span class="toc-number">1.</span> <span class="toc-text">mysql默认字段不生效</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/438be412.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/438be412.html&text=mysql默认字段不生效问题"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/438be412.html&is_video=false&description=mysql默认字段不生效问题"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/438be412.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://ryziii.github.io/post/438be412.html&text=mysql默认字段不生效问题"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/438be412.html&is_video=false&description=mysql默认字段不生效问题"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=mysql默认字段不生效问题&body=Check out this article: http://ryziii.github.io/post/438be412.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/438be412.html&name=mysql默认字段不生效问题&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/438be412.html&t=mysql默认字段不生效问题"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://ryziii.github.io/post/438be412.html&title=mysql默认字段不生效问题"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/438be412.html&name=mysql默认字段不生效问题&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/438be412.html&t=mysql默认字段不生效问题"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -235,15 +239,25 @@
 
     </div>
     <!-- styles -->
+
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 <link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
+
     <!-- jquery -->
+
 <script src="/lib/jquery/jquery.min.js"></script>
+
+
 <script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 <!-- clipboard -->
 
-  <script src="/lib/clipboard/clipboard.min.js"></script>
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
@@ -264,7 +278,9 @@
   })
   </script>
 
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->

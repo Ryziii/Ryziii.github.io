@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="题目地址:https://leetcode-cn.com/problems/same-tree/ 这道题写了两种方法,第一种方法太蠢了,后来改进用了第二种,其实本质就是让写个equal,我第一种方法竟然选择遍历二叉树存进map里再用map的equal去判断,蠢哭了 1234567891011121314151617181920212223242526272829//遍历后equalclass So">
-<meta name="keywords" content="leetcode">
+    <meta name="description" content="题目地址:https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;same-tree&#x2F; 这道题写了两种方法,第一种方法太蠢了,后来改进用了第二种,其实本质就是让写个equal,我第一种方法竟然选择遍历二叉树存进map里再用map的equal去判断,蠢哭了 1234567891011121314151617181920212223242526272829&#x2F;&#x2F;遍历后equalclass So">
 <meta property="og:type" content="article">
 <meta property="og:title" content="简单回溯 leetcode 100">
 <meta property="og:url" content="http://ryziii.github.io/post/a6ac1cf.html">
 <meta property="og:site_name" content="Rysi&#39;s Blog">
-<meta property="og:description" content="题目地址:https://leetcode-cn.com/problems/same-tree/ 这道题写了两种方法,第一种方法太蠢了,后来改进用了第二种,其实本质就是让写个equal,我第一种方法竟然选择遍历二叉树存进map里再用map的equal去判断,蠢哭了 1234567891011121314151617181920212223242526272829//遍历后equalclass So">
-<meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2020-10-21T08:21:20.740Z">
+<meta property="og:description" content="题目地址:https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;same-tree&#x2F; 这道题写了两种方法,第一种方法太蠢了,后来改进用了第二种,其实本质就是让写个equal,我第一种方法竟然选择遍历二叉树存进map里再用map的equal去判断,蠢哭了 1234567891011121314151617181920212223242526272829&#x2F;&#x2F;遍历后equalclass So">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-01-22T08:45:55.000Z">
+<meta property="article:modified_time" content="2020-10-21T08:21:20.740Z">
+<meta property="article:author" content="Rysi">
+<meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简单回溯 leetcode 100">
-<meta name="twitter:description" content="题目地址:https://leetcode-cn.com/problems/same-tree/ 这道题写了两种方法,第一种方法太蠢了,后来改进用了第二种,其实本质就是让写个equal,我第一种方法竟然选择遍历二叉树存进map里再用map的equal去判断,蠢哭了 1234567891011121314151617181920212223242526272829//遍历后equalclass So">
     
     
       
@@ -39,17 +39,21 @@
     <!-- title -->
     <title>简单回溯 leetcode 100</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
     <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
     
     <!-- rss -->
     
     
       <link rel="alternate" href="/atom.xml" title="Rysi&#39;s Blog" type="application/atom+xml" />
     
-</head>
+<meta name="generator" content="Hexo 5.2.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
@@ -91,17 +95,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/a6ac1cf.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/a6ac1cf.html&text=简单回溯 leetcode 100"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/a6ac1cf.html&is_video=false&description=简单回溯 leetcode 100"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/a6ac1cf.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://ryziii.github.io/post/a6ac1cf.html&text=简单回溯 leetcode 100"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/a6ac1cf.html&is_video=false&description=简单回溯 leetcode 100"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=简单回溯 leetcode 100&body=Check out this article: http://ryziii.github.io/post/a6ac1cf.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/a6ac1cf.html&name=简单回溯 leetcode 100&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/a6ac1cf.html&t=简单回溯 leetcode 100"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/a6ac1cf.html&name=简单回溯 leetcode 100&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/a6ac1cf.html&t=简单回溯 leetcode 100"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -141,7 +145,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/leetcode/">leetcode</a>
+        <a class="tag-link-link" href="/tags/leetcode/" rel="tag">leetcode</a>
     </div>
 
 
@@ -150,9 +154,10 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>题目地址:<a href="https://leetcode-cn.com/problems/same-tree/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/same-tree/</a></p>
+    <p>题目地址:<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/same-tree/">https://leetcode-cn.com/problems/same-tree/</a></p>
 <p>这道题写了两种方法,第一种方法太蠢了,后来改进用了第二种,其实本质就是让写个equal,我第一种方法竟然选择遍历二叉树存进map里再用map的equal去判断,蠢哭了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//遍历后equal</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSameTree</span><span class="params">(TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        Map&lt;String,Object&gt; map1 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        Map&lt;String,Object&gt; map2 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        getTree(p,map1,<span class="number">1</span>);</span><br><span class="line">        getTree(q,map2,<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> map1.equals(map2);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getTree</span><span class="params">(TreeNode q,Map&lt;String,Object&gt; map,<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(q==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            map.put(<span class="string">"val"</span>+i,q.val);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(q.left == <span class="keyword">null</span>)&#123;</span><br><span class="line">            map.put(<span class="string">"left"</span>+i,<span class="keyword">null</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            map.put(<span class="string">"left"</span>+i,q.left.val);</span><br><span class="line">            getTree(q.left,map,<span class="number">2</span>*i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(q.right==<span class="keyword">null</span>)&#123;</span><br><span class="line">            map.put(<span class="string">"right"</span>+i,<span class="keyword">null</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            map.put(<span class="string">"right"</span>+i,q.right.val);</span><br><span class="line">            getTree(q.right,map,<span class="number">2</span>*i+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//遍历后equal</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSameTree</span><span class="params">(TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        Map&lt;String,Object&gt; map1 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        Map&lt;String,Object&gt; map2 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        getTree(p,map1,<span class="number">1</span>);</span><br><span class="line">        getTree(q,map2,<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> map1.equals(map2);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getTree</span><span class="params">(TreeNode q,Map&lt;String,Object&gt; map,<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(q==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            map.put(<span class="string">&quot;val&quot;</span>+i,q.val);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(q.left == <span class="keyword">null</span>)&#123;</span><br><span class="line">            map.put(<span class="string">&quot;left&quot;</span>+i,<span class="keyword">null</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            map.put(<span class="string">&quot;left&quot;</span>+i,q.left.val);</span><br><span class="line">            getTree(q.left,map,<span class="number">2</span>*i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(q.right==<span class="keyword">null</span>)&#123;</span><br><span class="line">            map.put(<span class="string">&quot;right&quot;</span>+i,<span class="keyword">null</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            map.put(<span class="string">&quot;right&quot;</span>+i,q.right.val);</span><br><span class="line">            getTree(q.right,map,<span class="number">2</span>*i+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//直接回溯</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSameTree</span><span class="params">(TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        Map&lt;String,Object&gt; map1 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        Map&lt;String,Object&gt; map2 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">return</span> getTree(p,q);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">getTree</span><span class="params">(TreeNode q,TreeNode p)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(q==<span class="keyword">null</span> &amp;&amp; p==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(q!=<span class="keyword">null</span>&amp;&amp;p!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">boolean</span> flag3 = q.val == p.val;</span><br><span class="line">            <span class="keyword">boolean</span> flag1 = getTree(q.left,p.left);</span><br><span class="line">            <span class="keyword">boolean</span> flag2 = getTree(q.right,p.right);</span><br><span class="line">            <span class="keyword">if</span>(flag1&amp;&amp; flag2&amp;&amp;flag3)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//直接回溯方法2</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSameTree</span><span class="params">(TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (q == <span class="keyword">null</span> &amp;&amp; p == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (q == <span class="keyword">null</span> || p == <span class="keyword">null</span> || q.val != p.val) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> isSameTree(q.left, p.left) &amp;&amp; isSameTree(q.right, p.right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   </div>
 </article>
@@ -183,17 +188,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/a6ac1cf.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/a6ac1cf.html&text=简单回溯 leetcode 100"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/a6ac1cf.html&is_video=false&description=简单回溯 leetcode 100"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/a6ac1cf.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://ryziii.github.io/post/a6ac1cf.html&text=简单回溯 leetcode 100"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/a6ac1cf.html&is_video=false&description=简单回溯 leetcode 100"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=简单回溯 leetcode 100&body=Check out this article: http://ryziii.github.io/post/a6ac1cf.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/a6ac1cf.html&name=简单回溯 leetcode 100&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/a6ac1cf.html&t=简单回溯 leetcode 100"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://ryziii.github.io/post/a6ac1cf.html&title=简单回溯 leetcode 100"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/a6ac1cf.html&name=简单回溯 leetcode 100&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/a6ac1cf.html&t=简单回溯 leetcode 100"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -236,15 +241,25 @@
 
     </div>
     <!-- styles -->
+
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 <link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
+
     <!-- jquery -->
+
 <script src="/lib/jquery/jquery.min.js"></script>
+
+
 <script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 <!-- clipboard -->
 
-  <script src="/lib/clipboard/clipboard.min.js"></script>
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
@@ -265,7 +280,9 @@
   })
   </script>
 
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->

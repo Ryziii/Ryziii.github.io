@@ -6,21 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="RTT和RTO RTT是发送一个数据包到收到ACK所花费的时间； RTO是重传时间间隔，当没有收到回应是，一定时间间隔后会重传数据包，RTO是根据RTT计算出的。  滑动窗口   滑动窗口是用于做流量控制和乱序重排。TCP发送方和接收方都维护着一个数据缓存区，发送方缓存区有如下四种状态：  已发送已收到ACK 已发送未收到ACK 未发送可发送 不可发送  接收方缓存区有如下三种状态：  已接收并已">
-<meta name="keywords" content="interview">
+    <meta name="description" content="RTT和RTO RTT是发送一个数据包到收到ACK所花费的时间； RTO是重传时间间隔，当没有收到回应是，一定时间间隔后会重传数据包，RTO是根据RTT计算出的。  滑动窗口          滑动窗口是用于做流量控制和乱序重排。TCP发送方和接收方都维护着一个数据缓存区，发送方缓存区有如下四种状态：  已发送已收到ACK 已发送未收到ACK 未发送可发送 不可发送  接收方缓存区有如下三种状态：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="interview TCP滑动窗口">
 <meta property="og:url" content="http://ryziii.github.io/post/75d57196.html">
 <meta property="og:site_name" content="Rysi&#39;s Blog">
-<meta property="og:description" content="RTT和RTO RTT是发送一个数据包到收到ACK所花费的时间； RTO是重传时间间隔，当没有收到回应是，一定时间间隔后会重传数据包，RTO是根据RTT计算出的。  滑动窗口   滑动窗口是用于做流量控制和乱序重排。TCP发送方和接收方都维护着一个数据缓存区，发送方缓存区有如下四种状态：  已发送已收到ACK 已发送未收到ACK 未发送可发送 不可发送  接收方缓存区有如下三种状态：  已接收并已">
-<meta property="og:locale" content="zh">
+<meta property="og:description" content="RTT和RTO RTT是发送一个数据包到收到ACK所花费的时间； RTO是重传时间间隔，当没有收到回应是，一定时间间隔后会重传数据包，RTO是根据RTT计算出的。  滑动窗口          滑动窗口是用于做流量控制和乱序重排。TCP发送方和接收方都维护着一个数据缓存区，发送方缓存区有如下四种状态：  已发送已收到ACK 已发送未收到ACK 未发送可发送 不可发送  接收方缓存区有如下三种状态：">
+<meta property="og:locale">
 <meta property="og:image" content="https://i.imgur.com/yNoei6J.png">
 <meta property="og:image" content="https://i.imgur.com/znAiTFe.png">
 <meta property="og:image" content="https://i.imgur.com/XmGyAGr.png">
-<meta property="og:updated_time" content="2020-12-14T14:06:03.662Z">
+<meta property="article:published_time" content="2019-10-10T14:21:01.000Z">
+<meta property="article:modified_time" content="2020-12-14T14:06:03.662Z">
+<meta property="article:author" content="Rysi">
+<meta property="article:tag" content="interview">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="interview TCP滑动窗口">
-<meta name="twitter:description" content="RTT和RTO RTT是发送一个数据包到收到ACK所花费的时间； RTO是重传时间间隔，当没有收到回应是，一定时间间隔后会重传数据包，RTO是根据RTT计算出的。  滑动窗口   滑动窗口是用于做流量控制和乱序重排。TCP发送方和接收方都维护着一个数据缓存区，发送方缓存区有如下四种状态：  已发送已收到ACK 已发送未收到ACK 未发送可发送 不可发送  接收方缓存区有如下三种状态：  已接收并已">
 <meta name="twitter:image" content="https://i.imgur.com/yNoei6J.png">
     
     
@@ -43,17 +43,21 @@
     <!-- title -->
     <title>interview TCP滑动窗口</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
     <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
     
     <!-- rss -->
     
     
       <link rel="alternate" href="/atom.xml" title="Rysi&#39;s Blog" type="application/atom+xml" />
     
-</head>
+<meta name="generator" content="Hexo 5.2.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
@@ -95,22 +99,22 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/75d57196.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/75d57196.html&text=interview TCP滑动窗口"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/75d57196.html&is_video=false&description=interview TCP滑动窗口"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/75d57196.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://ryziii.github.io/post/75d57196.html&text=interview TCP滑动窗口"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/75d57196.html&is_video=false&description=interview TCP滑动窗口"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=interview TCP滑动窗口&body=Check out this article: http://ryziii.github.io/post/75d57196.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/75d57196.html&name=interview TCP滑动窗口&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/75d57196.html&t=interview TCP滑动窗口"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/75d57196.html&name=interview TCP滑动窗口&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/75d57196.html&t=interview TCP滑动窗口"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RTT和RTO"><span class="toc-number">1.</span> <span class="toc-text">RTT和RTO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#滑动窗口"><span class="toc-number">2.</span> <span class="toc-text">滑动窗口</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RTT%E5%92%8CRTO"><span class="toc-number">1.</span> <span class="toc-text">RTT和RTO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3"><span class="toc-number">2.</span> <span class="toc-text">滑动窗口</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -145,7 +149,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/interview/">interview</a>
+        <a class="tag-link-link" href="/tags/interview/" rel="tag">interview</a>
     </div>
 
 
@@ -158,9 +162,16 @@
 <li>RTT是发送一个数据包到收到ACK所花费的时间；</li>
 <li>RTO是重传时间间隔，当没有收到回应是，一定时间间隔后会重传数据包，RTO是根据RTT计算出的。</li>
 </ol>
-<h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><p><img src="https://i.imgur.com/yNoei6J.png" width="650px"></p>
-<p><img src="https://i.imgur.com/znAiTFe.png" width="650px"></p>
-<p><img src="https://i.imgur.com/XmGyAGr.png" width="650px"></p>
+<h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><img src="https://i.imgur.com/yNoei6J.png" width="650px" >
+
+<img src="https://i.imgur.com/znAiTFe.png" width="650px" >
+
+<img src="https://i.imgur.com/XmGyAGr.png" width="650px" >
+
+
+
+
+
 <p>滑动窗口是用于做流量控制和乱序重排。TCP发送方和接收方都维护着一个数据缓存区，发送方缓存区有如下四种状态：</p>
 <ol>
 <li>已发送已收到ACK</li>
@@ -175,8 +186,8 @@
 <li>不允许接收</li>
 </ol>
 <blockquote>
-<p><a href="https://www.cnblogs.com/lingyejun/p/7158028.html" target="_blank" rel="noopener">参考网址1</a></p>
-<p><a href="https://my.oschina.net/funcy/blog/3006133" target="_blank" rel="noopener">参考网址2</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lingyejun/p/7158028.html">参考网址1</a></p>
+<p><a target="_blank" rel="noopener" href="https://my.oschina.net/funcy/blog/3006133">参考网址2</a></p>
 </blockquote>
 
   </div>
@@ -203,22 +214,22 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RTT和RTO"><span class="toc-number">1.</span> <span class="toc-text">RTT和RTO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#滑动窗口"><span class="toc-number">2.</span> <span class="toc-text">滑动窗口</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RTT%E5%92%8CRTO"><span class="toc-number">1.</span> <span class="toc-text">RTT和RTO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3"><span class="toc-number">2.</span> <span class="toc-text">滑动窗口</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/75d57196.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://ryziii.github.io/post/75d57196.html&text=interview TCP滑动窗口"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/75d57196.html&is_video=false&description=interview TCP滑动窗口"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/75d57196.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://ryziii.github.io/post/75d57196.html&text=interview TCP滑动窗口"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/75d57196.html&is_video=false&description=interview TCP滑动窗口"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=interview TCP滑动窗口&body=Check out this article: http://ryziii.github.io/post/75d57196.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/75d57196.html&name=interview TCP滑动窗口&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/75d57196.html&t=interview TCP滑动窗口"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://ryziii.github.io/post/75d57196.html&title=interview TCP滑动窗口"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/75d57196.html&name=interview TCP滑动窗口&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/75d57196.html&t=interview TCP滑动窗口"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -261,15 +272,25 @@
 
     </div>
     <!-- styles -->
+
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 <link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
+
     <!-- jquery -->
+
 <script src="/lib/jquery/jquery.min.js"></script>
+
+
 <script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 <!-- clipboard -->
 
-  <script src="/lib/clipboard/clipboard.min.js"></script>
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
@@ -290,7 +311,9 @@
   })
   </script>
 
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->
