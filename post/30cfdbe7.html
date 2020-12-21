@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="垃圾回收中的标记算法当一个对象没有被任何对象引用系统就判定其为垃圾，着手释放该对象占用的内存。但判定一个对象是否有无引用需要标记算法做标记。 垃圾判定算法-引用计数算法此方法通过判断对象的引用数量来决定对象是否可以被回收。堆中的每个对象实例都有一个引用计数器，当对象被引用则+1，当例如局部变量方法结束则此变量完成引用计数器-1，任何引用计数器为0的对象都可被视为垃圾予以回收。 引用计数器的优点：只">
 <meta property="og:type" content="article">
-<meta property="og:title" content="interview Java底层知识：GC垃圾回收机制">
+<meta property="og:title" content="interview Java底层知识：GC垃圾回收-标记算法与回收算法">
 <meta property="og:url" content="http://ryziii.github.io/post/30cfdbe7.html">
 <meta property="og:site_name" content="Rysi&#39;s Blog">
 <meta property="og:description" content="垃圾回收中的标记算法当一个对象没有被任何对象引用系统就判定其为垃圾，着手释放该对象占用的内存。但判定一个对象是否有无引用需要标记算法做标记。 垃圾判定算法-引用计数算法此方法通过判断对象的引用数量来决定对象是否可以被回收。堆中的每个对象实例都有一个引用计数器，当对象被引用则+1，当例如局部变量方法结束则此变量完成引用计数器-1，任何引用计数器为0的对象都可被视为垃圾予以回收。 引用计数器的优点：只">
@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://i.imgur.com/q280dJh.png">
 <meta property="og:image" content="https://i.imgur.com/yF1n4mf.png">
 <meta property="article:published_time" content="2020-12-14T12:04:24.000Z">
-<meta property="article:modified_time" content="2020-12-18T21:15:43.078Z">
+<meta property="article:modified_time" content="2020-12-21T09:27:34.085Z">
 <meta property="article:author" content="Rysi">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="interview">
@@ -45,7 +45,7 @@
       
     
     <!-- title -->
-    <title>interview Java底层知识：GC垃圾回收机制</title>
+    <title>interview Java底层知识：GC垃圾回收-标记算法与回收算法</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -104,21 +104,21 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/30cfdbe7.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://ryziii.github.io/post/30cfdbe7.html&text=interview Java底层知识：GC垃圾回收机制"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收机制"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/30cfdbe7.html&is_video=false&description=interview Java底层知识：GC垃圾回收机制"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=interview Java底层知识：GC垃圾回收机制&body=Check out this article: http://ryziii.github.io/post/30cfdbe7.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收机制"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收机制"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收机制"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收机制"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/30cfdbe7.html&name=interview Java底层知识：GC垃圾回收机制&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/30cfdbe7.html&t=interview Java底层知识：GC垃圾回收机制"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://ryziii.github.io/post/30cfdbe7.html&text=interview Java底层知识：GC垃圾回收-标记算法与回收算法"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收-标记算法与回收算法"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/30cfdbe7.html&is_video=false&description=interview Java底层知识：GC垃圾回收-标记算法与回收算法"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=interview Java底层知识：GC垃圾回收-标记算法与回收算法&body=Check out this article: http://ryziii.github.io/post/30cfdbe7.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收-标记算法与回收算法"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收-标记算法与回收算法"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收-标记算法与回收算法"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收-标记算法与回收算法"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/30cfdbe7.html&name=interview Java底层知识：GC垃圾回收-标记算法与回收算法&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/30cfdbe7.html&t=interview Java底层知识：GC垃圾回收-标记算法与回收算法"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E4%B8%AD%E7%9A%84%E6%A0%87%E8%AE%B0%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">垃圾回收中的标记算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%88%A4%E5%AE%9A%E7%AE%97%E6%B3%95-%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E7%AE%97%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">垃圾判定算法-引用计数算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%88%A4%E5%AE%9A%E7%AE%97%E6%B3%95-%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">垃圾判定算法-可达性分析算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E4%BD%9C%E4%B8%BAGCROOT%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.1.</span> <span class="toc-text">什么对象可以作为GCROOT对象</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E4%B8%AD%E7%9A%84%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">垃圾回收中的回收算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95-%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95-Mark-and-Sweep"><span class="toc-number">2.1.</span> <span class="toc-text">垃圾回收算法-标记清除算法(Mark and Sweep)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95-%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95-Copying"><span class="toc-number">2.2.</span> <span class="toc-text">垃圾回收算法-复制算法(Copying)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95-%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text">垃圾回收算法-标记整理算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95-%E5%88%86%E5%B8%A6%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95-Generational-Collector"><span class="toc-number">2.4.</span> <span class="toc-text">垃圾回收算法-分带收集算法(Generational Collector)</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E4%B8%AD%E7%9A%84%E6%A0%87%E8%AE%B0%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">垃圾回收中的标记算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%88%A4%E5%AE%9A%E7%AE%97%E6%B3%95-%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E7%AE%97%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">垃圾判定算法-引用计数算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%88%A4%E5%AE%9A%E7%AE%97%E6%B3%95-%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">垃圾判定算法-可达性分析算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E4%BD%9C%E4%B8%BAGCROOT%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.1.</span> <span class="toc-text">什么对象可以作为GCROOT对象</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E4%B8%AD%E7%9A%84%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">垃圾回收中的回收算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95-%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95-Mark-and-Sweep"><span class="toc-number">2.1.</span> <span class="toc-text">垃圾回收算法-标记清除算法(Mark and Sweep)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95-%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95-Copying"><span class="toc-number">2.2.</span> <span class="toc-text">垃圾回收算法-复制算法(Copying)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95-%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text">垃圾回收算法-标记整理算法</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -130,7 +130,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        interview Java底层知识：GC垃圾回收机制
+        interview Java底层知识：GC垃圾回收-标记算法与回收算法
     </h1>
 
 
@@ -193,7 +193,16 @@
 <h2 id="垃圾回收算法-标记整理算法"><a href="#垃圾回收算法-标记整理算法" class="headerlink" title="垃圾回收算法-标记整理算法"></a>垃圾回收算法-标记整理算法</h2><p>标记：从根对象进行可达性查找，标记处存活对象。</p>
 <p>清除：移动所有存活对象，按照内存地址次序依次排列，然后将末端内存地址之后的内存完全回收。</p>
 <p><img src="https://i.imgur.com/yF1n4mf.png" alt="image-20201219051514166"></p>
-<h2 id="垃圾回收算法-分带收集算法-Generational-Collector"><a href="#垃圾回收算法-分带收集算法-Generational-Collector" class="headerlink" title="垃圾回收算法-分带收集算法(Generational Collector)"></a>垃圾回收算法-分带收集算法(Generational Collector)</h2>
+<blockquote>
+<p>优点：</p>
+<ol>
+<li>可以避免内存的不连续性；</li>
+<li>不需要两块容量相同的内存相互复制；</li>
+<li>适用于存活率高的老年代；</li>
+</ol>
+</blockquote>
+<p>- </p>
+
   </div>
 </article>
 
@@ -218,22 +227,22 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E4%B8%AD%E7%9A%84%E6%A0%87%E8%AE%B0%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">垃圾回收中的标记算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%88%A4%E5%AE%9A%E7%AE%97%E6%B3%95-%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E7%AE%97%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">垃圾判定算法-引用计数算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%88%A4%E5%AE%9A%E7%AE%97%E6%B3%95-%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">垃圾判定算法-可达性分析算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E4%BD%9C%E4%B8%BAGCROOT%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.1.</span> <span class="toc-text">什么对象可以作为GCROOT对象</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E4%B8%AD%E7%9A%84%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">垃圾回收中的回收算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95-%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95-Mark-and-Sweep"><span class="toc-number">2.1.</span> <span class="toc-text">垃圾回收算法-标记清除算法(Mark and Sweep)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95-%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95-Copying"><span class="toc-number">2.2.</span> <span class="toc-text">垃圾回收算法-复制算法(Copying)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95-%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text">垃圾回收算法-标记整理算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95-%E5%88%86%E5%B8%A6%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95-Generational-Collector"><span class="toc-number">2.4.</span> <span class="toc-text">垃圾回收算法-分带收集算法(Generational Collector)</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E4%B8%AD%E7%9A%84%E6%A0%87%E8%AE%B0%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">垃圾回收中的标记算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%88%A4%E5%AE%9A%E7%AE%97%E6%B3%95-%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E7%AE%97%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">垃圾判定算法-引用计数算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%88%A4%E5%AE%9A%E7%AE%97%E6%B3%95-%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">垃圾判定算法-可达性分析算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E4%BD%9C%E4%B8%BAGCROOT%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.1.</span> <span class="toc-text">什么对象可以作为GCROOT对象</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E4%B8%AD%E7%9A%84%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">垃圾回收中的回收算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95-%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95-Mark-and-Sweep"><span class="toc-number">2.1.</span> <span class="toc-text">垃圾回收算法-标记清除算法(Mark and Sweep)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95-%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95-Copying"><span class="toc-number">2.2.</span> <span class="toc-text">垃圾回收算法-复制算法(Copying)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95-%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text">垃圾回收算法-标记整理算法</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/30cfdbe7.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://ryziii.github.io/post/30cfdbe7.html&text=interview Java底层知识：GC垃圾回收机制"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收机制"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/30cfdbe7.html&is_video=false&description=interview Java底层知识：GC垃圾回收机制"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=interview Java底层知识：GC垃圾回收机制&body=Check out this article: http://ryziii.github.io/post/30cfdbe7.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收机制"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收机制"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收机制"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收机制"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/30cfdbe7.html&name=interview Java底层知识：GC垃圾回收机制&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/30cfdbe7.html&t=interview Java底层知识：GC垃圾回收机制"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://ryziii.github.io/post/30cfdbe7.html&text=interview Java底层知识：GC垃圾回收-标记算法与回收算法"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收-标记算法与回收算法"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/30cfdbe7.html&is_video=false&description=interview Java底层知识：GC垃圾回收-标记算法与回收算法"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=interview Java底层知识：GC垃圾回收-标记算法与回收算法&body=Check out this article: http://ryziii.github.io/post/30cfdbe7.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收-标记算法与回收算法"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收-标记算法与回收算法"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收-标记算法与回收算法"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://ryziii.github.io/post/30cfdbe7.html&title=interview Java底层知识：GC垃圾回收-标记算法与回收算法"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/30cfdbe7.html&name=interview Java底层知识：GC垃圾回收-标记算法与回收算法&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/30cfdbe7.html&t=interview Java底层知识：GC垃圾回收-标记算法与回收算法"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

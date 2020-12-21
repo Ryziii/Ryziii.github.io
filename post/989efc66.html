@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="垃圾回收算法-分带收集算法(Generational Collector)将Java垃圾分为年轻代和老年代，年轻代使用复制手机算法，老年代使用标记整理算法，分带手机算法更加高效。 年轻代年轻代是所有Java对象出生时都需要经历的。又分为Eden区和两个Survive区。  所有Java对象初始都出现在Eden区中，如果Eden区满了则进行一次Minor GC将存活对象年龄+1存入from Surv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="interview Java底层知识：GC垃圾回收-分带收集算法">
+<meta property="og:url" content="http://ryziii.github.io/post/989efc66.html">
+<meta property="og:site_name" content="Rysi&#39;s Blog">
+<meta property="og:description" content="垃圾回收算法-分带收集算法(Generational Collector)将Java垃圾分为年轻代和老年代，年轻代使用复制手机算法，老年代使用标记整理算法，分带手机算法更加高效。 年轻代年轻代是所有Java对象出生时都需要经历的。又分为Eden区和两个Survive区。  所有Java对象初始都出现在Eden区中，如果Eden区满了则进行一次Minor GC将存活对象年龄+1存入from Surv">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.imgur.com/nEroCT4.png">
+<meta property="og:image" content="https://i.imgur.com/5SU89p7.png">
+<meta property="og:image" content="https://i.imgur.com/P1up0N0.png">
+<meta property="article:published_time" content="2020-12-21T09:26:02.000Z">
+<meta property="article:modified_time" content="2020-12-21T11:09:37.237Z">
+<meta property="article:author" content="Rysi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/nEroCT4.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>interview Java底层知识：GC垃圾回收-分带收集算法</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="Rysi&#39;s Blog" type="application/atom+xml" />
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/post/afeab539.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/989efc66.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://ryziii.github.io/post/989efc66.html&text=interview Java底层知识：GC垃圾回收-分带收集算法"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/989efc66.html&title=interview Java底层知识：GC垃圾回收-分带收集算法"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/989efc66.html&is_video=false&description=interview Java底层知识：GC垃圾回收-分带收集算法"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=interview Java底层知识：GC垃圾回收-分带收集算法&body=Check out this article: http://ryziii.github.io/post/989efc66.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://ryziii.github.io/post/989efc66.html&title=interview Java底层知识：GC垃圾回收-分带收集算法"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://ryziii.github.io/post/989efc66.html&title=interview Java底层知识：GC垃圾回收-分带收集算法"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/989efc66.html&title=interview Java底层知识：GC垃圾回收-分带收集算法"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://ryziii.github.io/post/989efc66.html&title=interview Java底层知识：GC垃圾回收-分带收集算法"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/989efc66.html&name=interview Java底层知识：GC垃圾回收-分带收集算法&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/989efc66.html&t=interview Java底层知识：GC垃圾回收-分带收集算法"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95-%E5%88%86%E5%B8%A6%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95-Generational-Collector"><span class="toc-number">1.</span> <span class="toc-text">垃圾回收算法-分带收集算法(Generational Collector)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B4%E8%BD%BB%E4%BB%A3"><span class="toc-number">1.1.</span> <span class="toc-text">年轻代</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%80%81%E5%B9%B4%E4%BB%A3"><span class="toc-number">1.2.</span> <span class="toc-text">老年代</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91FullGC%E7%9A%84%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.2.1.</span> <span class="toc-text">触发FullGC的条件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%A6%82%E4%BD%95%E4%BB%8E%E5%B9%B4%E8%BD%BB%E4%BB%A3%E5%88%B0%E8%80%81%E5%B9%B4%E4%BB%A3"><span class="toc-number">1.3.</span> <span class="toc-text">对象如何从年轻代到老年代</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E8%B0%83%E4%BC%98%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">常用的调优参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GC%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A7%81%E6%A6%82%E5%BF%B5"><span class="toc-number">1.4.</span> <span class="toc-text">GC中的常见概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Stop-the-World"><span class="toc-number">1.4.1.</span> <span class="toc-text">Stop-the-World</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Safepoint"><span class="toc-number">1.4.2.</span> <span class="toc-text">Safepoint</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B9%8B%E9%97%B4%E7%9A%84%E8%81%94%E7%B3%BB"><span class="toc-number">2.</span> <span class="toc-text">垃圾收集器之间的联系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B4%E8%BD%BB%E4%BB%A3%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-number">2.1.</span> <span class="toc-text">年轻代中常见的垃圾收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Serial%E6%94%B6%E9%9B%86%E5%99%A8-XX-UseSearialGC-%E9%87%87%E7%94%A8%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95"><span class="toc-number">2.1.1.</span> <span class="toc-text">Serial收集器(-XX:+UseSearialGC, 采用复制算法)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ParNew%E6%94%B6%E9%9B%86%E5%99%A8-XX-UseParNewGC-%E9%87%87%E7%94%A8%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95"><span class="toc-number">2.1.2.</span> <span class="toc-text">ParNew收集器(-XX:+UseParNewGC, 采用复制算法)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parallel-Scavenge%E6%94%B6%E9%9B%86%E5%99%A8-XX-UseParallelGC-%E9%87%87%E7%94%A8%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95"><span class="toc-number">2.1.3.</span> <span class="toc-text">Parallel Scavenge收集器(-XX:UseParallelGC, 采用复制算法)</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        interview Java底层知识：GC垃圾回收-分带收集算法
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Rysi</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-12-21T09:26:02.000Z" itemprop="datePublished">2020-12-21</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="垃圾回收算法-分带收集算法-Generational-Collector"><a href="#垃圾回收算法-分带收集算法-Generational-Collector" class="headerlink" title="垃圾回收算法-分带收集算法(Generational Collector)"></a>垃圾回收算法-分带收集算法(Generational Collector)</h1><p>将Java垃圾分为年轻代和老年代，年轻代使用复制手机算法，老年代使用标记整理算法，分带手机算法更加高效。</p>
+<h2 id="年轻代"><a href="#年轻代" class="headerlink" title="年轻代"></a>年轻代</h2><p>年轻代是所有Java对象出生时都需要经历的。又分为Eden区和两个Survive区。 </p>
+<p>所有Java对象初始都出现在Eden区中，如果Eden区满了则进行一次Minor GC将存活对象年龄+1存入from Survive区并清除Eden区；再满了则进行一次Minor GC将Eden中存活的对象复制到to，from中存活的对象也复制到to，清除Eden区和from区所有存活对象年龄+1，from区改名to区，to区改名from区。</p>
+<h2 id="老年代"><a href="#老年代" class="headerlink" title="老年代"></a>老年代</h2><p>老年代是指在年轻代中存活超过15个周期的对象，或者年轻代中的内存空间无法容纳的对象。老年代采用标记整理算法做垃圾回收。老年代常用FullGC和MajorGC做垃圾回收，FullGC执行比较慢，执行也没MajorGC频繁。</p>
+<h3 id="触发FullGC的条件"><a href="#触发FullGC的条件" class="headerlink" title="触发FullGC的条件"></a>触发FullGC的条件</h3><ul>
+<li>老年代空间不足</li>
+<li>永久代的空间不足(一般是Java8之前)</li>
+<li>CMS GC时出现promotion failed， concurrent mode failure</li>
+<li>Minor GC晋升到老年代的平均大小大于老年代的剩余空间</li>
+<li>程序中调用System.gc()</li>
+<li>使用RMI来进行RPC或管理JDK应用，每小时执行一次FullGC</li>
+</ul>
+<p><img src="https://i.imgur.com/nEroCT4.png" alt="image-20201220234905417"></p>
+<h2 id="对象如何从年轻代到老年代"><a href="#对象如何从年轻代到老年代" class="headerlink" title="对象如何从年轻代到老年代"></a>对象如何从年轻代到老年代</h2><ul>
+<li>在年轻代中经历过一定次数的MinorGC依然存活</li>
+<li>Survivor区存放不下的对象</li>
+<li>新生成的大对象(通过-XX: PretenuserSizeThreshold控制多大的对象直接放老年代中)</li>
+</ul>
+<h3 id="常用的调优参数"><a href="#常用的调优参数" class="headerlink" title="常用的调优参数"></a>常用的调优参数</h3><ul>
+<li>-XX:SurvivorRatio            Eden和Survivor的比例，默认是8:1</li>
+<li>-XX:NewRatio                    老年代和年轻代的比例</li>
+<li>-XX:MaxTenuringThreshold   对象从年轻代到老年代要经历过多少次MinorGC</li>
+</ul>
+<h2 id="GC中的常见概念"><a href="#GC中的常见概念" class="headerlink" title="GC中的常见概念"></a>GC中的常见概念</h2><h3 id="Stop-the-World"><a href="#Stop-the-World" class="headerlink" title="Stop-the-World"></a>Stop-the-World</h3><ul>
+<li>stop-the-world指的是JVM由于要执行GC而中断程序运行</li>
+<li>会在任何GC算法中发生</li>
+<li>大多数GC都是通过优化stop-the-world发生的时间来提升程序的性能</li>
+</ul>
+<h3 id="Safepoint"><a href="#Safepoint" class="headerlink" title="Safepoint"></a>Safepoint</h3><p>垃圾回收可达性分析中需要安全点以免在分析过程中对象引用关系变化，垃圾回收开始后会冻结所有线程，所以在开始前需要所有线程跑到安全点才开始进行GC，安全点有如下几个特点：</p>
+<ul>
+<li>分析过程中对象引用关系不会发生变化的点</li>
+<li>产生Safepoint的地方：方法调用；循环跳转；异常跳转等</li>
+<li>安全点的数量需要适中，太多会增加程序运行负荷，太少会让GC等待太长时间</li>
+</ul>
+<h1 id="垃圾收集器之间的联系"><a href="#垃圾收集器之间的联系" class="headerlink" title="垃圾收集器之间的联系"></a>垃圾收集器之间的联系</h1><p>![image-20201221190054225](/Users/ryfio/Library/Application Support/typora-user-images/image-20201221190054225.png)</p>
+<h2 id="年轻代中常见的垃圾收集器"><a href="#年轻代中常见的垃圾收集器" class="headerlink" title="年轻代中常见的垃圾收集器"></a>年轻代中常见的垃圾收集器</h2><h3 id="Serial收集器-XX-UseSearialGC-采用复制算法"><a href="#Serial收集器-XX-UseSearialGC-采用复制算法" class="headerlink" title="Serial收集器(-XX:+UseSearialGC, 采用复制算法)"></a>Serial收集器(-XX:+UseSearialGC, 采用复制算法)</h3><ul>
+<li>采用单线程收集，进行GC时，必须暂停其他所有工作线程</li>
+<li>简单高效，CLient模式下默认的年轻收集器</li>
+</ul>
+<h3 id="ParNew收集器-XX-UseParNewGC-采用复制算法"><a href="#ParNew收集器-XX-UseParNewGC-采用复制算法" class="headerlink" title="ParNew收集器(-XX:+UseParNewGC, 采用复制算法)"></a>ParNew收集器(-XX:+UseParNewGC, 采用复制算法)</h3><ul>
+<li>采用多线程收集，其余特点与Serial收集器一样</li>
+<li>单核执行效率不如Serial，在多核下执行才有优势</li>
+</ul>
+<p><img src="https://i.imgur.com/5SU89p7.png" alt="image-20201221190443642"></p>
+<h3 id="Parallel-Scavenge收集器-XX-UseParallelGC-采用复制算法"><a href="#Parallel-Scavenge收集器-XX-UseParallelGC-采用复制算法" class="headerlink" title="Parallel Scavenge收集器(-XX:UseParallelGC, 采用复制算法)"></a>Parallel Scavenge收集器(-XX:UseParallelGC, 采用复制算法)</h3><ul>
+<li>相较于关注线程停顿时间的收集器，此收集器更关注系统吞吐量</li>
+<li>在多核下执行更有优势，因为其关注吞吐量所以适合不注重交互的Server场景，是Server模式下默认的年轻收集器</li>
+</ul>
+<blockquote>
+<p>吞吐量：用户运行代码的时间/(用户运行代码的时间+垃圾回收时间)</p>
+</blockquote>
+<p><img src="https://i.imgur.com/P1up0N0.png" alt="image-20201221190742298"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95-%E5%88%86%E5%B8%A6%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95-Generational-Collector"><span class="toc-number">1.</span> <span class="toc-text">垃圾回收算法-分带收集算法(Generational Collector)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B4%E8%BD%BB%E4%BB%A3"><span class="toc-number">1.1.</span> <span class="toc-text">年轻代</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%80%81%E5%B9%B4%E4%BB%A3"><span class="toc-number">1.2.</span> <span class="toc-text">老年代</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91FullGC%E7%9A%84%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.2.1.</span> <span class="toc-text">触发FullGC的条件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%A6%82%E4%BD%95%E4%BB%8E%E5%B9%B4%E8%BD%BB%E4%BB%A3%E5%88%B0%E8%80%81%E5%B9%B4%E4%BB%A3"><span class="toc-number">1.3.</span> <span class="toc-text">对象如何从年轻代到老年代</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E8%B0%83%E4%BC%98%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">常用的调优参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GC%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A7%81%E6%A6%82%E5%BF%B5"><span class="toc-number">1.4.</span> <span class="toc-text">GC中的常见概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Stop-the-World"><span class="toc-number">1.4.1.</span> <span class="toc-text">Stop-the-World</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Safepoint"><span class="toc-number">1.4.2.</span> <span class="toc-text">Safepoint</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B9%8B%E9%97%B4%E7%9A%84%E8%81%94%E7%B3%BB"><span class="toc-number">2.</span> <span class="toc-text">垃圾收集器之间的联系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B4%E8%BD%BB%E4%BB%A3%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-number">2.1.</span> <span class="toc-text">年轻代中常见的垃圾收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Serial%E6%94%B6%E9%9B%86%E5%99%A8-XX-UseSearialGC-%E9%87%87%E7%94%A8%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95"><span class="toc-number">2.1.1.</span> <span class="toc-text">Serial收集器(-XX:+UseSearialGC, 采用复制算法)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ParNew%E6%94%B6%E9%9B%86%E5%99%A8-XX-UseParNewGC-%E9%87%87%E7%94%A8%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95"><span class="toc-number">2.1.2.</span> <span class="toc-text">ParNew收集器(-XX:+UseParNewGC, 采用复制算法)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parallel-Scavenge%E6%94%B6%E9%9B%86%E5%99%A8-XX-UseParallelGC-%E9%87%87%E7%94%A8%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95"><span class="toc-number">2.1.3.</span> <span class="toc-text">Parallel Scavenge收集器(-XX:UseParallelGC, 采用复制算法)</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://ryziii.github.io/post/989efc66.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://ryziii.github.io/post/989efc66.html&text=interview Java底层知识：GC垃圾回收-分带收集算法"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://ryziii.github.io/post/989efc66.html&title=interview Java底层知识：GC垃圾回收-分带收集算法"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ryziii.github.io/post/989efc66.html&is_video=false&description=interview Java底层知识：GC垃圾回收-分带收集算法"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=interview Java底层知识：GC垃圾回收-分带收集算法&body=Check out this article: http://ryziii.github.io/post/989efc66.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://ryziii.github.io/post/989efc66.html&title=interview Java底层知识：GC垃圾回收-分带收集算法"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://ryziii.github.io/post/989efc66.html&title=interview Java底层知识：GC垃圾回收-分带收集算法"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://ryziii.github.io/post/989efc66.html&title=interview Java底层知识：GC垃圾回收-分带收集算法"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://ryziii.github.io/post/989efc66.html&title=interview Java底层知识：GC垃圾回收-分带收集算法"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://ryziii.github.io/post/989efc66.html&name=interview Java底层知识：GC垃圾回收-分带收集算法&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://ryziii.github.io/post/989efc66.html&t=interview Java底层知识：GC垃圾回收-分带收集算法"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2020
+    Rysi
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P74933JZ11"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-P74933JZ11');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
